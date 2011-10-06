@@ -1,0 +1,21 @@
+<%=  semantic_form_for([:person,@address]) do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   
+    <%= f.inputs :street, :number, :other, :email, :telefono %>
+    <%= f.input :person_id, :as=>:hidden%>
+
+    <%= f.input :taddress,:collection => Personas::Taddress.all %>
+
+    <%= f.buttons :commit %>
+
+<% end %>

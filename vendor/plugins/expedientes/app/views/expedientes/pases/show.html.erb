@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Oficina:</b>
+  <%= @pase.oficina.try :name %>
+</p>
+
+<p>
+  <b>Expediente:</b>
+  <%= @pase.expediente_id %>
+</p>
+
+<p>
+  <b>Entrada:</b>
+  <%= @pase.entrada %>
+</p>
+
+<p>
+  <b>Observaciones:</b>
+  <%= @pase.observaciones %>
+</p>
+
+
+<%= link_to 'Edit', edit_expediente_pase_path(@pase.expediente,@pase) %> |
+<%= link_to 'Back', @pase.expediente %>

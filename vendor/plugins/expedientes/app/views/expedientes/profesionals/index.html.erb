@@ -1,0 +1,21 @@
+<header>
+  <div class="title">
+    <h1>Listado de <%=t controller_name %></h1> 
+  </div>
+
+  <div class="search-bar">
+    <%= render :partial =>"/expedientes/#{controller_name}/search" %>
+  </div>
+</header>
+
+<div class="big-sidebar">
+
+</div>
+
+<div class="details">  
+  <%= render :partial =>"/expedientes/#{controller_name}/#{controller_name}"%>
+</div>
+
+<footer>
+  <%= link_to 'Nuevo Registro', :controller=>controller_name,:action => :new %>
+</footer>

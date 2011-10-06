@@ -1,0 +1,17 @@
+<%= semantic_form_for(@expediente) do |form| %>
+
+  <%#= error_message(@expediente) %>
+
+  <%= form.inputs do %>
+    <%= form.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker', :size=>10} %>
+    <p><%= link_to "Ingresar un nuevo profesional", xpedientes.new_profesional_path %></p>
+    <%= form.input :profesionals_tokens,
+      :input_html => {
+        "data-pre" => @expediente.profesionals.to_json(:methods => :name), :only => [:id, :name] } %>
+    <%= form.input :numero_expediente_colegio %>
+    <%= form.input :convenio_id %>
+    <%= form.input :partida %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>
+

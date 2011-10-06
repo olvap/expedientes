@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Titulo:</b>
+  <%= @profesional.titulo %>
+</p>
+
+<p>
+  <b>Matricula:</b>
+  <%= @profesional.matricula %>
+</p>
+
+<%= render :partial => "personas/people/person", :locals => {:@person => @profesional.person} %>
+
+<%= link_to 'Edit', edit_profesional_path(@profesional) %> |
+<%= link_to 'Back', profesionals_path %>

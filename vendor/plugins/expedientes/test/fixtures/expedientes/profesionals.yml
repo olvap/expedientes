@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titulo: MyString
+  matricula: 1
+  persona_id: 1
+
+two:
+  titulo: MyString
+  matricula: 1
+  persona_id: 1

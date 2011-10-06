@@ -1,0 +1,12 @@
+<%= table_for(@sexos) do |t| %>
+  <%= t.data do
+    t.cell(:name)
+    t.cell(:acciones, :heading => "Acciones", :cell_html => {:class => "acciones"}) do |sexo|
+      cell_content = link_to 'Detalles', sexo
+      cell_content += " | "
+      cell_content += link_to 'Editar', edit_sexo_path(sexo)
+      cell_content += " | "
+      cell_content += link_to 'Borrar', sexo, confirm: 'Are you sure?', method: :delete
+    end
+  end %>
+<% end %>

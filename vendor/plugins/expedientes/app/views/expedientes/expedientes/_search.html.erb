@@ -1,0 +1,10 @@
+<%= semantic_form_for @search do |form|%>
+  <%= form.input :id_eq %>
+  <%= form.input :numero_expediente_colegio_eq %>
+  <%= form.input :profesionals_person_name_like %>
+  <%= form.input :partida_sw %>
+  <%= form.input :pase_oficina_name_eq %>
+  <%= form.buttons do %>
+    <%= form.commit_button :label=>"Buscar" %>
+  <% end %>
+<%end%>

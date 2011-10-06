@@ -1,0 +1,6 @@
+  <%= form.inputs :name, :doc%>
+  <%= form.input :tdoc,:collection => Personas::Tdoc.all %>
+  <%= form.input :born, :as=>:string,:input_html => {:class => 'datepicker',:size=>10} %>
+  <%= form.input :civil,:collection => Personas::Civil.all %>
+  <%= form.input :sexo,:collection => Personas::Sexo.all,:as=>:radio %>
+  <%= form.inputs :observations %>

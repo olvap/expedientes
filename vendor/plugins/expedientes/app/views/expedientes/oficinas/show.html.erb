@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @oficina.name %>
+</p>
+<%= render :partial => "/expedientes/expedientes/expedientes" %>
+<%= link_to 'Edit', edit_oficina_path(@oficina) %> |
+<%= link_to 'Back', oficinas_path %>

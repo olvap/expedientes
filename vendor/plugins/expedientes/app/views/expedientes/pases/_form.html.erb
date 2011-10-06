@@ -1,0 +1,23 @@
+<%= semantic_form_for([:expediente,@pase]) do |form| %>
+
+  <% if @pase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pase.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% @pase.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.inputs do %>
+    <%= form.input :entrada, :as=>:string, :input_html => {:class => 'datepicker', :size=>10} %>
+    <%= form.input :oficina %>
+    <%= form.input :expediente_id, :as => :hidden %>
+    <%= form.input :observaciones %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>
+
