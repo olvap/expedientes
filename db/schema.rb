@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111001223625) do
+ActiveRecord::Schema.define(:version => 20111006150037) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,11 +53,72 @@ ActiveRecord::Schema.define(:version => 20111001223625) do
     t.datetime "updated_at"
   end
 
+  create_table "personas_addresses", :force => true do |t|
+    t.string   "street"
+    t.integer  "number"
+    t.string   "other"
+    t.string   "email"
+    t.string   "telefono"
+    t.integer  "taddress_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_civils", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_people", :force => true do |t|
+    t.string   "name"
+    t.date     "born"
+    t.string   "doc"
+    t.date     "dead"
+    t.text     "observations"
+    t.integer  "civil_id"
+    t.integer  "tdoc_id"
+    t.integer  "city_id"
+    t.integer  "sexo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_sexos", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_taddresses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personas_tdocs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.text     "observations"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end
