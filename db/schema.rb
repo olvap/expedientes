@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006150037) do
+ActiveRecord::Schema.define(:version => 20111006152531) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -49,6 +49,47 @@ ActiveRecord::Schema.define(:version => 20111006150037) do
   create_table "admin_users_roles", :id => false, :force => true do |t|
     t.integer  "admin_user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_expedientes", :force => true do |t|
+    t.integer  "numero_expediente_colegio"
+    t.date     "final_de_obra"
+    t.integer  "profesional_id"
+    t.string   "partida"
+    t.integer  "convenio_id"
+    t.integer  "pase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_oficinas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_pases", :force => true do |t|
+    t.integer  "oficina_id"
+    t.integer  "expediente_id"
+    t.date     "entrada"
+    t.text     "observaciones"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_pedidos", :id => false, :force => true do |t|
+    t.integer  "expediente_id"
+    t.integer  "profesional_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_profesionals", :force => true do |t|
+    t.string   "titulo"
+    t.integer  "matricula"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
