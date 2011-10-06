@@ -2,6 +2,7 @@ module Expedientes
 
   class Expediente < ActiveRecord::Base
 
+    has_paper_trail
     #belongs_to :profesional
     has_many :pases
     belongs_to :pase

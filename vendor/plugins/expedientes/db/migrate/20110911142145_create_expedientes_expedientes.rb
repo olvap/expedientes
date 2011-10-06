@@ -5,6 +5,7 @@ class CreateExpedientesExpedientes < ActiveRecord::Migration
       t.date :final_de_obra
       t.integer :profesional_id
       t.string :partida
+      t.string :type
       t.integer :convenio_id
       t.integer :pase_id
 
