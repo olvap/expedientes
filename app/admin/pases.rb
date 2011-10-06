@@ -21,9 +21,6 @@ ActiveAdmin.register Expedientes::Pase, :as => "pase" do
     def create
 
       create! do |format|
-        binding.pry
-        @catastro.pase = @pase
-        @catastro.save
         format.html {redirect_to admin_catastro_path @catastro}
       end
     end

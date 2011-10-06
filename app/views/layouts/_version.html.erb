@@ -12,7 +12,7 @@
 
 <% if @versions.length.to_i > 1 %>
   <% if params[:version].to_i > 1 || !params[:version] %>
-    <%= link_to "Ver version anterior", {:version => (params[:version] || @person.versions.length).to_i - 1}%>
+    <%= link_to "Ver version anterior", {:version => (params[:version] || @versions.length).to_i - 1}%>
     <br>
   <% end %>
   <% if params[:version] %>

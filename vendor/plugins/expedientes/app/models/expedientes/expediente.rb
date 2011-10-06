@@ -5,7 +5,7 @@ module Expedientes
     has_paper_trail
     #belongs_to :profesional
     has_many :pases
-    belongs_to :pase
+    #belongs_to :pase
 
     has_and_belongs_to_many :profesionals, :class_name => "Expedientes::Profesional",
                           :join_table => :expedientes_pedidos, :uniq => true
@@ -21,6 +21,10 @@ module Expedientes
          profesional.name
        end
      end
+
+    def pase
+      pases.last.oficina.name
+    end
 
     def oficina_id
       oficina.try :id

@@ -1,5 +1,7 @@
 ActiveAdmin.register Person do
 
+  scope :profesionales
+
   controller do
     load_and_authorize_resource
     skip_load_resource :only => :index
@@ -44,6 +46,7 @@ ActiveAdmin.register Person do
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
   action_item(:only => :show) do
-    link_to "agregar direccion de contacto", new_admin_person_address_path(person)
+    link_to("agregar direccion de contacto", new_admin_person_address_path(person)) +
+    link_to("agregar Profesion", new_admin_person_profesional_path(person))
   end 
 end
