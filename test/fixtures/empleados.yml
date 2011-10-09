@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  person_id: 1
+  inicio: 2011-10-07
+  legajo: MyString
+
+two:
+  person_id: 1
+  inicio: 2011-10-07
+  legajo: MyString
