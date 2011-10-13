@@ -23,7 +23,7 @@ MyActiveAdmin::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :user_name            => "oldani.pablo@gmail.com",
-    :password             => '******',
+    :password             => 'soundpro3',
     :authentication       => "plain",
     :enable_starttls_auto => true
 

@@ -13,13 +13,14 @@ ActiveAdmin.register Catastro do
   filter :id
   filter :partida
   filter :numero_expediente_colegio
+  filter :people_name,:as => :string, :label => "Profesional"
 
   index do
     column :id
     column :numero_expediente_colegio
     column :final_de_obra
     column :partida
-    column :pase, :sortable => false
+    column "Oficina Actual",:pase,:sortable => false
     column :created_at
     column :updated_at
     default_actions
@@ -28,7 +29,7 @@ ActiveAdmin.register Catastro do
   controller do
     def show
       @versions =@catastro.versions 
-      @catastro = @person.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+      @catastro = @catastro.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
     end
   end
 
@@ -38,10 +39,10 @@ ActiveAdmin.register Catastro do
       f.input :numero_expediente_colegio
       f.input :partida
       f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
-      f.input :profesionals_tokens,
+      f.input :people_tokens,
       :input_html => {
-        "data-pre" => f.object.profesionals.to_json(:methods => :name), :only => [:id, :name] }
-    end
+        "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
+   end
 
     f.buttons
   end

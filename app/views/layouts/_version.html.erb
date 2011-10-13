@@ -19,7 +19,7 @@
     <h3>Esta viendo la version <%= "#{params[:version]}"%></h3>
 
     <b>Fecha:</b>
-    <%= @person.updated_at %>
+    <%= @versions[(params[:version].to_i - 1)].created_at %>
     <br>
     <b>Usuario</b>:
     <%= @versions[(params[:version].to_i - 1)].whodunnit %>
