@@ -14,6 +14,31 @@ ActiveAdmin.register Catastro do
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
 
+  show do
+    panel "Catastro" do
+      attributes_table_for catastro,
+        :id, :partida, :numero_expediente_colegio, :final_de_obra,
+        :convenio_id, :created_at, :updated_at
+    end
+
+    panel "Profesionales" do
+      table_for catastro.people do
+        column :name
+        column :doc
+      end
+    end
+
+    panel "Pases" do
+      table_for catastro.pases do
+        column :oficina
+        column :entrada
+        column :observaciones
+        column(:estado) {|order| status_tag(order.estado)  }
+      end
+    end
+
+  end
+
   index do
     column :id
     column :numero_expediente_colegio
@@ -25,18 +50,13 @@ ActiveAdmin.register Catastro do
     default_actions
   end
 
-  controller do
-    def show
-      @versions =@catastro.versions 
-      @catastro = @catastro.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
-    end
-  end
-
   form do |f|
 
     f.inputs "Details" do
       f.input :numero_expediente_colegio
       f.input :partida
+      f.input :convenio_id
+      f.input :category      
       f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :people_tokens,
       :input_html => {
@@ -49,6 +69,15 @@ ActiveAdmin.register Catastro do
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
   controller do
+
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
+    def show
+      @versions =@catastro.versions 
+      @catastro = @catastro.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+    end
+
     def create
 
       create! do |format|
