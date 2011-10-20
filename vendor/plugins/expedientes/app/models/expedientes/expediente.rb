@@ -6,13 +6,17 @@ module Expedientes
     #belongs_to :profesional
     has_many :pases
     #belongs_to :pase
-
+    belongs_to :category
     has_and_belongs_to_many :people, :class_name => "Person",
                           :join_table => :expedientes_pedidos, :uniq => true
 
     attr_reader :people_tokens
 
     alias_attribute :name ,:id
+
+    scope :catastro, where(:category_id=>1)
+    scope :urbano, where(:category_id=>2)
+
 
     def people_tokens=(ids)
       self.person_ids = ids.split(",")

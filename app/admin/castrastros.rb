@@ -1,9 +1,8 @@
 ActiveAdmin.register Catastro do
 
-  controller do
-    load_and_authorize_resource
-    skip_load_resource :only => :index
-  end
+  scope :all, :default => true
+  scope :catastro
+  scope :urbano
 
   action_item(:except =>[:index,:new]) do
     a = link_to("Ver pases", admin_catastro_pases_path(catastro)) + link_to("Nuevo pase", new_admin_catastro_pase_path(catastro))
