@@ -8,6 +8,7 @@ ActiveAdmin.register Expedientes::Pase, :as => "pase" do
 
   index do
     column :oficina
+    column :entrada
     column :observaciones
     column :created_at
     column :updated_at
