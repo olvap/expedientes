@@ -3,10 +3,12 @@ module Expedientes
     belongs_to :expediente
     belongs_to :oficina
 
-    #validate :ultimo?
+    validate :ultimo?
+
+    #default_scope :order => "created_at desc"
 
     def ultimo?
-      if self == expediente.pases.last || expediente.pases.count == 0
+      if self == expediente.pases.last || !id
         true
       else
         errors.add(:base, "Este expediente ha sido movido, ya no se puede actualizar")
