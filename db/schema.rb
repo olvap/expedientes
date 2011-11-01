@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007122721) do
+ActiveRecord::Schema.define(:version => 20111020030357) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(:version => 20111007122721) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "empleados", :force => true do |t|
     t.integer  "person_id"
     t.date     "inicio"
@@ -64,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20111007122721) do
   create_table "expedientes_expedientes", :force => true do |t|
     t.integer  "numero_expediente_colegio"
     t.date     "final_de_obra"
-    t.integer  "profesional_id"
     t.string   "partida"
+    t.integer  "category_id"
     t.string   "type"
     t.integer  "convenio_id"
     t.integer  "pase_id"
@@ -90,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20111007122721) do
 
   create_table "expedientes_pedidos", :id => false, :force => true do |t|
     t.integer  "expediente_id"
-    t.integer  "profesional_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
