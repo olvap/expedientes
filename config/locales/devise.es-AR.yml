@@ -14,10 +14,10 @@ es-AR:
   devise:
     failure:
       already_authenticated: 'You are already signed in.'
-      unauthenticated: 'You need to sign in or sign up before continuing.'
+      unauthenticated: 'Necesitas conectarte o registrarte antes de continuar.'
       unconfirmed: 'Debes confirmar tu cuetna antes de continuar.'
       locked: 'Your account is locked.'
-      invalid: 'Invalid email or password.'
+      invalid: 'Email o clave incorrectas.'
       invalid_token: 'Invalid authentication token.'
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
