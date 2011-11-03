@@ -15,7 +15,7 @@ end
 gem 'rack', '1.3.3'
 
 gem 'rails-i18n'
-gem 'cancan'
+gem 'cancan','1.6.7'
 # Javascripts runtime
 gem 'therubyracer'
 gem 'activeadmin',"0.3.2"
