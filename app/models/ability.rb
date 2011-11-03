@@ -16,6 +16,14 @@ class Ability
     can :manage, :all
   end
 
+  # este usuario es el que va a cargar y modificar los catastro
+  # tiene el rol más alto dentro de la parte de catastro
+  def catastro
+    can :manage, Person
+    can :manage, Catastro
+    can :manage, Expedientes::Oficina
+  end
+  
   def manager
   end
     # Define abilities for the passed in user here. For example:
