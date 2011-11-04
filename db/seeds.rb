@@ -24,6 +24,12 @@ sexos.each do |tipo|
 end
 
 
+puts "** Tipo de direccion **"
+taddresses.each do |tipo|
+  Personas::Taddress.find_or_create_by_name(tipo)
+  puts tipo
+end
+
 
 puts "** Tipo de estados civiles **"
 civils.each do |tipo|
