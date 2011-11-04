@@ -12,10 +12,45 @@ ActiveAdmin.register Person do
   end
 
   show do
-	
-    section do
+
+    panel "Datos personales" do
       attributes_table_for person,
        :name, :born, :tdoc, :doc, :civil, :sexo, :observations
+    end
+
+    panel "Ubicacion de Contacto" do
+      table_for person.addresses do
+        column :format
+        column :telefono
+        column :email
+        column "Acciones" do |a|
+          link_to "editar", edit_admin_person_address_path(person,a)
+        end
+      end
+      link_to "Administrar", admin_person_addresses_path(person)
+    end
+
+    if person.profesionals.count > 0
+      panel "Profesion" do
+        table_for person.profesionals do
+          column :titulo
+          column :matricula
+          column "Acciones" do |a|
+            link_to "editar", edit_admin_person_profesional_path(person,a)
+          end
+        end
+        link_to "Administrar", admin_person_profesionals_path(person)
+      end
+
+    end
+
+    if person.empleado
+      panel "Empleado" do
+        attributes_table_for person.empleado,
+         :legajo, :inicio
+        link_to "Administrar", admin_person_empleado_path(person)
+      end
+
     end
 
   end
@@ -39,32 +74,6 @@ ActiveAdmin.register Person do
       #@person = Person.find params[:id] #esto lo hace cancan
       @versions =@person.versions 
       @person = @person.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
-    end
-  end
-
-  sidebar "Ubicacion de Contacto", :only => :show do
-      table_for person.addresses do
-        column :format
-        column :telefono
-        column :email
-        column "Acciones" do |a|
-          link_to "editar", edit_admin_person_address_path(person,a)
-        end
-      end
-    link_to "Administrar", admin_person_addresses_path(person)
-  end
-
-  sidebar "Profesion", :only => :show do
-    if person.profesionals.count > 0
-      table_for person.profesionals do
-        column :titulo
-        column :matricula
-        column "Acciones" do |a|
-          link_to "editar", edit_admin_person_profesional_path(person,a)
-        end
-
-      end
-      link_to "Administrar", admin_person_profesionals_path(person)
     end
   end
 
