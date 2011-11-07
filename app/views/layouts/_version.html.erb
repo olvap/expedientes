@@ -1,10 +1,10 @@
 
-<h3>Version actual: <%= @versions.length %></h3>
-
+<b>Version actual:</b> <%= @versions.length %>
+<br>
 <b>Fecha:</b>
 <%= @versions.last.created_at%>
 <br>
-<b>Usuario</b>: <%= @versions.last.whodunnit %>
+<b>Usuario</b>: <%= link_to AdminUser.find(@versions.last.whodunnit).email, admin_admin_user_path(AdminUser.find(@versions.last.whodunnit)) %>
 <br>
 
 <br>
@@ -22,10 +22,12 @@
     <%= @versions[(params[:version].to_i - 1)].created_at %>
     <br>
     <b>Usuario</b>:
-    <%= @versions[(params[:version].to_i - 1)].whodunnit %>
+    <%= link_to AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit).email, admin_admin_user_path(AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit)) %>
+    <br>
     <br>
 
     <%= link_to "Ver version actual"%>
+    <br>
   <% end %>
+  <%= link_to "Ver registro de cambios completos", {:action => :history} %>
 <% end %>
-
