@@ -13,33 +13,33 @@ end
 
 puts "** Tipo de documentos **"
 tdocs.each do |tipo|
-  Personas::Tdoc.find_or_create_by_name(tipo)
+  Tdoc.find_or_create_by_name(tipo)
   puts tipo
 end
 
 puts "** Tipo de sexo **"
 sexos.each do |tipo|
-  Personas::Sexo.find_or_create_by_name(tipo)
+  Sexo.find_or_create_by_name(tipo)
   puts tipo
 end
 
 
 puts "** Tipo de direccion **"
 taddresses.each do |tipo|
-  Personas::Taddress.find_or_create_by_name(tipo)
+  Taddress.find_or_create_by_name(tipo)
   puts tipo
 end
 
 
 puts "** Tipo de estados civiles **"
 civils.each do |tipo|
-  Personas::Civil.find_or_create_by_name tipo
+  Civil.find_or_create_by_name tipo
   puts tipo
 end
 
 puts "** Tipo de contactos **"
 taddresses.each do |tipo|
-  Personas::Taddress.find_or_create_by_name tipo
+  Taddress.find_or_create_by_name tipo
   puts tipo
 end
 

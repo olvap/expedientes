@@ -6,6 +6,10 @@ ActiveAdmin.register Person do
   scope :profesionales
   scope :empleados
 
+  filter :id
+  filter :name
+  filter :doc
+  
   controller do
     load_and_authorize_resource
     skip_load_resource :only => :index
@@ -52,7 +56,20 @@ ActiveAdmin.register Person do
       end
 
     end
-
+    
+    if person.familiares
+      panel "Familiares" do
+        table_for person.familiares do
+          column do |a|
+            link_to a.name, admin_person_path(a)
+          end
+          column "tipo" do |a|
+            person.familiaridad a
+          end
+        end
+      end
+    end
+  active_admin_comments
   end
 
   form do |f|

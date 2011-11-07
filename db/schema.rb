@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020030357) do
+ActiveRecord::Schema.define(:version => 20111104150853) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(:version => 20111020030357) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street"
+    t.integer  "number"
+    t.string   "other"
+    t.string   "email"
+    t.string   "telefono"
+    t.integer  "taddress_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -55,6 +67,23 @@ ActiveRecord::Schema.define(:version => 20111020030357) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "civils", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cursos", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "name"
+    t.date     "inicio"
+    t.string   "duracion"
+    t.string   "institucion"
+    t.string   "titulo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,25 +138,7 @@ ActiveRecord::Schema.define(:version => 20111020030357) do
     t.datetime "updated_at"
   end
 
-  create_table "personas_addresses", :force => true do |t|
-    t.string   "street"
-    t.integer  "number"
-    t.string   "other"
-    t.string   "email"
-    t.string   "telefono"
-    t.integer  "taddress_id"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personas_civils", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personas_people", :force => true do |t|
+  create_table "people", :force => true do |t|
     t.string   "name"
     t.date     "born"
     t.string   "doc"
@@ -139,29 +150,31 @@ ActiveRecord::Schema.define(:version => 20111020030357) do
     t.integer  "sexo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "personas_sexos", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personas_taddresses", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "personas_tdocs", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "pather_id"
+    t.integer  "mother_id"
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.text     "observations"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sexos", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taddresses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tdocs", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -19,7 +19,7 @@ class Ability
   # este usuario es el que va a cargar y modificar los catastro
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
-    can :manage, Person
+    can [:create,:read,:update], Person
     can :manage, Catastro
     can :manage, Expedientes::Oficina
   end

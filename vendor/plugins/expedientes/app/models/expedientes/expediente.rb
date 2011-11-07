@@ -22,7 +22,7 @@ module Expedientes
       self.person_ids = ids.split(",")
     end
 
-     def pe_format
+     def people_format
        people.map do |person|
          person.name
        end

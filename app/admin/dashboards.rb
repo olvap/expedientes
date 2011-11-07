@@ -5,6 +5,7 @@ ActiveAdmin::Dashboards.build do
       column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
       column "Tipo" do |v| v.item_type.underscore.humanize end
       column "Modificado en" do |v| v.created_at.to_s :long end
+      column "Dato" do |v| v.object end
       column "Accion" do |v| v.event end
       column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
     end

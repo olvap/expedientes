@@ -1,9 +1,15 @@
 module Expedientes
   class Profesional < ActiveRecord::Base
 
+    include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
+
     has_paper_trail
 
-    belongs_to :person, :class_name => "Personas::Person"
+    def admin_permalink
+      admin_person_profesional_path(self.person,self)
+    end
+
+    belongs_to :person
 
     def persons
       [self.person]

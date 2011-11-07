@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  empleado_id: 
+  name: MyString
+  inicio: 2011-11-04
+  duracion: MyString
+  institucion: MyString
+  titulo: MyString
+
+two:
+  empleado_id: 
+  name: MyString
+  inicio: 2011-11-04
+  duracion: MyString
+  institucion: MyString
+  titulo: MyString
