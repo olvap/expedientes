@@ -36,7 +36,7 @@ ActiveAdmin.register Catastro do
         column(:estado) {|order| status_tag(order.estado)  }
       end
     end
-
+    active_admin_comments
   end
 
   index do
@@ -56,18 +56,25 @@ ActiveAdmin.register Catastro do
       f.input :numero_expediente_colegio
       f.input :partida
       f.input :convenio_id
-      f.input :category      
+      f.input :category
       f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :people_tokens,
       :input_html => {
-        "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
+        "data-pre" => f.object.people.to_json(:methods => 		:name), :only => [:id, :name] }
    end
 
     f.buttons
   end
 
+  #-- versionado--
   sidebar :versionado, :partial => "layouts/version", :only => :show
-
+  member_action :history do
+    catastro = Catastro.find(params[:id])
+    @versions = catastro.versions
+    render "layouts/history"
+  end
+  #-- end versionado --
+  
   controller do
 
     load_and_authorize_resource

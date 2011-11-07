@@ -85,12 +85,18 @@ ActiveAdmin.register Person do
     link_to("agregar direccion de contacto", new_admin_person_address_path(person)) +
     link_to("agregar Profesion", new_admin_person_profesional_path(person)) +
     (link_to("Convertir en empleado", new_admin_person_empleado_path(person)) if !person.empleado?) +
-    (link_to("Ver datos de empleado", admin_person_empleado_path(person,person.empleado)) if person.empleado?)
+    (link_to("Ver datos de empleado", admin_person_empleado_path(person,person.empleado)) if person.empleado?) +
+    (link_to("Editar Familiares","/admin/people/#{params[:id]}/familiares"))
   end
 
-  member_action :empleados, :method => :put do
-    person = Person.find(params[:id])
-    redirect_to :action => :show, :notice => "Locked!"
+  member_action :familiares do
+    @person = Person.find(params[:id])
+  end
+
+  member_action :history do
+    @person = Person.find(params[:id])
+    @versions = @person.versions
+    render "layouts/history"
   end
 
 end
