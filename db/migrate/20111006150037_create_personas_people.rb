@@ -1,6 +1,6 @@
 class CreatePersonasPeople < ActiveRecord::Migration
   def change
-    create_table :personas_people do |t|
+    create_table :people do |t|
       t.string :name
       t.date :born
       t.string :doc

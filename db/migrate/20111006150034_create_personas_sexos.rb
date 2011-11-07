@@ -1,6 +1,6 @@
 class CreatePersonasSexos < ActiveRecord::Migration
   def change
-    create_table :personas_sexos do |t|
+    create_table :sexos do |t|
       t.string :name
 
       t.timestamps

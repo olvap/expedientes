@@ -1,6 +1,6 @@
 class CreatePersonasAddresses < ActiveRecord::Migration
   def change
-    create_table :personas_addresses do |t|
+    create_table :addresses do |t|
       t.string :street
       t.integer :number
       t.string :other
