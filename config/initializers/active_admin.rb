@@ -6,7 +6,7 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Expedientes"
-  config.allow_comments_in = [] 
+  #config.allow_comments_in = ["Catstro"] 
   # Set the link url for the title. For example, to take 
   # users to your main site. Defaults to no link.
   #
