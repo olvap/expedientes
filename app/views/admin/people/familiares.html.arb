@@ -1,0 +1,11 @@
+panel "Familiares" do
+  semantic_form_for assigns[:person],:url => {:controller => "admin/people", :action =>:update, :id =>params[:id]} do |f|
+      f.input(:pather_id,
+      :input_html => {
+        "data-pre" => f.object.pather.to_json(:methods => :name), :only => [:id, :name] }) +
+      f.input(:mother_id,
+      :input_html => {
+        "data-pre" => f.object.mother.to_json(:methods => :name), :only => [:id, :name] }) +
+      f.buttons
+    end
+end
