@@ -1,4 +1,4 @@
-#//= require jquery.tokeninput
+//= require jquery.tokeninput
 $ ->
   $('#person_mother_id').
     tokenInput '/admin/people.json',

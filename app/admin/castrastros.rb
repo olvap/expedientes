@@ -60,7 +60,7 @@ ActiveAdmin.register Catastro do
       f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :people_tokens,
       :input_html => {
-        "data-pre" => f.object.people.to_json(:methods => 		:name), :only => [:id, :name] }
+        "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
    end
 
     f.buttons

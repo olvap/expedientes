@@ -10,11 +10,6 @@ ActiveAdmin.register Person do
   filter :name
   filter :doc
   
-  controller do
-    load_and_authorize_resource
-    skip_load_resource :only => :index
-  end
-
   show do
 
     panel "Datos personales" do
@@ -45,7 +40,6 @@ ActiveAdmin.register Person do
         end
         link_to "Administrar", admin_person_profesionals_path(person)
       end
-
     end
 
     if person.empleado
@@ -97,6 +91,9 @@ ActiveAdmin.register Person do
   end
 
   controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
     def show
       #@person = Person.find params[:id] #esto lo hace cancan
       @versions =@person.versions 
