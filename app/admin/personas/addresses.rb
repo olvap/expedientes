@@ -8,6 +8,9 @@ ActiveAdmin.register Address do
       f.input :street
       f.input :number
       f.input :other
+      f.input :localidad_id,
+      :input_html => {
+        "data-pre" => f.object.localidad.to_json(:methods => :name), :only => [:id, :name] }
       f.input :email
       f.input :telefono
       f.input :person_id, :as => :hidden

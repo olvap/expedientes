@@ -8,11 +8,16 @@ class Address < ActiveRecord::Base
 
   # FIX: cuando se solucione el problema de rails.
 
+  belongs_to :localidad
   belongs_to :taddress
   belongs_to :person
   #belongs_to :city
 
   def format
-    "#{street} #{number} #{other}"
+    "#{street} #{number} #{other} #{localidad.try :name}"
+  end
+  
+  def localidads
+    [localidad]
   end
 end
