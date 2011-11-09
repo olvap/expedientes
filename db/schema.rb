@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111104150853) do
+ActiveRecord::Schema.define(:version => 20111109190725) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20111104150853) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "localidad_id"
   end
 
   create_table "admin_users", :force => true do |t|
@@ -84,6 +85,13 @@ ActiveRecord::Schema.define(:version => 20111104150853) do
     t.string   "duracion"
     t.string   "institucion"
     t.string   "titulo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "departamentos", :force => true do |t|
+    t.string   "name"
+    t.integer  "state_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,6 +146,23 @@ ActiveRecord::Schema.define(:version => 20111104150853) do
     t.datetime "updated_at"
   end
 
+  create_table "localidads", :force => true do |t|
+    t.string   "name"
+    t.integer  "departamento_id"
+    t.string   "postal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "matrimonios", :force => true do |t|
+    t.date     "inicio"
+    t.string   "estado"
+    t.integer  "person1_id"
+    t.integer  "person2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.date     "born"
@@ -162,6 +187,12 @@ ActiveRecord::Schema.define(:version => 20111104150853) do
   end
 
   create_table "sexos", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "states", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
