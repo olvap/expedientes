@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  inicio: 2011-11-08
+  estado: MyString
+  persona1_id: 1
+  persona2_id: 1
+
+two:
+  inicio: 2011-11-08
+  estado: MyString
+  persona1_id: 1
+  persona2_id: 1

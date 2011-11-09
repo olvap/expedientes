@@ -66,8 +66,18 @@ ActiveAdmin.register Person do
           column "tipo" do |a|
             person.familiaridad a
           end
+          column "Acciones" do |a|
+            link_to "Editar", person.relative_admin_person_path(a)
+          end
         end
+        link_to "nuevo matrimonio", new_admin_person_matrimonio_path(person)
       end
+      
+    end
+    panel "Cursos" do
+      table_for person.cursos
+
+      link_to "Administrar", admin_person_cursos_path(person)
     end
   active_admin_comments
   end
