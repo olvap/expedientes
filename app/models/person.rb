@@ -11,6 +11,8 @@ class Person < ActiveRecord::Base
   belongs_to :civil
   belongs_to :sexo
   belongs_to :tdoc
+  has_many :matrimonios, :class_name => 'Matrimonio',:foreign_key => "person1_id"
+  has_many :matrimonios_seccond, :class_name => 'Matrimonio',:foreign_key => "person2_id"
 
   belongs_to :pather,:class_name => "Person", :foreign_key => "pather_id"
   belongs_to :mother,:class_name => "Person", :foreign_key => "mother_id"
@@ -33,21 +35,39 @@ class Person < ActiveRecord::Base
     empleado
   end
 
-  def pather_token
-    [pather]
-  end
-
-  def mother_token
-    [mother]
-  end
-
   def familiaridad(p)
-    r = "Hermano"
+    r = (estado_pareja p).try(:estado) || "Hermano"
     r = "Padre" if (p == pather)
     r = "Madre" if (p == mother)
     r = "hijo" if (p.pather == self)
     r = "hijo" if (p.mother == self)
     r
+  end
+
+  def parejas?
+    ( parejas.count > 0 )
+  end
+  def estado_pareja p
+    if parejas? and parejas.index p
+      pareja = parejas[parejas.index p]
+      if pareja
+        m = Matrimonio.where("person1_id = ? or person2_id = ?",pareja.id,pareja.id)
+        m.last
+      end
+    end
+  end
+
+  def relative_admin_person_path(p)
+    m = estado_pareja p
+    if (m)
+      edit_admin_person_matrimonio_path(m.person1, m)
+    else
+      if (p == pather || p == mother)
+        familiares_admin_person_path(self)
+      else
+        familiares_admin_person_path(p)
+      end
+    end
   end
 
   def hijos
@@ -71,8 +91,29 @@ class Person < ActiveRecord::Base
   
   def familiares
     f = []
-    f = f + padres + hijos + hermanos
+    f = f + padres + hijos + hermanos + parejas
     check_uniq f
+  end 
+
+  def parejas
+    p = []
+    p = p + matrimonios.map{|k,v|k.person2} + matrimonios_seccond.map{|k,v|k.person1}
+  end
+
+  def fathers
+    if pather
+      [pather]
+    else
+      []
+    end
+  end
+  
+  def mothers
+    if mother
+      [mother]
+    else
+      []
+    end
   end
 
   private
