@@ -14,7 +14,12 @@ ActiveAdmin.register Empleado do
     link_to("Cursos", admin_person_cursos_path(person)) +
     link_to("Agregar Curso", new_admin_person_curso_path(person))
   end
-  
+
+  controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index  
+  end
+
   show do
     panel "Detalles" do
       attributes_table_for empleado,

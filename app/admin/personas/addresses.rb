@@ -21,6 +21,10 @@ ActiveAdmin.register Address do
   end
 
   controller do
+
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
     def create
 
       create! do |format|
