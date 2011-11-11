@@ -6,7 +6,7 @@ ActiveAdmin.register Localidad do
 
     def index
       index! do |format|
-        format.json { render :json => @localidads.to_json(:only => [ :name, :postal ], :include => { :departamento => {:only => [:name]}})} 
+        format.json { render :json => @localidads.to_json(:only => [:id, :name, :postal ], :include => { :departamento => {:only => [:name]}})} 
 
       end
     end
