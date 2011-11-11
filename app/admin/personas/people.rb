@@ -42,10 +42,12 @@ ActiveAdmin.register Person do
       end
     end
 
-    if person.empleado
+    if person.empleados
       panel "Empleado" do
-        attributes_table_for person.empleado,
-         :legajo, :inicio
+        table_for person.empleados, do
+          column :legajo
+          column :inicio
+        end
         link_to "Administrar", admin_person_empleado_path(person)
       end
 
@@ -105,11 +107,13 @@ ActiveAdmin.register Person do
 
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
+  sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
+
   action_item(:only => :show) do
     link_to("agregar direccion de contacto", new_admin_person_address_path(person)) +
     link_to("agregar Profesion", new_admin_person_profesional_path(person)) +
     (link_to("Convertir en empleado", new_admin_person_empleado_path(person)) if !person.empleado?) +
-    (link_to("Ver datos de empleado", admin_person_empleado_path(person,person.empleado)) if person.empleado?) +
+    (link_to("Ver datos de empleado", admin_person_empleados_path(person)) if person.empleado?) +
     (link_to("Editar Familiares","/admin/people/#{params[:id]}/familiares"))
   end
 

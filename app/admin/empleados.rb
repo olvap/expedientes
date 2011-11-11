@@ -1,7 +1,14 @@
 ActiveAdmin.register Empleado do
-  belongs_to :person,:singleton => true
+  belongs_to :person#,:singleton => true
 
-  form :url => {:controller => "admin/empleados"} do |f|
+  controller do
+
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
+  end
+
+  form do |f|
     f.inputs "Details" do
       f.input :inicio, :as=>:string, :input_html => {:class => 'datepicker'}
       f.input :legajo
@@ -15,10 +22,6 @@ ActiveAdmin.register Empleado do
     link_to("Agregar Curso", new_admin_person_curso_path(person))
   end
 
-  controller do
-    load_and_authorize_resource
-    skip_load_resource :only => :index  
-  end
 
   show do
     panel "Detalles" do

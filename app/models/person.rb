@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
 
   has_many :profesionals
   has_many :cursos
-  has_one :empleado
+  has_many :empleados
   has_many :addresses
   belongs_to :civil
   belongs_to :sexo
@@ -20,7 +20,7 @@ class Person < ActiveRecord::Base
   has_many :hijosm,:class_name => "Person", :foreign_key => "mother_id"
 
   scope :profesionales, joins(:profesionals) #& where(:id=>1)
-  scope :empleados, joins(:empleado) #& where(:id=>1)
+  scope :empleados, joins(:empleados) #& where(:id=>1)
   scope :not_female, where("sexo_id = 1 or sexo_id is null")
   scope :not_male, where("sexo_id = 2 or sexo_id is null")
 
@@ -32,7 +32,7 @@ class Person < ActiveRecord::Base
   end
           
   def empleado?
-    empleado
+    (empleados.count > 0)
   end
 
   def familiaridad(p)
