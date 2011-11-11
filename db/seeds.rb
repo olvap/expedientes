@@ -1,7 +1,7 @@
 tdocs=["DNI","CUIT","CUIL","LE","LC","Pasaporte"]
 civils=["Soltero","Casado","Divorciado","Viudo"]
 sexos=["Masculino","Femenino"]
-taddresses=["Particular","Oficina"]
+taddresses=["Particular","Oficina","Legal"]
 categories = ['Catastro', 'Urbano']
 oficinas = ['Catastro','Planeamiento urbano','Profesional','Archivo']
 
