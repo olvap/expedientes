@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
 
+  #assosiations
   #is_person
   has_paper_trail
 
@@ -13,7 +14,6 @@ class Person < ActiveRecord::Base
   belongs_to :tdoc
   has_many :matrimonios, :class_name => 'Matrimonio',:foreign_key => "person1_id"
   has_many :matrimonios_seccond, :class_name => 'Matrimonio',:foreign_key => "person2_id"
-
   belongs_to :pather,:class_name => "Person", :foreign_key => "pather_id"
   belongs_to :mother,:class_name => "Person", :foreign_key => "mother_id"
   has_many :hijosv,:class_name => "Person", :foreign_key => "pather_id"
@@ -23,6 +23,25 @@ class Person < ActiveRecord::Base
   scope :empleados, joins(:empleados) #& where(:id=>1)
   scope :not_female, where("sexo_id = 1 or sexo_id is null")
   scope :not_male, where("sexo_id = 2 or sexo_id is null")
+
+  #validation
+  validates :name, :presence => true
+
+  #lock
+  def lockable?
+    false
+    true if (name and born and doc and civil_id and tdoc_id and sexo_id)
+  end
+
+  def lock!
+    self.locked = Date.today
+  end
+
+  def unlock!
+    self.locked = nil
+  end
+
+  #end lock
 
   def format
     name

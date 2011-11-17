@@ -16,15 +16,24 @@ class Ability
     can :manage, :all
   end
 
+  #personas
+  def personas
+    can [:create, :read], Address
+    can [:create, :read], Person
+    can :update, Person, :locked => nil #solo se puede actualizar un registro si no esta cerrado
+    can :lock, Person, :lockable? => true
+    can :familiares, Person
+  end
+
   # este usuario es el que va a cargar y modificar los catastro
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
-    can [:create,:read,:update], Person
     can :manage, Catastro
     can :manage, Expedientes::Oficina
   end
   
   def manager
+    can :manage, Forum, Topic
   end
     # Define abilities for the passed in user here. For example:
     #

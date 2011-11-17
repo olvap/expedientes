@@ -29,5 +29,14 @@
     <%= link_to "Ver version actual"%>
     <br>
   <% end %>
-  <%= link_to "Ver registro de cambios completos", {:action => :history} %>
+  <%= link_to "Ver registro de cambios completos", { :action => :history } %>
+<% end %>
+
+<br>
+<br>
+<% if !@version.locked %>
+  <%= link_to "Cerrar Registro",{ :action => :lock } %>
+<% else %>
+  Registro cerrado, no puede editarse
+  <%= link_to "Abrir",{ :action => :unlock } %>
 <% end %>
