@@ -14,7 +14,7 @@ ActiveAdmin.register Person do
 
     panel "Datos personales" do
       attributes_table_for person,
-       :name, :born, :tdoc, :doc, :civil, :sexo, :observations
+       :name, :born, :tdoc, :doc, :civil, :sexo
     end
 
     panel "Ubicacion de Contacto" do
@@ -100,6 +100,7 @@ ActiveAdmin.register Person do
       #@person = Person.find params[:id] #esto lo hace cancan
       @versions =@person.versions 
       @person = @person.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+      @version = @person
     end
   end
 
@@ -114,11 +115,25 @@ ActiveAdmin.register Person do
     link_to("agregar Profesion", new_admin_person_profesional_path(person)) +
     (link_to("Convertir en empleado", new_admin_person_empleado_path(person)) if !person.empleado?) +
     (link_to("Ver datos de empleado", admin_person_empleados_path(person)) if person.empleado?) +
-    (link_to("Editar Familiares","/admin/people/#{params[:id]}/familiares"))
+    (link_to("Editar Familiares",{:action => :familiares}))
   end
 
   member_action :familiares do
     @person = Person.find(params[:id])
+  end
+
+  member_action :lock do
+    @person = Person.find(params[:id])
+    @person.lock!
+    @person.save!
+    redirect_to :action => :show
+  end
+
+  member_action :unlock do
+    @person = Person.find(params[:id])
+    @person.unlock!
+    @person.save!
+    redirect_to :action => :show
   end
 
   member_action :history do
