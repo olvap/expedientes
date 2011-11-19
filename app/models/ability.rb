@@ -18,7 +18,7 @@ class Ability
 
   #personas
   def personas
-    can [:create, :read], Address
+    can [:create, :read, :update], Address
     can [:create, :read], Person
     can :update, Person, :locked => nil #solo se puede actualizar un registro si no esta cerrado
     can :lock, Person, :lockable? => true
@@ -29,7 +29,7 @@ class Ability
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
     can :manage, Catastro
-    can :manage, Expedientes::Oficina
+    can :manage, Oficina
   end
   
   def manager
