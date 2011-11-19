@@ -18,7 +18,7 @@ gem 'rails-i18n'
 gem 'cancan','1.6.7'
 # Javascripts runtime
 gem 'therubyracer'
-gem 'activeadmin',"0.3.2"
+gem 'activeadmin',"0.3.4"
 gem 'jquery-rails'
 gem "paper_trail"
 # paginacion
