@@ -25,6 +25,13 @@ ActiveAdmin.register Address do
     load_and_authorize_resource
     skip_load_resource :only => :index
 
+    def show
+      #@person = Person.find params[:id] #esto lo hace cancan
+      @versions =@address.versions
+      @person = @address.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+
+    end
+    
     def create
 
       create! do |format|
@@ -41,4 +48,13 @@ ActiveAdmin.register Address do
 
   end
 
+  sidebar :versionado, :partial => "layouts/version", :only => :show
+
+  sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
+
+  member_action :history do
+    @address = Address.find(params[:id])
+    @versions = @address.versions
+    render "layouts/history"
+  end
 end

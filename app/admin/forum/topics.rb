@@ -14,7 +14,7 @@ ActiveAdmin.register Topic do
     div do
       raw topic.body
     end
-    active_admin_comments
+    #active_admin_comments
   end
   
   form do |f|
