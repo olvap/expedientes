@@ -21,6 +21,7 @@ ActiveAdmin.register Person do
     div(:id => "xtabs") do
       ul do
         li link_to "Detalles", "#xtabs-1"
+        li link_to "Comercial", "#xtabs-7"
         li link_to "Contacto", "#xtabs-2"
         li link_to "Familiares", "#xtabs-3"
         li link_to "Profesion", "#xtabs-4"
@@ -29,8 +30,17 @@ ActiveAdmin.register Person do
       end
       div(:id=> "xtabs-1") do
           attributes_table_for person,
-          :name, :born, :tdoc, :doc, :civil, :sexo
+          :name, :born, :tdoc, :doc, :civil, :sexo, :dead
       end
+
+      div(:id => "xtabs-7") do
+        if person.comercy
+          attributes_table_for person.comercy,
+            :ingresos_brutos, :cuit, :cantidad_de_personal, :jubilado
+        end
+        link_to "Administrar", new_admin_person_comercy_path(person)
+      end
+
       div(:id=> "xtabs-2") do
         panel "Ubicaciones" do
           table_for person.addresses do
@@ -144,6 +154,19 @@ ActiveAdmin.register Person do
   member_action :lock do
     @person = Person.find(params[:id])
     @person.lock!
+    @person.save!
+    redirect_to :action => :show
+  end
+
+
+  action_item(:except =>[:index,:new]) do
+    link_to("Matar", matar_admin_person_path(person))
+  end 
+  # falta para jubilado y para revertir
+  # agregar datos comerciales: cantidad de empleados, ingresos brutos, cuit/cuil.
+  member_action :matar do
+    @person = Person.find(params[:id])
+    @person.dead = Date.today
     @person.save!
     redirect_to :action => :show
   end

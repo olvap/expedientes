@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   #is_person
   has_paper_trail
 
+  has_one :comercy
   has_one :family
 
   has_many :profesionals
