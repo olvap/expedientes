@@ -4,6 +4,13 @@ sexos=["Masculino","Femenino"]
 taddresses=["Particular","Oficina","Legal"]
 categories = ['Catastro', 'Urbano']
 oficinas = ['Catastro','Planeamiento urbano','Profesional','Archivo']
+forums = ['Ayuda']
+
+puts "** Foros **"
+forums.each do |tipo|
+  Forum.find_or_create_by_name(tipo)
+  puts tipo
+end
 
 puts "** Oficinas **"
 oficinas.each do |tipo|

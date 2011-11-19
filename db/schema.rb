@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116233133) do
+ActiveRecord::Schema.define(:version => 20111117141124) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -142,6 +142,14 @@ ActiveRecord::Schema.define(:version => 20111116233133) do
     t.string   "titulo"
     t.integer  "matricula"
     t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "families", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "father_id"
+    t.integer  "mother_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
