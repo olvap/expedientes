@@ -34,9 +34,11 @@
 
 <br>
 <br>
-<% if !@version.locked %>
-  <%= link_to "Cerrar Registro",{ :action => :lock } %>
-<% else %>
-  Registro cerrado, no puede editarse
-  <%= link_to "Abrir",{ :action => :unlock } %>
+<% if @version %>
+  <% if !@version.locked %>
+    <%= link_to "Cerrar Registro",{ :action => :lock } %>
+  <% else %>
+    Registro cerrado, no puede editarse
+    <%= link_to "Abrir",{ :action => :unlock } %>
+  <% end %>
 <% end %>
