@@ -6,7 +6,7 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Municipalidad de Coronda"
-  #config.allow_comments_in = ["Catstro"] 
+  config.allow_comments_in = [] 
   # Set the link url for the title. For example, to take 
   # users to your main site. Defaults to no link.
   #
