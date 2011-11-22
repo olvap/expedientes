@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  person_id: 1
+  ingresos_brutos: 1.5
+  cantidad_de_personal: 1
+  cuit: MyString
+  jubilado: 
+  muerto: 
+
+two:
+  person_id: 1
+  ingresos_brutos: 1.5
+  cantidad_de_personal: 1
+  cuit: MyString
+  jubilado: 
+  muerto: 

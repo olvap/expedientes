@@ -1,6 +1,14 @@
 es-AR:
   activerecord:
     attributes:
+      person:
+        name: 'nombre'
+        born: 'nacimiento'
+        tdoc: 'tipo de documento'
+        doc: 'numero de documento'
+        dead: 'defuncion'
+      address:
+        format: 'direccion'
       contrato:
         ncuotas: 'Numero de cuotas'
         cuota_cents: 'Cuota'
