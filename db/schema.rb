@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119125226) do
+ActiveRecord::Schema.define(:version => 20111119155012) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -206,6 +206,13 @@ ActiveRecord::Schema.define(:version => 20111119125226) do
     t.datetime "updated_at"
   end
 
+  create_table "responsables", :id => false, :force => true do |t|
+    t.integer  "tributo_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.text     "observations"
@@ -237,12 +244,29 @@ ActiveRecord::Schema.define(:version => 20111119125226) do
     t.datetime "updated_at"
   end
 
+  create_table "titulares", :id => false, :force => true do |t|
+    t.integer  "tributo_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.integer  "forum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body",       :null => false
+  end
+
+  create_table "tributos", :force => true do |t|
+    t.string   "calle"
+    t.integer  "numero"
+    t.string   "otro"
+    t.string   "pii"
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "versions", :force => true do |t|
