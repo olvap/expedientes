@@ -5,8 +5,8 @@ class Catastro < ActiveRecord::Base
   def admin_permalink
     admin_catastro_path(self)
   end
-  
-    has_paper_trail
+
+  has_paper_trail
   #belongs_to :profesional
   has_many :pases
   #belongs_to :pase
