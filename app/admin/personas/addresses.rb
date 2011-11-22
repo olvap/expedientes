@@ -27,8 +27,8 @@ ActiveAdmin.register Address do
 
     def show
       #@person = Person.find params[:id] #esto lo hace cancan
-      @versions =@address.versions
-      @person = @address.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+      @versions = @address.versions
+      @address = @address.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
 
     end
     
