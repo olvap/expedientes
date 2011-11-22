@@ -1,6 +1,6 @@
 class ExpedientesPedidos < ActiveRecord::Migration
   def up
-    create_table :expedientes_pedidos,:id=>false do |t|
+    create_table :pedidos,:id=>false do |t|
       t.integer :castastro_id
       t.integer :person_id
 
