@@ -8,3 +8,64 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+$blue: lighten(#c9e4e7, 8%);
+$darker-blue: darken($blue, 9%);
+$light-blue: lighten($blue, 5%);
+$shadow: darken($blue, 70%);
+
+#title_bar {
+    background: -moz-linear-gradient(-90deg, $blue, $darker-blue) repeat scroll;
+    box-shadow: 0 1px 2px $shadow;
+}
+
+table.index_table td {
+    border-bottom: 1px solid $blue;
+}
+
+table.index_table tr.even td {
+    background: none repeat scroll 0 0 $light-blue;
+}
+
+table.index_table th {
+    background: -moz-linear-gradient(-90deg, $blue, $darker-blue) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid $light-blue;
+    box-shadow: 0 1px 2px $shadow;
+}
+
+table.index_table th.sorted-asc, table.index_table th.sorted-desc {
+    background: -moz-linear-gradient(-90deg, darken($blue, 9%), darken($darker-blue, 9%)) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid $light-blue;
+    box-shadow: 0 1px 2px $shadow;
+}
+
+.sidebar_section h3,.section h3, .panel h3,form fieldset legend span {
+    background: -moz-linear-gradient(-90deg, $blue, $darker-blue) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid $darker-blue;
+    box-shadow: 0 1px 2px $shadow;
+}
+
+.sidebar_section, .section, .panel,form fieldset.inputs {
+    background: none repeat scroll 0 0 $light-blue;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 4px $shadow inset;
+    margin-bottom: 20px;
+}
+
+
+.ui-widget-header {
+    background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% $darker-blue;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    font-weight: bold;
+}
+
+form.filter_form a.clear_filters_btn, #title_bar .action_items a{
+    background: -moz-linear-gradient(-90deg, $blue, darken($darker-blue,25%)) repeat scroll 0 0 transparent;
+    color: black;
+}
+
+
+
+
+
+
