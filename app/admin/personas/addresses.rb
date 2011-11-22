@@ -1,6 +1,6 @@
 ActiveAdmin.register Address do
-
-  belongs_to :person
+  menu false
+  belongs_to :person, :optional =>true
 
   form do |f|
     f.inputs "Details" do
