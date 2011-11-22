@@ -11,10 +11,11 @@ class Address < ActiveRecord::Base
   belongs_to :localidad
   belongs_to :taddress
   belongs_to :person
-  #belongs_to :city
+
+  alias_attribute :name ,:format
 
   def format
-    "#{street} #{number} #{other} #{localidad.try :name}"
+    "#{street} #{number} #{other} #{localidad.try :name} #{localidad.try :postal}"
   end
   
   def localidads
