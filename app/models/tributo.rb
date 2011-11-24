@@ -1,5 +1,7 @@
 class Tributo < ActiveRecord::Base
   belongs_to :address
+  has_one :tgi
+  
   has_and_belongs_to_many :titulares, :class_name => "Person",
                         :join_table => :titulares, :uniq => true
 
