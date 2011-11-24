@@ -6,7 +6,7 @@ ActiveAdmin.register Profesional do
     skip_load_resource :only => :index  
   end
 
-  form :url => {:controller => "admin/profesionals"} do |f|
+  form do |f|
     f.inputs "Details" do
       f.input :titulo
       f.input :matricula
