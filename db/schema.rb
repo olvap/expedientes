@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123222002) do
+ActiveRecord::Schema.define(:version => 20111124135759) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(:version => 20111123222002) do
   create_table "admin_users_roles", :id => false, :force => true do |t|
     t.integer  "admin_user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "avaluos", :force => true do |t|
+    t.integer  "tgi_id"
+    t.float    "valor"
+    t.float    "descuento"
+    t.integer  "edificiacion_id"
+    t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,6 +174,14 @@ ActiveRecord::Schema.define(:version => 20111123222002) do
   create_table "forums", :force => true do |t|
     t.string   "name"
     t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "frentes", :force => true do |t|
+    t.integer  "categoria"
+    t.float    "metros"
+    t.integer  "avaluo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -298,16 +316,6 @@ ActiveRecord::Schema.define(:version => 20111123222002) do
     t.string   "inscripcion_dominio"
     t.date     "fecha"
     t.string   "parcela"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tgivariables", :force => true do |t|
-    t.integer  "tgi_id"
-    t.float    "avaluo"
-    t.integer  "edificacion_id"
-    t.float    "descuento"
-    t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

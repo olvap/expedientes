@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  categoria: 1
+  metros: 1.5
+  tgivariable_id: 1
+
+two:
+  categoria: 1
+  metros: 1.5
+  tgivariable_id: 1
