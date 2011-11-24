@@ -5,6 +5,20 @@ taddresses=["Particular","Oficina","Legal"]
 categories = ['Catastro', 'Urbano']
 oficinas = ['Catastro','Planeamiento urbano','Profesional','Archivo']
 forums = ['Ayuda']
+edificaciones =['Baldio','Edificado','Parcela','Municipal']
+estados = ['Normal','Baja','Excento']
+
+puts "** Edificaciones **"
+edificaciones.each do |tipo|
+  Edificacion.find_or_create_by_name(tipo)
+  puts tipo
+end
+
+puts "** Estados **"
+estados.each do |tipo|
+  Estado.find_or_create_by_name(tipo)
+  puts tipo
+end
 
 puts "** Foros **"
 forums.each do |tipo|
@@ -14,7 +28,7 @@ end
 
 puts "** Oficinas **"
 oficinas.each do |tipo|
-  Expedientes::Oficina.find_or_create_by_name(tipo)
+  Oficina.find_or_create_by_name(tipo)
   puts tipo
 end
 

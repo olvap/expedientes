@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tributo_id: 1
+  manzana_id: 1
+  seccion_inmueble: MyString
+  superficie: 1.5
+  seccion: MyString
+  lote: MyString
+  folio: MyString
+  tomo: MyString
+  inscripcion_dominio: MyString
+  fecha: 2011-11-23
+  parcela: MyString
+
+two:
+  tributo_id: 1
+  manzana_id: 1
+  seccion_inmueble: MyString
+  superficie: 1.5
+  seccion: MyString
+  lote: MyString
+  folio: MyString
+  tomo: MyString
+  inscripcion_dominio: MyString
+  fecha: 2011-11-23
+  parcela: MyString

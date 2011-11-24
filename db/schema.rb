@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119155012) do
+ActiveRecord::Schema.define(:version => 20111123222002) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
+  create_table "catastros", :force => true do |t|
+    t.integer  "numero_expediente_colegio"
+    t.date     "final_de_obra"
+    t.string   "partida"
+    t.integer  "category_id"
+    t.string   "type"
+    t.integer  "convenio_id"
+    t.integer  "pase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -89,6 +101,20 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "cursos", :force => true do |t|
     t.integer  "person_id"
     t.string   "name"
@@ -107,6 +133,12 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
+  create_table "edificacions", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "empleados", :force => true do |t|
     t.integer  "person_id"
     t.date     "inicio"
@@ -115,44 +147,8 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
-  create_table "expedientes_expedientes", :force => true do |t|
-    t.integer  "numero_expediente_colegio"
-    t.date     "final_de_obra"
-    t.string   "partida"
-    t.integer  "category_id"
-    t.string   "type"
-    t.integer  "convenio_id"
-    t.integer  "pase_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "expedientes_oficinas", :force => true do |t|
+  create_table "estados", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "expedientes_pases", :force => true do |t|
-    t.integer  "oficina_id"
-    t.integer  "expediente_id"
-    t.date     "entrada"
-    t.text     "observaciones"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "expedientes_pedidos", :id => false, :force => true do |t|
-    t.integer  "expediente_id"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "expedientes_profesionals", :force => true do |t|
-    t.string   "titulo"
-    t.integer  "matricula"
-    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -180,11 +176,43 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
+  create_table "manzanas", :force => true do |t|
+    t.string   "name"
+    t.boolean  "luz"
+    t.boolean  "agua"
+    t.boolean  "gas"
+    t.boolean  "cloaca"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "matrimonios", :force => true do |t|
     t.date     "inicio"
     t.string   "estado"
     t.integer  "person1_id"
     t.integer  "person2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "oficinas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pases", :force => true do |t|
+    t.integer  "oficina_id"
+    t.integer  "catastro_id"
+    t.date     "entrada"
+    t.text     "observaciones"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pedidos", :id => false, :force => true do |t|
+    t.integer  "catastro_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -204,6 +232,12 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.integer  "pather_id"
     t.integer  "mother_id"
     t.date     "locked"
+  end
+
+  create_table "periodos", :force => true do |t|
+    t.date     "vencimiento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profesionals", :force => true do |t|
@@ -252,6 +286,32 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
     t.datetime "updated_at"
   end
 
+  create_table "tgis", :force => true do |t|
+    t.integer  "tributo_id"
+    t.integer  "manzana_id"
+    t.string   "seccion_inmueble"
+    t.float    "superficie"
+    t.string   "seccion"
+    t.string   "lote"
+    t.string   "folio"
+    t.string   "tomo"
+    t.string   "inscripcion_dominio"
+    t.date     "fecha"
+    t.string   "parcela"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tgivariables", :force => true do |t|
+    t.integer  "tgi_id"
+    t.float    "avaluo"
+    t.integer  "edificacion_id"
+    t.float    "descuento"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "titulares", :id => false, :force => true do |t|
     t.integer  "tributo_id"
     t.integer  "person_id"
@@ -262,9 +322,9 @@ ActiveRecord::Schema.define(:version => 20111119155012) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.integer  "forum_id"
-    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "body",       :null => false
   end
 
   create_table "tributos", :force => true do |t|

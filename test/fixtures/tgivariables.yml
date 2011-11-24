@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tgi_id: 1
+  avaluo: 1.5
+  edificacion_id: 1
+  descuento: 1.5
+  estado_id: 1
+
+two:
+  tgi_id: 1
+  avaluo: 1.5
+  edificacion_id: 1
+  descuento: 1.5
+  estado_id: 1

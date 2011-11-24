@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  luz: false
+  agua: false
+  gas: false
+  cloaca: false
+
+two:
+  name: MyString
+  luz: false
+  agua: false
+  gas: false
+  cloaca: false
