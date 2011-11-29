@@ -8,11 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-#    Rails.logger.debug "Access Denied: #{exception.message}"
-##    authorize! :update, Person, :message => "El registro no puede cerrarse porque no los datos no estan completos."
-
-#    flash[:alert] = exception.message
-    redirect_to root_url, :alert => exception.message
+    redirect_to :back, :alert => exception.message
   end
 
   def current_ability
