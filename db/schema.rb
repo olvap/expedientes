@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111124135759) do
+ActiveRecord::Schema.define(:version => 20111125190831) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20111124135759) do
     t.integer  "tgi_id"
     t.float    "valor"
     t.float    "descuento"
-    t.integer  "edificiacion_id"
+    t.integer  "edificacion_id"
     t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -139,6 +139,16 @@ ActiveRecord::Schema.define(:version => 20111124135759) do
   create_table "departamentos", :force => true do |t|
     t.string   "name"
     t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deudas", :force => true do |t|
+    t.integer  "tributable_id"
+    t.string   "tributable_type"
+    t.integer  "periodo_id"
+    t.integer  "calculable_id"
+    t.string   "calculable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -254,6 +264,7 @@ ActiveRecord::Schema.define(:version => 20111124135759) do
 
   create_table "periodos", :force => true do |t|
     t.date     "vencimiento"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -320,6 +331,16 @@ ActiveRecord::Schema.define(:version => 20111124135759) do
     t.datetime "updated_at"
   end
 
+  create_table "tgivariables", :force => true do |t|
+    t.integer  "tgi_id"
+    t.float    "avaluo"
+    t.integer  "edificacion_id"
+    t.float    "descuento"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "titulares", :id => false, :force => true do |t|
     t.integer  "tributo_id"
     t.integer  "person_id"
@@ -343,6 +364,8 @@ ActiveRecord::Schema.define(:version => 20111124135759) do
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tributable_id",   :null => false
+    t.string   "tributable_type", :null => false
   end
 
   create_table "versions", :force => true do |t|

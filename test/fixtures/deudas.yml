@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tributable_id: 1
+  tributable_type: MyString
+  periodo_id: 1
+  calculable_id: 1
+  calculable_type: MyString
+
+two:
+  tributable_id: 1
+  tributable_type: MyString
+  periodo_id: 1
+  calculable_id: 1
+  calculable_type: MyString
