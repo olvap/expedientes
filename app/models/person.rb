@@ -1,6 +1,8 @@
 class Person < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
-
+  def admin_permalink
+    admin_person_path(self)
+  end
   #assosiations
   #is_person
   has_paper_trail
@@ -50,9 +52,6 @@ class Person < ActiveRecord::Base
 
   def format
     name
-  end
-  def admin_permalink
-    admin_person_path(self)
   end
           
   def empleado?

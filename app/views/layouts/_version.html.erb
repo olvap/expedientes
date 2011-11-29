@@ -2,11 +2,12 @@
 <b>Version actual:</b> <%= @versions.length %>
 <br>
 <b>Fecha:</b>
-<%= @versions.last.created_at%>
-<br>
-<b>Usuario</b>: <%= link_to AdminUser.find(@versions.last.whodunnit).email, admin_admin_user_path(AdminUser.find(@versions.last.whodunnit)) %>
-<br>
-
+<% if @versions.last %>
+  <%= @versions.last.created_at %>
+  <br>
+  <b>Usuario</b>: <%= link_to AdminUser.find(@versions.last.whodunnit).email, admin_admin_user_path(AdminUser.find(@versions.last.whodunnit)) %>
+  <br>
+<% end %>
 <br>
 
 

@@ -2,6 +2,8 @@ ActiveAdmin.register Person do
 
   menu :label => "Personas"
 
+  controller.authorize_resource 
+  
   scope :all, :default => true
   scope :profesionales
   scope :empleados
@@ -134,12 +136,10 @@ ActiveAdmin.register Person do
   end
 
   controller do
-    load_and_authorize_resource
-    skip_load_resource :only => :index
 
     def show
       #@person = Person.find params[:id] #esto lo hace cancan
-      @versions =@person.versions
+      @versions = @person.versions
       @person = @person.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
       @version = @person
     end
