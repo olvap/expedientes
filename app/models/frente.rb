@@ -1,5 +1,5 @@
 class Frente < ActiveRecord::Base
 
-  belongs_to :tgivariable
+  belongs_to :avaluo
 
 end
