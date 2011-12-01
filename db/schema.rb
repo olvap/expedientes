@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.integer  "periodo_id"
     t.integer  "calculable_id"
     t.string   "calculable_type"
+    t.boolean  "baja"
+    t.text     "motivo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
