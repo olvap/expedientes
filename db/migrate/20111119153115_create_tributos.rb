@@ -6,6 +6,8 @@ class CreateTributos < ActiveRecord::Migration
       t.string :otro
       t.string :pii
       t.integer :address_id
+      t.integer :tributable_id
+      t.string :tributable_type
 
       t.timestamps
     end

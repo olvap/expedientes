@@ -319,19 +319,11 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.datetime "updated_at"
   end
 
-  create_table "tgivariables", :force => true do |t|
-    t.integer  "tgi_id"
-    t.float    "avaluo"
-    t.integer  "edificacion_id"
-    t.float    "descuento"
-    t.integer  "estado_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "titulares", :id => false, :force => true do |t|
     t.integer  "tributo_id"
     t.integer  "person_id"
+    t.integer  "tributable_id"
+    t.string   "tributable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -352,8 +344,6 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tributable_id",   :null => false
-    t.string   "tributable_type", :null => false
   end
 
   create_table "versions", :force => true do |t|
