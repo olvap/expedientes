@@ -4,7 +4,7 @@ ActiveAdmin.register Oficina,:as => "oficina" do
 
     panel oficina.name do
       table_for(oficina.pases) do |t|
-        t.column(:expediente)
+        t.column(:catastro)
         t.column(:estado) {|order| status_tag(order.estado)  }
 #        t.column(:final_de_obra)
 #        t.column(:partida)
