@@ -339,9 +339,9 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.integer  "forum_id"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "body",       :null => false
   end
 
   create_table "tributos", :force => true do |t|
