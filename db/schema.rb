@@ -252,9 +252,9 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
 
   create_table "periodos", :force => true do |t|
     t.date     "vencimiento"
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "name"
   end
 
   create_table "profesionals", :force => true do |t|
