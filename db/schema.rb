@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.text     "motivo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "motivo"
+    t.integer  "baja"
   end
 
   create_table "edificacions", :force => true do |t|
