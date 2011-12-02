@@ -12,6 +12,7 @@ class Tgi < ActiveRecord::Base
   belongs_to :manzana
   
   has_many :avaluos
+  has_many :convenios, :as => :tributable
   
   alias_attribute :name ,:id
 

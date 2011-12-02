@@ -11,7 +11,17 @@ class Deuda < ActiveRecord::Base
   belongs_to :periodo
   validates :tributable_id, :uniqueness => {:scope => [:tributable_type, :periodo_id]}
 
-  default_scope :order => 'periodo_id'
+  default_scope :include => :periodo
+
+  alias_attribute :name ,:format
+
+  def format
+    periodo.try(:name)
+  end
+
+  def year
+    periodo.try(:name).to_s[0..3]
+  end
 
   def actualizar
     calculable = tributable.avaluos.last if !baja
