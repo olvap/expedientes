@@ -111,6 +111,25 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+
+  create_table "convenios", :force => true do |t|
+    t.integer  "tributable_id"
+    t.string   "tributable_type"
+    t.integer  "tributo_id"
+    t.date     "inicio"
+    t.integer  "cuotas"
+    t.float    "interes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "convenios_deudas", :id => false, :force => true do |t|
+    t.integer  "convenio_id"
+    t.integer  "deuda_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cursos", :force => true do |t|
     t.integer  "person_id"
     t.string   "name"
