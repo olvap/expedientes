@@ -111,20 +111,6 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.datetime "updated_at"
   end
 
-  create_table "comments", :force => true do |t|
-    t.string   "title",            :limit => 50, :default => ""
-    t.text     "comment"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
-
   create_table "cursos", :force => true do |t|
     t.integer  "person_id"
     t.string   "name"
@@ -149,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.integer  "periodo_id"
     t.integer  "calculable_id"
     t.string   "calculable_type"
+    t.boolean  "baja"
+    t.text     "motivo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -331,19 +319,11 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.datetime "updated_at"
   end
 
-  create_table "tgivariables", :force => true do |t|
-    t.integer  "tgi_id"
-    t.float    "avaluo"
-    t.integer  "edificacion_id"
-    t.float    "descuento"
-    t.integer  "estado_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "titulares", :id => false, :force => true do |t|
     t.integer  "tributo_id"
     t.integer  "person_id"
+    t.integer  "tributable_id"
+    t.string   "tributable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -351,9 +331,9 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.integer  "forum_id"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "body",       :null => false
   end
 
   create_table "tributos", :force => true do |t|
@@ -364,8 +344,6 @@ ActiveRecord::Schema.define(:version => 20111125190831) do
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tributable_id",   :null => false
-    t.string   "tributable_type", :null => false
   end
 
   create_table "versions", :force => true do |t|

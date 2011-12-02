@@ -42,6 +42,7 @@ ActiveAdmin.register Catastro do
             column :entrada
             column :observaciones
             column(:estado) {|order| status_tag(order.estado)  }
+            column{|pase| link_to "Ver", admin_catastro_pase_path(pase.catastro,pase )  } 
           end
         end
       end

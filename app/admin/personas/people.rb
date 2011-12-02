@@ -138,7 +138,7 @@ ActiveAdmin.register Person do
   controller do
 
     def show
-      #@person = Person.find params[:id] #esto lo hace cancan
+      @person = Person.find params[:id]
       @versions = @person.versions
       @person = @person.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
       @version = @person
