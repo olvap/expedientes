@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tributable_id: 1
+  tributable_type: MyString
+  tributo_id: 1
+  inicio: 2011-11-29
+  cuotas: 1
+  interes: 1.5
+
+two:
+  tributable_id: 1
+  tributable_type: MyString
+  tributo_id: 1
+  inicio: 2011-11-29
+  cuotas: 1
+  interes: 1.5
