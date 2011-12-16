@@ -1,0 +1,12 @@
+div do
+
+  semantic_form_for @bromatologia, :url=>{:action => :update} do |f|
+    f.inputs "Details" do
+      f.input(:address,:collection => f.object.addresses) +
+      f.buttons
+   end
+
+
+  end
+
+end
