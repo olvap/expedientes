@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201155926) do
+ActiveRecord::Schema.define(:version => 20111216130501) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+  create_table "bromatologias", :force => true do |t|
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+  end
+
   create_table "catastros", :force => true do |t|
     t.integer  "numero_expediente_colegio"
     t.date     "final_de_obra"
@@ -86,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.integer  "pase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "responsable"
   end
 
   create_table "categories", :force => true do |t|
@@ -111,6 +119,19 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "convenios", :force => true do |t|
     t.integer  "tributable_id"
@@ -154,8 +175,6 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.integer  "periodo_id"
     t.integer  "calculable_id"
     t.string   "calculable_type"
-    t.boolean  "baja"
-    t.text     "motivo"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "motivo"
@@ -232,6 +251,18 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+  create_table "negocios", :force => true do |t|
+    t.string   "name"
+    t.integer  "rubro_id"
+    t.integer  "bromatologia_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "categoria"
+  end
+
+  add_index "negocios", ["bromatologia_id"], :name => "index_negocios_on_bromatologia_id"
+  add_index "negocios", ["rubro_id"], :name => "index_negocios_on_rubro_id"
+
   create_table "oficinas", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -300,6 +331,12 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+  create_table "rubros", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sexos", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -340,11 +377,19 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.datetime "updated_at"
   end
 
+  create_table "tgivariables", :force => true do |t|
+    t.integer  "tgi_id"
+    t.float    "avaluo"
+    t.integer  "edificacion_id"
+    t.float    "descuento"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "titulares", :id => false, :force => true do |t|
     t.integer  "tributo_id"
     t.integer  "person_id"
-    t.integer  "tributable_id"
-    t.string   "tributable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -352,9 +397,9 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.integer  "forum_id"
-    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "body",       :null => false
   end
 
   create_table "tributos", :force => true do |t|
@@ -365,6 +410,8 @@ ActiveRecord::Schema.define(:version => 20111201155926) do
     t.integer  "address_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tributable_id",   :null => false
+    t.string   "tributable_type", :null => false
   end
 
   create_table "versions", :force => true do |t|
