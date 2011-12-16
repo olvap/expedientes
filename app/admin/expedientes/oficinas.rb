@@ -1,5 +1,5 @@
 ActiveAdmin.register Oficina,:as => "oficina" do
-
+  menu :parent => "Comunes"
   show :as => :block do |oficina|
 
     panel oficina.name do
