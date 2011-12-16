@@ -10,6 +10,7 @@ ActiveAdmin.register Catastro do
 
   filter :id
   filter :partida
+  filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
 
@@ -22,7 +23,7 @@ ActiveAdmin.register Catastro do
       end
       div(:id => "xtabs-1") do
         attributes_table_for catastro,
-          :id, :partida, :numero_expediente_colegio, :final_de_obra,
+          :id, :partida, :responsable, :numero_expediente_colegio, :final_de_obra,
           :convenio_id, :created_at, :updated_at
       end
       
@@ -53,6 +54,7 @@ ActiveAdmin.register Catastro do
   index do
     column :id
     column :numero_expediente_colegio
+    column :responsable
     column :final_de_obra
     column :partida
     column "Oficina Actual",:pase,:sortable => false
@@ -65,6 +67,7 @@ ActiveAdmin.register Catastro do
 
     f.inputs "Details" do
       f.input :numero_expediente_colegio
+      f.input :responsable
       f.input :partida
       f.input :convenio_id
       f.input :category
