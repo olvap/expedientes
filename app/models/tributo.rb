@@ -1,5 +1,8 @@
 class Tributo < ActiveRecord::Base
-
+  include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
+  def admin_permalink
+    admin_tributo_path(self)
+  end
   has_paper_trail
 
   belongs_to :address
