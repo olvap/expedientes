@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "responsable"
+    t.integer  "numero_de_recibo"
+    t.float    "importe"
   end
 
   create_table "categories", :force => true do |t|
@@ -257,7 +259,6 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.integer  "bromatologia_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "categoria"
   end
 
   add_index "negocios", ["bromatologia_id"], :name => "index_negocios_on_bromatologia_id"
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sub_rubro"
   end
 
   create_table "sexos", :force => true do |t|
