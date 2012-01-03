@@ -71,6 +71,8 @@ ActiveAdmin.register Catastro do
       f.input :partida
       f.input :convenio_id
       f.input :category
+      f.input :numero_de_recibo
+      f.input :importe
       f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :people_tokens,
       :input_html => {
