@@ -34,7 +34,6 @@ ActiveAdmin.register Bromatologia do
             column :id
             column :name
             column :rubro
-            column :categoria
           end
         end
         link_to "Administrar", admin_bromatologia_negocios_path(bromatologia)
@@ -59,7 +58,7 @@ ActiveAdmin.register Bromatologia do
       :input_html => {
         "data-pre" => f.object.person.to_json(:methods => :name), :only => [:id, :name] }
       f.has_many :negocios do |n|
-        n.inputs :name,:rubro,:categoria
+        n.inputs :name,:rubro
       end
     end
     f.buttons
