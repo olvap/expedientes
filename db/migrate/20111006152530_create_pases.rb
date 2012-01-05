@@ -1,6 +1,6 @@
-class CreateExpedientesPases < ActiveRecord::Migration
+class CreatePases < ActiveRecord::Migration
   def change
-    create_table :expedientes_pases do |t|
+    create_table :pases do |t|
       t.integer :oficina_id
       t.integer :catastro_id
       t.date :entrada
