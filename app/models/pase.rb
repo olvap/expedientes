@@ -14,7 +14,7 @@ class Pase < ActiveRecord::Base
   end
   
   def ultimo?
-    if self == catastro.pases.last || !id
+    if self == catastro.try(:pases).try(:last) || !id
       true
     else
       errors.add(:base, "Este expediente ha sido movido, ya no se puede actualizar")
