@@ -19,7 +19,7 @@ class Catastro < ActiveRecord::Base
   alias_attribute :name ,:id
 
   scope :catastro, where(:category_id=>1)
-  scope :urbano, where(:category_id=>2)
+  scope :edificaciones_privadas, where(:category_id=>2)
 
 
   def people_tokens=(ids)

@@ -2,7 +2,7 @@ ActiveAdmin.register Catastro do
 
   scope :all, :default => true
   scope :catastro
-  scope :urbano
+  scope :edificaciones_privadas
 
   action_item(:except =>[:index,:new]) do
     link_to("Nuevo pase", new_admin_catastro_pase_path(catastro))
