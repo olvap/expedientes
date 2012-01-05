@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216130501) do
+ActiveRecord::Schema.define(:version => 20111229230433) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -64,6 +64,24 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "archived_people", :force => true do |t|
+    t.string   "name"
+    t.date     "born"
+    t.string   "doc"
+    t.date     "dead"
+    t.text     "observations"
+    t.integer  "civil_id"
+    t.integer  "tdoc_id"
+    t.integer  "city_id"
+    t.integer  "sexo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pather_id"
+    t.integer  "mother_id"
+    t.datetime "locked_at"
+    t.datetime "deleted_at"
   end
 
   create_table "avaluos", :force => true do |t|
@@ -300,7 +318,7 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.datetime "updated_at"
     t.integer  "pather_id"
     t.integer  "mother_id"
-    t.date     "locked"
+    t.datetime "locked_at"
   end
 
   create_table "periodos", :force => true do |t|
@@ -377,6 +395,13 @@ ActiveRecord::Schema.define(:version => 20111216130501) do
     t.string   "parcela"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "calle"
+    t.integer  "numero"
+    t.string   "otro"
+    t.string   "pii"
+    t.integer  "address_id"
+    t.integer  "responsable_id"
+    t.integer  "titular_id"
   end
 
   create_table "tgivariables", :force => true do |t|
