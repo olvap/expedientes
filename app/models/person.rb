@@ -4,7 +4,6 @@ class Person < ActiveRecord::Base
     admin_person_path(self)
   end
   #assosiations
-  #is_person
   has_paper_trail
 
   has_one :comercy
@@ -28,21 +27,7 @@ class Person < ActiveRecord::Base
   #validation
   validates :name, :presence => true
 
-  #lock
-  def lockable?
-    false
-    true if (name and born and doc and civil_id and tdoc_id and sexo_id)
-  end
-
-  def lock!
-    self.locked = Date.today
-  end
-
-  def unlock!
-    self.locked = nil
-  end
-
-  #end lock
+  acts_as_locked(:name, :born, :doc, :tdoc_id, :sexo_id)
 
   #version
   def version

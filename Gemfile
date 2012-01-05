@@ -35,6 +35,8 @@ gem 'inherited_resources'
 # Use thin as the web server
 gem 'thin'
 
+gem 'locked', :git => 'git@github.com:BlueLemon/Lockable.git'
+
 # Deploy with Capistrano
 # gem 'capistrano'
 

@@ -2,8 +2,8 @@ ActiveAdmin.register Person do
 
   menu :label => "Personas"
 
-  controller.authorize_resource 
-  
+  #controller.authorize_resource
+
   scope :all, :default => true
   scope :profesionales
   scope :empleados
@@ -16,10 +16,13 @@ ActiveAdmin.register Person do
     column :id
     column :name
     column :doc
-    column :locked
+    column :locked_at
     default_actions
   end
   show :title => :name do
+    div(:id => "notice")do
+      params[:notice]
+    end
     div(:id => "xtabs") do
       ul do
         li link_to "Detalles", "#xtabs-1"
@@ -50,7 +53,7 @@ ActiveAdmin.register Person do
             column :telefono
             column :email
             column "Acciones" do |a|
-              link_to("Detalle ", admin_person_address_path(person,a)) + 
+              link_to("Detalle ", admin_person_address_path(person,a)) +
               link_to(" Editar", edit_admin_person_address_path(person,a))
             end
           end
@@ -137,6 +140,9 @@ ActiveAdmin.register Person do
 
   controller do
 
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
     def show
       @person = Person.find params[:id]
       @versions = @person.versions
@@ -152,16 +158,19 @@ ActiveAdmin.register Person do
   sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
 
   member_action :lock do
-    @person = Person.find(params[:id])
     @person.lock!
-    @person.save!
-    redirect_to :action => :show
+    if @person.locked?
+      redirect_to :back, :notice => "Persona cerrada"
+    else
+      redirect_to :back, :notice =>"Completa todos los datos antes de cerrar"
+    end
   end
 
+  member_action :unlock do
+    @person.unlock!
+    redirect_to :back, :notice => "Persona abierta"
+  end
 
-  action_item(:except =>[:index,:new]) do
-    link_to("Matar", matar_admin_person_path(person))
-  end 
   # falta para jubilado y para revertir
   # agregar datos comerciales: cantidad de empleados, ingresos brutos, cuit/cuil.
   member_action :matar do
@@ -171,12 +180,7 @@ ActiveAdmin.register Person do
     redirect_to :action => :show
   end
 
-  member_action :unlock do
-    @person = Person.find(params[:id])
-    @person.unlock!
-    @person.save!
-    redirect_to :action => :show
-  end
+
 
   member_action :history do
     @person = Person.find(params[:id])
