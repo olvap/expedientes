@@ -1,5 +1,7 @@
 ActiveAdmin.register Catastro do
 
+  menu :if => proc{ can?(:manage, Catastro) }
+
   scope :all, :default => true
   scope :catastro
   scope :edificaciones_privadas

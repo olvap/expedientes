@@ -1,8 +1,10 @@
 ActiveAdmin.register Person do
+  menu :if => proc{ can?(:manage, Person) }, :label => "Personas"
 
-  menu :label => "Personas"
-
-  #controller.authorize_resource
+  controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+  end
 
   scope :all, :default => true
   scope :profesionales

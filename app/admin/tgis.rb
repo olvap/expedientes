@@ -1,6 +1,12 @@
 ActiveAdmin.register Tgi do
   menu :parent => "Tributo"
-  controller.authorize_resource
+
+  menu :if => proc{ can?(:manage, Tgi) }
+
+  controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+  end
 
   filter :id
   filter :pii, :as => :string

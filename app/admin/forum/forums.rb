@@ -1,4 +1,10 @@
 ActiveAdmin.register Forum do
+  menu :if => proc{ can?(:manage, Bromatologia) }
+
+  controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+  end
 
   controller do
     load_and_authorize_resource

@@ -1,5 +1,6 @@
 ActiveAdmin.register AdminUser do
-  menu :parent => "Users"
+
+  menu :if => proc{ can?(:manage, AdminUser) },:parent => "Users"
 
   controller do
     load_and_authorize_resource
