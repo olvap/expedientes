@@ -1,4 +1,4 @@
-class CreateExpedientes < ActiveRecord::Migration
+class CreateCatastros < ActiveRecord::Migration
   def change
     create_table :catastros do |t|
       t.integer :numero_expediente_colegio
