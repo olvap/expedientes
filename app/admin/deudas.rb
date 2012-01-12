@@ -1,8 +1,9 @@
 ActiveAdmin.register Deuda do
   menu :parent => "Deuda"
-  #menu :if => proc{ can?(:manage, Deuda) }     
-  controller.authorize_resource 
-  
+  menu false
+  #menu :if => proc{ can?(:manage, Deuda) }
+  controller.authorize_resource
+
   belongs_to :tgi, :optional => true
 
   sidebar :versionado, :partial => "layouts/version", :only => :show

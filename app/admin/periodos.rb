@@ -1,6 +1,6 @@
 ActiveAdmin.register Periodo do
   menu :parent => "Deuda"
-  
+  menu false
   member_action :generar do
     periodo = Periodo.find(params[:id])
     Tgi.all.each do |tgi|
