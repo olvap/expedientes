@@ -6,7 +6,7 @@ ActiveAdmin.register Catastro do
 
   action_item(:except =>[:index,:new]) do
     link_to("Nuevo pase", new_admin_catastro_pase_path(catastro))
-  end 
+  end
 
   filter :id
   filter :partida
@@ -43,7 +43,7 @@ ActiveAdmin.register Catastro do
             column :entrada
             column :observaciones
             column(:estado) {|order| status_tag(order.estado)  }
-            column{|pase| link_to "Ver", admin_catastro_pase_path(pase.catastro,pase )  } 
+            column{|pase| link_to "Ver", admin_catastro_pase_path(pase.catastro,pase )  }
           end
         end
       end
@@ -55,11 +55,8 @@ ActiveAdmin.register Catastro do
     column :id
     column :numero_expediente_colegio
     column :responsable
-    column :final_de_obra
     column :partida
     column "Oficina Actual",:pase,:sortable => false
-    column :created_at
-    column :updated_at
     default_actions
   end
 
@@ -101,7 +98,7 @@ ActiveAdmin.register Catastro do
     skip_load_resource :only => :index
 
     def show
-      @versions =@catastro.versions 
+      @versions =@catastro.versions
       @catastro = @catastro.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
       show!
     end
