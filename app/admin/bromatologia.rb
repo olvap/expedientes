@@ -1,5 +1,5 @@
 ActiveAdmin.register Bromatologia do
-  
+
   filter :id
   filter :person_name, :as => :string
 
@@ -13,7 +13,7 @@ ActiveAdmin.register Bromatologia do
     column "Correo" do |b| b.address.try(:format) end
     default_actions
   end
-  
+
   show do
     div(:id => "xtabs") do
       ul do
@@ -23,7 +23,7 @@ ActiveAdmin.register Bromatologia do
      #   li link_to "Deuda", "#xtabs-3"
       end
       div(:id=> "xtabs-1") do
-      
+
         attributes_table_for bromatologia,
           :id, :person,:address, :created_at,:updated_at
 
@@ -49,7 +49,7 @@ ActiveAdmin.register Bromatologia do
       @bromatologia = @bromatologia.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
       #@version = @tgi
     end
-    
+
   end
 
   form do |f|
@@ -63,11 +63,15 @@ ActiveAdmin.register Bromatologia do
     end
     f.buttons
   end
-  
+
+  action_item(:except =>[:index,:new]) do
+    link_to("Correo", correo_admin_bromatologia_path(bromatologia))
+  end
+
   member_action :correo, :method => :get do
     @bromatologia = Bromatologia.find(params[:id])
   end
-  
+
   member_action :history do
     @bromatologia = Bromatologia.find(params[:id])
     @versions = @bromatologia.versions
