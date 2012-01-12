@@ -156,9 +156,6 @@ ActiveAdmin.register Person do
 
   controller do
 
-    load_and_authorize_resource
-    skip_load_resource :only => :index
-
     def show
       @person = Person.find params[:id]
       @versions = @person.versions
