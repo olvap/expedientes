@@ -27,6 +27,7 @@ class Ability
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
     can :manage, Catastro
+    can :manage, Pase
     can :manage, Oficina
   end
 
