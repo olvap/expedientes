@@ -5,7 +5,8 @@ class Ability
 
     user ||= User.new # Guest user
 
-    can :read, :all # todos pueden ver todo.
+    can :read, AdminUser, :id => user.id
+    can :read, Person, :id => user.try(:person).try(:id)
 
     user.roles.each do |r|
       self.send(r.name.downcase)
