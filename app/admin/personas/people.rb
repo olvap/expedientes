@@ -16,7 +16,6 @@ ActiveAdmin.register Person do
     column :id
     column :name
     column :doc
-    column :locked_at
     default_actions
   end
   show :title => :name do
@@ -101,7 +100,7 @@ ActiveAdmin.register Person do
         link_to "Administrar", admin_person_profesionals_path(person)
         end
       end
-      
+
       div(:id => "xtabs-5") do
         panel "Empleado" do
           table_for person.empleados, do
