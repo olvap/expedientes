@@ -20,8 +20,6 @@ class Ability
   def personas
     can [:create, :read, :update], Address
     can [:create, :read], Person
-    can :update, Person, :locked => nil #solo se puede actualizar un registro si no esta cerrado
-    can :lock, Person, :lockable? => true
     can :familiares, Person
   end
 
