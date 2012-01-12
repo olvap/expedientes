@@ -33,7 +33,7 @@ class Catastro < ActiveRecord::Base
    end
 
   def pase
-    pases.last.try(:oficina).try(:name)
+    pases.try(:last).try(:oficina).try(:name)
   end
 
   def oficina_id
