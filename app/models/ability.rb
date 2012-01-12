@@ -5,7 +5,7 @@ class Ability
 
     user ||= User.new # Guest user
 
-    can :read, :all # todos pueden ver todo.  
+    can :read, :all # todos pueden ver todo.
 
     user.roles.each do |r|
       self.send(r.name.downcase)
@@ -29,7 +29,7 @@ class Ability
     can :manage, Catastro
     can :manage, Oficina
   end
-  
+
   def manager
     can :manage, Forum, Topic
   end
