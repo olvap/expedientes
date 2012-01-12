@@ -1,19 +1,26 @@
 ActiveAdmin::Dashboards.build do
 
-  section "Cambios recientes" do
-    table_for Version.order('id desc').limit(20) do
-      column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
-      column "Tipo" do |v| v.item_type.underscore.humanize end
-      column "Modificado en" do |v| v.created_at.to_s :long end
-      column "Dato" do |v| v.object end
-      column "Accion" do |v| v.event end
-      column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
-    end
+  section "Usuario" do
+
+    attributes_table_for current_admin_user,
+      :email, :name
+
+    div link_to "Detalles", admin_person_path(current_admin_user.person) if current_admin_user.person
   end
+#  section "Cambios recientes" do
+#    table_for Version.order('id desc').limit(20) do
+#      column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
+#      column "Tipo" do |v| v.item_type.underscore.humanize end
+#      column "Modificado en" do |v| v.created_at.to_s :long end
+#      column "Dato" do |v| v.object end
+#      column "Accion" do |v| v.event end
+#      column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
+#    end
+#  end
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.
-  
+
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
   #
@@ -24,7 +31,7 @@ ActiveAdmin::Dashboards.build do
   #       end
   #     end
   #   end
-  
+
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
   # easily render a partial rather than build content in ruby.
@@ -34,7 +41,7 @@ ActiveAdmin::Dashboards.build do
   #       render 'recent_posts' # => this will render /app/views/admin/dashboard/_recent_posts.html.erb
   #     end
   #   end
-  
+
   # == Section Ordering
   # The dashboard sections are ordered by a given priority from top left to
   # bottom right. The default priority is 10. By giving a section numerically lower
