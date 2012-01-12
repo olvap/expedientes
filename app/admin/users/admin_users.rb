@@ -32,11 +32,14 @@ ActiveAdmin.register AdminUser do
 
 
   form do |f|
-    f.inputs "Admin Details" do 
+    f.inputs "Admin Details" do
       f.input :email
       f.input :roles_tokens,
       :input_html => {
         "data-pre" => f.object.roles.to_json(:methods => :name), :only => [:id, :name] }
+      f.input :people_tokens,
+      :input_html => {
+        "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
     end
     f.buttons
   end
