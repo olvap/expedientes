@@ -5,16 +5,26 @@ class Tgi < ActiveRecord::Base
   end
   has_paper_trail
 
-  has_one :tributo, :as => :tributable
-  
   has_many :deudas, :as => :tributable
 
   belongs_to :manzana
-  
+
   has_many :avaluos
+
   has_many :convenios, :as => :tributable
-  
+
+  belongs_to :address
+  belongs_to :titular, :class_name => "Person"
+  belongs_to :responsable, :class_name => "Person"
+
+#  attr_reader :responsables_tokens
+#  attr_reader :titulares_tokens
+
   alias_attribute :name ,:id
+
+  def addresses
+    (responsable.try(:addresses) ||[]) + (titular.try(:addresses) || [])
+  end
 
   #genera la deuda para cada periodo
   def generar
@@ -29,4 +39,7 @@ class Tgi < ActiveRecord::Base
     end
   end
 
+  def ubicacion
+    "#{calle} #{numero} #{otro}"
+  end
 end
