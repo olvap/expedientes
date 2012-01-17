@@ -17,4 +17,8 @@ class Bromatologia < ActiveRecord::Base
     person.addresses
   end
 
+  def person_token
+    [person]
+  end
+
 end
