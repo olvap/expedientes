@@ -1,5 +1,5 @@
 ActiveAdmin.register Person do
-  menu :if => proc{ can?(:manage, Person) }, :label => "Personas"
+  menu :if => proc{ can?(:create, Person) }, :label => "Personas"
 
   controller do
     load_and_authorize_resource

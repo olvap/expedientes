@@ -1,6 +1,6 @@
 ActiveAdmin.register Catastro do
 
-  menu :if => proc{ can?(:manage, Catastro) }
+  menu :if => proc{ can?(:manage, Catastro) or can?(:create, Pase)}
 
   scope :all, :default => true
   scope :catastro
