@@ -42,7 +42,6 @@ ActiveAdmin.register Bromatologia do
             column :rubro
           end
         end
-        link_to "Administrar", admin_bromatologia_negocios_path(bromatologia)
       end
     end
   end
