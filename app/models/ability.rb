@@ -31,7 +31,12 @@ class Ability
   end
 
   def pases
+    can :read, Catastro
     can :create, Pase
+  end
+
+  def bromatologia
+    can :manage, Bromatologia
   end
 
   def manager
