@@ -18,15 +18,16 @@ gem 'rails-i18n'
 gem 'cancan','1.6.7'
 # Javascripts runtime
 gem 'therubyracer'
-gem 'activeadmin',"0.3.4"
+gem 'activeadmin',:git => 'git://github.com/gregbell/active_admin.git'
 gem 'jquery-rails'
 gem "paper_trail"
+
 # paginacion
 gem 'kaminari'
 # busqueda
 gem "meta_search"
 # formularios
-gem 'formtastic', "<= 1.2.4"
+gem 'formtastic', "<= 2.0.0"
 # tablas
 gem "tabletastic"
 # controladores
