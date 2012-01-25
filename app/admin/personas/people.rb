@@ -52,6 +52,22 @@ ActiveAdmin.register Person do
           :name, :born, :tdoc, :doc, :civil, :sexo, :dead
       end
 
+      div(:id=> "xtabs-2") do
+        panel "Ubicaciones" do
+          table_for person.addresses do
+            column :format, :as=>"Direccion"
+            column :telefono
+            column :email
+            column "Acciones" do |a|
+              link_to("Detalle ", admin_person_address_path(person,a)) +
+              link_to(" Editar", edit_admin_person_address_path(person,a))
+            end
+
+          end
+          div link_to "Nueva ubicacion de contacto", new_admin_person_address_path(person)
+        end
+      end
+
       if can? :manage, Person
         div(:id => "xtabs-7") do
           if person.comercy
@@ -61,20 +77,6 @@ ActiveAdmin.register Person do
           link_to "Administrar", new_admin_person_comercy_path(person)
         end
 
-        div(:id=> "xtabs-2") do
-          panel "Ubicaciones" do
-            table_for person.addresses do
-              column :format, :as=>"Direccion"
-              column :telefono
-              column :email
-              column "Acciones" do |a|
-                link_to("Detalle ", admin_person_address_path(person,a)) +
-                link_to(" Editar", edit_admin_person_address_path(person,a))
-              end
-            end
-            link_to "Administrar", admin_person_addresses_path(person)
-          end
-        end
         div(:id => "xtabs-3") do
           panel "Matrimonios" do
             table_for person.parejas do
@@ -135,9 +137,10 @@ ActiveAdmin.register Person do
 
         end
       end
+
     end
 
-  #active_admin_comments if !params[:version]
+    active_admin_comments #if !params[:version]
   end
 
   form do |f|
