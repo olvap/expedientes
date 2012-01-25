@@ -14,7 +14,7 @@ ActiveAdmin.register Bromatologia do
   sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
 
   index do
-    column :id
+    column "RBL" do |b| b.id end
     column "Persona" do |b| b.person.try(:name) end
     column "Correo" do |b| b.address.try(:format) end
     default_actions
