@@ -2,6 +2,8 @@ ActiveAdmin.register AdminUser do
 
   menu :if => proc{ can?(:manage, AdminUser) },:parent => "Users"
 
+  filter :email
+
   controller do
     load_and_authorize_resource
     skip_load_resource :only => :index
@@ -19,7 +21,7 @@ ActiveAdmin.register AdminUser do
     panel "Usuario" do
       attributes_table_for admin_user,
         :id, :email, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :created_at, :updated_at
-     
+
     end
 
     panel "Roles" do
@@ -29,7 +31,6 @@ ActiveAdmin.register AdminUser do
       end
     end
   end
-
 
   form do |f|
     f.inputs "Admin Details" do
