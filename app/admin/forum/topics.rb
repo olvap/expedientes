@@ -1,9 +1,13 @@
 ActiveAdmin.register Topic do
+
   menu false
 
   belongs_to :forum, :optional => true
 
   controller do
+    load_and_authorize_resource
+    skip_load_resource :only => :index
+
     def show
       @topic = Topic.find_by_name(params[:name])
       show!
