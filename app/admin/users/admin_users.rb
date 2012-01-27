@@ -50,4 +50,9 @@ ActiveAdmin.register AdminUser do
     new_record? ? false : super
   end
 
+  member_action :inbox do
+    @mensajes = Mensaje.where( "from_id =? or admin_user_id =?",current_admin_user.id,current_admin_user.id )
+    render "mensajes/inbox"
+  end
+
 end

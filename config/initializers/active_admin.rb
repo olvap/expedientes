@@ -1,13 +1,13 @@
 ActiveAdmin.setup do |config|
-
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
   config.site_title = "Municipalidad de Coronda"
-  config.allow_comments_in = [] 
-  # Set the link url for the title. For example, to take 
+  config.allow_comments_in = [ :admin ]
+
+  # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
   # config.site_title_link = "/"
@@ -15,9 +15,9 @@ ActiveAdmin.setup do |config|
   # == Default Namespace
   #
   # Set the default namespace each administration resource
-  # will be added to. 
+  # will be added to.
   #
-  # eg: 
+  # eg:
   #   config.default_namespace = :hello_world
   #
   # This will create resources in the HelloWorld module and
@@ -31,8 +31,8 @@ ActiveAdmin.setup do |config|
 
   # == User Authentication
   #
-  # Active Admin will automatically call an authentication 
-  # method in a before filter of all controller actions to 
+  # Active Admin will automatically call an authentication
+  # method in a before filter of all controller actions to
   # ensure that there is a currently logged in admin user.
   #
   # This setting changes the method which Active Admin calls
@@ -84,7 +84,7 @@ ActiveAdmin.setup do |config|
   # == Controller Filters
   #
   # You can add before, after and around filters to all of your
-  # Active Admin resources from here. 
+  # Active Admin resources from here.
   #
   # config.before_filter :do_something_awesome
 
@@ -100,4 +100,25 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+  module ActiveAdmin
+    module Views
+
+    # Renderer for the header of the application. Includes the page
+    # title, global navigation and utility navigation.
+      class HeaderRenderer
+        protected
+        def utility_navigation
+
+          content_tag 'p', :id => "utility_nav", :class => 'header-item' do
+            if current_active_admin_user?
+              html = content_tag(:span, link_to(current_active_admin_user,admin_admin_user_path(current_active_admin_user)), :class => "current_user")
+              html << link_to("Mensaje","/admin/mensajes/new")
+              html << link_to("Bandeja de entrada","/admin/admin_users/1/inbox")
+              html << link_to("Salir","/admin/logout")
+            end
+          end
+        end
+      end
+    end
+  end
 end

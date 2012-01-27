@@ -1,0 +1,9 @@
+<% @mensajes.each do |m| %>
+  <b><%= m.from %></b>
+  <br>
+  <b><%= m.created_at %></b>
+  <br>
+  <%= m.body %>
+  <br>
+  <br>
+<% end %>
