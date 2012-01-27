@@ -17,8 +17,8 @@ class Address < ActiveRecord::Base
   def format
     "#{street} #{number} #{other} #{localidad.try :name} #{localidad.try :postal}"
   end
-  
-  def localidads
+
+  def localidad_token
     [localidad]
   end
 end

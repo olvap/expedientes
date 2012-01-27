@@ -10,7 +10,7 @@ ActiveAdmin.register Address do
       f.input :other
       f.input :localidad_id,
       :input_html => {
-        "data-pre" => f.object.localidad.to_json(:methods => :name), :only => [:id, :name] }
+        "data-pre" => f.object.localidad_token.to_json(:methods => :name), :only => [:id, :name] }
       f.input :email
       f.input :telefono
       f.input :person_id, :as => :hidden
@@ -31,7 +31,7 @@ ActiveAdmin.register Address do
       @address = @address.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
 
     end
-    
+
     def create
 
       create! do |format|
