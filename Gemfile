@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.1.0"
+gem 'rails', "~> 3.1.1"
 
 gem 'mysql2'
 
@@ -13,7 +13,7 @@ group :assets do
   gem "compass", "~> 0.12.alpha.0"
 end
 gem 'rack', '1.3.3'
-
+gem "sprockets"#, :git => "git://github.com/sstephenson/sprockets.git"
 gem 'rails-i18n'
 gem 'cancan','1.6.7'
 # Javascripts runtime
