@@ -2,15 +2,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
     user ||= User.new # Guest user
 
     can :read, AdminUser, :id => user.id
     can :read, Person, :id => user.try(:person).try(:id)
-
     user.roles.each do |r|
       self.send(r.name.downcase)
     end
+  end
+
+  def municipal
+    can :read, Forum
+    can :inbox, AdminUser
+    can :create, Mensaje
   end
 
   def admin
