@@ -1,12 +1,5 @@
 ActiveAdmin::Dashboards.build do
 
-  section "Usuario" do
-
-    attributes_table_for current_admin_user,
-      :email
-
-    div link_to "Detalles", admin_person_path(current_admin_user.person) if current_admin_user.person
-  end
   section "Cambios recientes" do
     table_for Version.order('id desc').limit(20) do
       column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
@@ -15,6 +8,14 @@ ActiveAdmin::Dashboards.build do
       column "Dato" do |v| v.object end
       column "Accion" do |v| v.event end
       column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
+    end
+  end
+
+  section "Ultimos posts" do
+    table_for Topic.order('id desc').limit(10) do
+      column :name
+      column :forum
+      column :body
     end
   end
   # Define your dashboard sections here. Each block will be
