@@ -17,6 +17,25 @@ $title-background: $header-color;
 $title-color: #ffffff;
 $ref-color: #ffffff;
 
+// ui-buttons
+.table_actions{
+  display: table-caption;
+}
+.ui-button-icon-only .ui-icon {
+    left: -40%;
+}
+.ui-button-text{
+    font-size: 80%;
+}
+.ui-button-icon-only{
+    height: 1.5em;
+    width: 1.5em;
+}
+.member_link{
+  width: 150px;
+}
+// ends ui buttons
+
 #header {
   background: -moz-linear-gradient(-90deg, darken($header-background-color,10%), darken($header-background-color,40%)) repeat scroll 0 0 transparent;
   border-bottom: 1px solid darken($header-background-color,70%);
@@ -44,7 +63,7 @@ $ref-color: #ffffff;
       color: black;
     }
     li.has_nested:hover > a {
-      text-shadow: 0 1px 0 white;   
+      text-shadow: 0 1px 0 white;
       background: url("/assets/active_admin/nested_menu_arrow_dark.gif") no-repeat scroll 89% 50% lighten($header-color,10%);
       border-bottom: 5px solid lighten($header-color,10%);
       border-radius: 10px 10px 0 0;
@@ -97,7 +116,3 @@ table.index_table th a, table.index_table th a:link, table.index_table th a:visi
     display: block;
     text-decoration: none;
 }
-
-
-
-
