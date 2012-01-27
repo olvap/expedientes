@@ -42,7 +42,10 @@ ActiveAdmin.register Person do
         panel "" do
           table_for person.catastros do
             column :numero_expediente_colegio
-            column{|id| link_to "Ver", admin_catastro_path(id)  }
+            column :responsable
+            column :partida
+            column "Oficina Actual" do |c| c.pase end
+            #column{|id| link_to "Ver", admin_catastro_path(id)  }
           end
         end
       end
@@ -141,7 +144,7 @@ ActiveAdmin.register Person do
 #       end
     end
 
-    active_admin_comments #if !params[:version]
+    active_admin_comments if can?(:create, Person)
   end
 
   form do |f|
@@ -196,8 +199,6 @@ ActiveAdmin.register Person do
     @person.save!
     redirect_to :action => :show
   end
-
-
 
   member_action :history do
     @person = Person.find(params[:id])

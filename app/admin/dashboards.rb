@@ -1,23 +1,28 @@
 ActiveAdmin::Dashboards.build do
 
-  section "Cambios recientes" do
-    table_for Version.order('id desc').limit(20) do
-      column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
-      column "Tipo" do |v| v.item_type.underscore.humanize end
-      column "Modificado en" do |v| v.created_at.to_s :long end
-      column "Dato" do |v| v.object end
-      column "Accion" do |v| v.event end
-      column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
-    end
+#  section "Cambios recientes" do
+#    table_for Version.order('id desc').limit(20) do
+#      column "Item" do |v| link_to v.item_id, v.item.admin_permalink if v.item end
+#      column "Tipo" do |v| v.item_type.underscore.humanize end
+#      column "Modificado en" do |v| v.created_at.to_s :long end
+#      column "Dato" do |v| v.object end
+#      column "Accion" do |v| v.event end
+#      column "Usuario" do |v| link_to AdminUser.find(v.whodunnit).email, admin_admin_user_path(v.whodunnit) end
+#    end
+#  end
+
+#  section "Ultimos posts" do
+#    table_for Topic.order('id desc').limit(10) do
+#      column :name
+#      column :forum
+#      column :body
+#    end
+#  end
+
+  section "Usuario" do
+    div link_to current_admin_user.person.name, admin_person_path(current_admin_user.person) if current_admin_user.person
   end
 
-  section "Ultimos posts" do
-    table_for Topic.order('id desc').limit(10) do
-      column :name
-      column :forum
-      column :body
-    end
-  end
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.
