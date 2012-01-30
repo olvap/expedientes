@@ -1,23 +1,21 @@
 ActiveAdmin.register Forum do
-  controller do
-    load_and_authorize_resource
-    skip_load_resource :only => :index
-  end
+
+  config.clear_sidebar_sections!
 
   controller do
     load_and_authorize_resource
     skip_load_resource :only => :index
   end
 
-  index :as => :block do |forum|
+  index :as => :grid do |forum|
     div :for => forum do
-      h2 link_to(forum.name,admin_forum_path(forum))
+      h2 link_to(forum.name,admin_forum_topics_path(forum))
       div do
         simple_format forum.descripcion
       end
     end
   end
-  
+
   show do
     panel :topicos do
       table_for forum.topics do
