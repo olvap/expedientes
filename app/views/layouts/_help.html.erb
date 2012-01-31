@@ -1,18 +1,13 @@
-<% topic = Topic.find_by_name(controller_name) %>
-
-<% if topic %>
+<% if @help_comment.body %>
   <div>
-    <%= raw topic.body.split("<br>")[0] %>
+    <%= raw @help_comment.body.split("<br>")[0] %>
     <br>
-    <%= raw topic.body.split("<h3>" + action_name + "</h3>")[1]%>
-    <%= link_to "Leer mas...", admin_topic_path(topic)%>
-    <br>
-    <%= link_to "editar", edit_admin_topic_path(topic)%>
+    <%= raw @help_comment.body.split("<h3>" + action_name + "<br></h3>")[1]%>
+    <%= link_to "Leer mas...", admin_topic_path(@help_topic)%>
+    <%= link_to "editar", "/admin/active_admin_comments/#{@help_comment.id}/edit"%>
   </div>
 <% else %>
   No hay ayuda creada, has click
   <%= link_to "aquí", {:controller=> :topics, :action=>:new, :forum_id => Forum.first.id, :name=>controller_name} %>
   para crearla.
 <% end %>
-
-

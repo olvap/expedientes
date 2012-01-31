@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :mailer_set_url_options
-  
+  before_filter :mailer_set_url_options, :myhelp
+
   def mailer_set_url_options
     ActionMailer::Base.default_url_options[:host] = request.host_with_port
   end
@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
 
   def current_user
     current_admin_user
+  end
+
+  def myhelp
+    @help_topic = Topic.find_by_name(controller_name)
+    @help_comment = @help_topic.try(:active_admin_comments).try(:first)
   end
 
 end
