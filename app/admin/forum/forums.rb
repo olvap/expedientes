@@ -9,6 +9,7 @@ ActiveAdmin.register Forum do
 
   index :as => :grid do |forum|
     div :for => forum do
+      div :class=>"forum_image" do image_tag "#{forum.name}.png" end
       h2 link_to(forum.name,admin_forum_topics_path(forum))
       div do
         simple_format forum.descripcion

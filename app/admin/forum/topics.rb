@@ -47,7 +47,7 @@ ActiveAdmin.register Topic do
   form do |f|
 
     f.inputs "Detalles" do
-      f.input :forum
+      f.input :forum_id, :as => :hidden
       f.input :name
     end
 
@@ -75,4 +75,7 @@ ActiveAdmin.register Topic do
       link_to("Cerrar", close_admin_topic_path(topic))
     end
   end
+
+  sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("topics")}}
+
 end

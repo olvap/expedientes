@@ -17,6 +17,16 @@ $title-background: $header-color;
 $title-color: #ffffff;
 $ref-color: #ffffff;
 
+//forum
+.forum{
+    width: 255px;
+}
+.forum_image {
+    float: left;
+    padding-right: 20px;
+}
+// end forum
+
 // ui-buttons
 .table_actions{
   display: table-caption;
