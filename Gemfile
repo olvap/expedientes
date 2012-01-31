@@ -18,7 +18,7 @@ gem 'rails-i18n'
 gem 'cancan','1.6.7'
 # Javascripts runtime
 gem 'therubyracer'
-gem 'activeadmin',:git => 'git://github.com/gregbell/active_admin.git'
+gem 'activeadmin','0.4.0'
 gem 'jquery-rails'
 gem "paper_trail"
 
