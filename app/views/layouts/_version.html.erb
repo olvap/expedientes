@@ -13,7 +13,7 @@
 
 <% if @versions.length.to_i > 1 %>
   <% if params[:version].to_i > 1 || !params[:version] %>
-    <%= link_to "Ver version anterior", {:version => (params[:version] || @versions.length).to_i - 1}%>
+    <%= link_to "Version anterior", {:version => (params[:version] || @versions.length).to_i - 1}%>
     <br>
   <% end %>
   <% if params[:version] %>
@@ -27,10 +27,10 @@
     <br>
     <br>
 
-    <%= link_to "Ver version actual"%>
+    <%= link_to "Version actual"%>
     <br>
   <% end %>
-  <%= link_to "Ver registro de cambios completos", { :action => :history } %>
+  <%= link_to "Historial de cambios", { :action => :history } %>
 <% end %>
 
 <br>
