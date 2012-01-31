@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
+
   def admin_permalink
     admin_person_path(self)
   end
@@ -37,12 +38,17 @@ class Person < ActiveRecord::Base
   def version
     versions.count
   end
+
+  def title
+    "#{name} ##{id}"
+  end
+
   #end version
 
   def format
     name
   end
-          
+
   def empleado?
     (empleados.count > 0)
   end

@@ -20,7 +20,7 @@ ActiveAdmin.register Person do
     column :doc
     default_actions
   end
-  show :title => :name do
+  show :title => :title do
     div(:id => "xtabs") do
       ul do
         li link_to "Detalles", "#xtabs-1"
