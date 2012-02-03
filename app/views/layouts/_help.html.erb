@@ -1,9 +1,8 @@
-<% if @help_comment %>
+<% if @help_body %>
+
   <div>
-    <%= raw @help_comment.body.split("<br>")[0] %>
+    <%= raw @help_topic.help(action_name) %>
     <br>
-    <br>
-    <%= raw @help_comment.body.split("<h3>" + action_name + "</h3>")[1].split("<br>")[0]%>
     <%= link_to "Leer mas...", admin_topic_path(@help_topic)%>
     <%= link_to "editar", "/admin/active_admin_comments/#{@help_comment.id}/edit"%>
   </div>

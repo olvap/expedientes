@@ -24,4 +24,14 @@ class Topic < ActiveRecord::Base
   def close?
     (close==true)
   end
+
+  def help(action)
+    body = active_admin_comments.first.try(:body)
+    if body
+      short = body.split("#{action}</h3>")
+      first = short[0].split("<br>")[0]
+      page = short[1].split("<h3>")[0] if short[1]
+      "#{first} <br> #{page}"
+    end
+  end
 end
