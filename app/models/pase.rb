@@ -6,13 +6,14 @@ class Pase < ActiveRecord::Base
   belongs_to :oficina
 
   validate :ultimo?
-
+  validates :oficina, :presence => true
+  validates :entrada, :presence => true
   #default_scope :order => "created_at desc"
 
   def admin_permalink
     admin_catastro_pase_path(self.catastro,self)
   end
-  
+
   def ultimo?
     if self == catastro.try(:pases).try(:last) || !id
       true
