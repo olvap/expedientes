@@ -35,13 +35,9 @@ ActiveAdmin.register Topic do
   end
 
   show do
-    div topic.name
+    div h2 topic.name
 
-    if !topic.close?
-      active_admin_comments
-    else
-      div "El Tema esta cerrado."
-    end
+    active_admin_comments
   end
 
   form do |f|

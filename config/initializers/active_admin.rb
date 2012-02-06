@@ -6,6 +6,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Municipalidad de Coronda"
   config.allow_comments_in = [ :admin ]
+  config.register_javascript 'ckeditor/ckeditor.js'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -113,11 +114,35 @@ ActiveAdmin.setup do |config|
                 span(pretty_format(comment.created_at))
               end
               div :class => "active_admin_comment_body" do
-                comment.body.html_safe
+                my_simple_format(comment.body)
               end
               div :style => "clear:both;"
             end
           end
+
+          def build_comments
+            if record_comments.count > 0
+              record_comments.each do |comment|
+                build_comment(comment)
+              end
+            else
+              build_empty_message
+            end
+            build_comment_form if !resource.read_attribute(:close)
+          end
+
+          def build_comment_form
+          self << active_admin_form_for(ActiveAdmin::Comment.new, :url => comment_form_url, :html => {:class => "inline_form"}) do |form|
+            form.inputs do
+              form.input :resource_type, :value => ActiveAdmin::Comment.resource_type(@record), :as => :hidden
+              form.input :resource_id, :value => @record.id, :as => :hidden
+              form.input :body, :input_html => {:class => :ckeditor, :size => "80x8"}, :label => false
+            end
+            form.buttons do
+              form.commit_button 'Add Comment'
+            end
+          end
+        end
         end
       end
     end
