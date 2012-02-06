@@ -2,6 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require File.expand_path('../boot', __FILE__)
+
+# Auto-require default libraries and those for the current Rails environment.
+Bundler.require :default, Rails.env
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require *Rails.groups(:assets => %w(development test))
@@ -49,6 +54,6 @@ module MyActiveAdmin
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.autoload_paths << "#{Rails.root}/app/reports"
   end
 end
