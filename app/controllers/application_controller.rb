@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   def myhelp
     @help_topic = Topic.find_by_name(controller_name)
     @help_comment = @help_topic.try(:active_admin_comments).try(:first)
+    @help_body = @help_comment.try(:body)
   end
+
 
 end
