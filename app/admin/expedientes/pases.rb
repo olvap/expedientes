@@ -1,4 +1,4 @@
-ActiveAdmin.register Expedientes::Pase, :as => "pase" do
+ActiveAdmin.register Pase do
   belongs_to :catastro
 
   controller do
