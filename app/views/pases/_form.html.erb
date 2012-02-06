@@ -1,0 +1,9 @@
+<%= semantic_form_for [:admin, catastro, pase] do |f| %>
+  <%= f.semantic_errors %>
+  <%= f.inputs "Details" do %>
+    <%= f.input :oficina %>
+    <%= f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10} %>
+    <%= f.input :observaciones, :input_html => {:class => :ckeditor}, :label => false %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

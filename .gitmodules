@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/personas"]
 	path = vendor/plugins/personas
 	url = git@github.com:olvap/personas.git
+[submodule "vendor/prawn"]
+	path = vendor/prawn
+	url = git://github.com/sandal/prawn.git

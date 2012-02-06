@@ -17,16 +17,7 @@ ActiveAdmin.register Expedientes::Pase, :as => "pase" do
     default_actions
   end
 
-  form do |f|
-
-      f.inputs "Details" do
-        f.input :oficina,:label=>f.semantic_errors
-        f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
-        f.input :observaciones
-      end
-      f.buttons
-
-  end
+  form :partial => "pases/form"
 
   controller do
     def create
