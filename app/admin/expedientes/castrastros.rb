@@ -28,7 +28,7 @@ ActiveAdmin.register Catastro do
           :id, :partida, :responsable, :numero_expediente_colegio, :final_de_obra,
           :convenio_id, :numero_de_recibo, :importe, :created_at, :updated_at
       end
-      
+
       div(:id => "xtabs-2") do
         panel "Profesionales" do
           table_for catastro.people do
@@ -37,20 +37,23 @@ ActiveAdmin.register Catastro do
           end
         end
       end
-      
+
       div(:id => "xtabs-3") do
-        panel "Pases" do
-          table_for catastro.pases do
-            column :oficina
-            column :entrada
-            column :observaciones
-            column(:estado) {|order| status_tag(order.estado)  }
-            column{|pase| link_to "Ver", admin_catastro_pase_path(pase.catastro,pase )  }
+        catastro.pases.each do |pase|
+        div :class => "pases" do
+            div :class => "meta" do
+              h4(link_to pase.oficina.name, admin_oficina_path(pase.oficina), :class => "active_admin_pase_author") if pase.oficina
+              span(pretty_format(pase.entrada))
+            end
+            div :class => "body" do
+              div my_simple_format pase.observaciones
+              div link_to("Detalles", admin_catastro_pase_path(catastro,pase))
+            end
           end
         end
       end
     end
-    #active_admin_comments
+    active_admin_comments
   end
 
   index do
