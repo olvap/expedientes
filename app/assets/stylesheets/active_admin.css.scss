@@ -15,9 +15,36 @@ $menu-button-background-color: #ffffff;
 $title-background: $header-color;
 $title-color: #ffffff;
 $ref-color: #ffffff;
+//pases
+.pases{
+  font-size: 90%;
+  min-height: 90px;
+  .body{
+     margin-left: 200px;
+  }
+  .meta{
+    width: 200px;
+    float: left;
+    span{
+      color: #767E84;
+      border: 0 none;
+      font-family: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+      margin: 0;
+      outline: 0 none;
+      padding: 0;
+      vertical-align: baseline
+    }
+  }
+}
+//end pases
 // comments
-.active_admin_comment_meta {
-    width: 190px;
+.comments .active_admin_comment .active_admin_comment_meta {
+    width: 230px;
+}
+.comments .active_admin_comment .active_admin_comment_body {
+    margin-left: 210px;
 }
 // end comments
 //forum
