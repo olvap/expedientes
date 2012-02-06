@@ -36,6 +36,12 @@ gem 'inherited_resources'
 # Use thin as the web server
 gem 'thin'
 
+#wysiwyg
+gem "ckeditor", "3.7.0.rc2"
+gem "paperclip"
+
+gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
+
 gem 'locked', :git => 'git://github.com/BlueLemon/Lockable.git'
 
 # Deploy with Capistrano
