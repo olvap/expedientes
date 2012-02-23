@@ -13,6 +13,11 @@ class Bromatologia < ActiveRecord::Base
   has_many :negocios
   accepts_nested_attributes_for :negocios
 
+  scope :sin_direccion, where("address_id is null")
+  scope :rubro_erroneo, joins(:negocios).where("negocios.rubro_id < 999")
+
+  alias_attribute :name ,:id
+
   def addresses
     person.addresses
   end

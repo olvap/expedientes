@@ -1,5 +1,5 @@
 ActiveAdmin.register Bromatologia do
-  menu :if => proc{ can?(:manage, Bromatologia) }
+  menu :if => proc{ can?(:manage, Bromatologia) }, :parent => "Bromatologia"
 
   controller do
     load_and_authorize_resource
@@ -12,6 +12,10 @@ ActiveAdmin.register Bromatologia do
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
   sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
+
+  scope :all, :default => true
+  scope :sin_direccion
+  scope :rubro_erroneo
 
   index do
     column "RBL" do |b| b.id end
