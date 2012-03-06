@@ -75,6 +75,8 @@ ActiveAdmin.register Tgi do
       f.input :inscripcion_dominio
       f.input :fecha
       f.input :parcela
+      f.input :plano_mesura
+      f.input :codigo_judicial
     end
     f.buttons
   end
@@ -91,7 +93,8 @@ ActiveAdmin.register Tgi do
         attributes_table_for tgi,
           :id, :pii, :ubicacion, :responsable, :titular,
           :address, :seccion_inmueble, :manzana,:superficie,
-          :seccion, :lote, :folio, :tomo, :inscripcion_dominio, :fecha, :parcela
+          :seccion, :lote, :folio, :tomo, :inscripcion_dominio, :fecha, :parcela,
+          :plano_mesura, :codigo_judicial
       end
 
       div(:id=> "xtabs-2") do
