@@ -51,7 +51,7 @@ ActiveAdmin.register Person do
       end
       div(:id=> "xtabs-1") do
           attributes_table_for person,
-          :name, :born, :tdoc, :doc, :civil, :sexo, :dead
+          :name, :born, :tdoc, :doc, :cuit, :civil, :sexo, :jubilado
       end
       if can? :create, Address
         div(:id=> "xtabs-2") do
@@ -153,9 +153,11 @@ ActiveAdmin.register Person do
       f.input :name
       f.input :tdoc
       f.input :doc
+      f.input :cuit
       f.input :born, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :civil
       f.input :sexo
+      f.input :jubilado
     end
 
     f.buttons
