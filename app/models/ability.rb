@@ -22,10 +22,14 @@ class Ability
     can :manage, :all
   end
 
+  def oficinas
+    can :read, Oficina
+  end
+
   #personas
   def personas
     can [:create, :read, :update], Address
-    can [:create, :read], Person
+    can [:create, :read, :update], Person
     can :familiares, Person
   end
 
@@ -49,6 +53,6 @@ class Ability
   end
 
   def localidad
-    can :manahe, :localidad
+    can :manage, :localidad
   end
 end
