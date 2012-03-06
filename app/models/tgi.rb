@@ -10,6 +10,7 @@ class Tgi < ActiveRecord::Base
   belongs_to :manzana
 
   has_many :avaluos
+  belongs_to :avaluo #de todos los que tiene es el que está activo.
 
   has_many :convenios, :as => :tributable
 
@@ -26,6 +27,21 @@ class Tgi < ActiveRecord::Base
     (responsable.try(:addresses) ||[]) + (titular.try(:addresses) || [])
   end
 
+  def titular_token
+    if titular
+      [titular]
+    else
+      []
+    end
+  end
+
+  def responsable_token
+    if responsable
+      [responsable]
+    else
+      []
+    end
+  end
   #genera la deuda para cada periodo
   def generar
     periodos = Periodo.all

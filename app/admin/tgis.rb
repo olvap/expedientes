@@ -55,11 +55,26 @@ ActiveAdmin.register Tgi do
 
   form do |f|
     f.inputs "Details" do
-      f.inputs :pii, :calle, :numero, :otro,
-        :responsable, :titular,
-        :seccion_inmueble, :manzana,
-        :seccion, :lote,:superficie,
-        :folio, :tomo, :inscripcion_dominio, :fecha, :parcela
+      f.input :titular_id,
+        :input_html => {
+          "data-pre" => f.object.titular_token.to_json(:methods => :name), :only => [:id, :name] }
+      f.input :responsable_id,
+        :input_html => {
+          "data-pre" => f.object.responsable_token.to_json(:methods => :name), :only => [:id, :name] }
+      f.input :pii
+      f.input :calle
+      f.input :numero
+      f.input :otro
+      f.input :seccion_inmueble
+      f.input :manzana
+      f.input :seccion
+      f.input :lote
+      f.input :superficie
+      f.input :folio
+      f.input :tomo
+      f.input :inscripcion_dominio
+      f.input :fecha
+      f.input :parcela
     end
     f.buttons
   end
@@ -80,7 +95,7 @@ ActiveAdmin.register Tgi do
       end
 
       div(:id=> "xtabs-2") do
-        if tgi.avaluos.last
+        if tgi.avaluo
           attributes_table_for tgi.avaluos.last,
             :valor, :descuento, :estado, :edificacion, :categoria, :metros
           panel "frentes" do
@@ -90,7 +105,7 @@ ActiveAdmin.register Tgi do
             end
           end
         end
-        link_to "Administrar", admin_tgi_avaluos_path(tgi)
+        div link_to "Administrar", admin_tgi_avaluos_path(tgi)
       end
 
 # Habilitar esto cuando ponga la deuda
