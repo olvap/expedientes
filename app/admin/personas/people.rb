@@ -195,12 +195,6 @@ ActiveAdmin.register Person do
 
   # falta para jubilado y para revertir
   # agregar datos comerciales: cantidad de empleados, ingresos brutos, cuit/cuil.
-  member_action :matar do
-    @person = Person.find(params[:id])
-    @person.dead = Date.today
-    @person.save!
-    redirect_to :action => :show
-  end
 
   member_action :history do
     @person = Person.find(params[:id])
