@@ -48,6 +48,7 @@ ActiveAdmin.register Bromatologia do
         end
       end
     end
+    active_admin_comments
   end
 
   controller do
@@ -67,7 +68,8 @@ ActiveAdmin.register Bromatologia do
       :input_html => {
         "data-pre" => f.object.person_token.to_json(:methods => :name), :only => [:id, :name] }
       f.has_many :negocios do |n|
-        n.inputs :name,:rubro
+        n.input :name
+        n.input :rubro, :collection => Rubro.bromatologia
       end
     end
     f.buttons
