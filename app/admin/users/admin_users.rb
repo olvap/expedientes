@@ -30,6 +30,12 @@ ActiveAdmin.register AdminUser do
         column :observations
       end
     end
+
+    panel "Oficinas" do
+      table_for admin_user.oficinas do
+        column :name
+      end
+    end
   end
 
   form do |f|
@@ -41,6 +47,7 @@ ActiveAdmin.register AdminUser do
       f.input :people_tokens,
       :input_html => {
         "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
+      f.input :oficinas, :as => :check_boxes
     end
     f.buttons
   end

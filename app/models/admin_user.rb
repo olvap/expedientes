@@ -5,11 +5,13 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-    attr_accessible :email, :password, :password_confirmation, :remember_me, :role_ids,:roles_tokens,:person_id, :people_tokens
+    attr_accessible :email, :password, :password_confirmation, :remember_me, :role_ids,:roles_tokens,:person_id, :people_tokens, :oficina_ids
 
   has_and_belongs_to_many :roles, :class_name => "Role",
                           :join_table => :admin_users_roles, :uniq => true
 
+  has_and_belongs_to_many :oficinas, :class_name => "Oficina",
+                          :join_table => :admin_users_oficinas, :uniq => true
   belongs_to :person
 
   has_many :mensajes
