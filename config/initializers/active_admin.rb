@@ -109,7 +109,7 @@ ActiveAdmin.setup do |config|
           def build_comment(comment)
             div :for => comment do
               div :class => "active_admin_comment_meta" do
-                user_name = comment.author ? auto_link(comment.author) : "Anonymous"
+                user_name = comment.author ? link_to(comment.author.email.split("@")[0],admin_admin_user_path(comment.author)) : "Anonymous"
                 h4(user_name, :class => "active_admin_comment_author")
                 span(pretty_format(comment.created_at))
               end
@@ -117,6 +117,9 @@ ActiveAdmin.setup do |config|
                 my_simple_format(comment.body)
               end
               div :style => "clear:both;"
+              if can? :edit, comment
+                div link_to "Editar comentario", "/admin/active_admin_comments/#{comment.id}/edit"
+              end
             end
           end
 

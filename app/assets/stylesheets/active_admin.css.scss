@@ -5,6 +5,8 @@
 @import "jquery-ui-1.8.16.custom";
 @import "token-input";
 
+// =require 'forum'
+
 // To customize the Active Admin interfaces, add your
 // styles here:
 $header-color: lighten(#84ac49,15%);
@@ -39,23 +41,6 @@ $ref-color: #ffffff;
   }
 }
 //end pases
-// comments
-.comments .active_admin_comment .active_admin_comment_meta {
-    width: 230px;
-}
-.comments .active_admin_comment .active_admin_comment_body {
-    margin-left: 210px;
-}
-// end comments
-//forum
-.forum{
-    width: 255px;
-}
-.forum_image {
-    float: left;
-    padding-right: 20px;
-}
-// end forum
 
 // ui-buttons
 .table_actions{
