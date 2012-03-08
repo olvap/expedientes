@@ -32,8 +32,12 @@ class Catastro < ActiveRecord::Base
      end
    end
 
+  def come_from
+    pases[-2].try(:oficina)
+  end
+
   def pase
-    pases.try(:last).try(:oficina).try(:name)
+    pases.try(:last)
   end
 
   def oficina_id
