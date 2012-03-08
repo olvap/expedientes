@@ -1,6 +1,6 @@
 ActiveAdmin.register Role do
 
-  menu :if => proc{ can?(:manage, Role) }, :parent => "Users"
+  menu :if => proc{ can?(:manage, Role) }, :parent => "Usuarios"
 
   controller do
     load_and_authorize_resource

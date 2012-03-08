@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminUser do
 
-  menu :if => proc{ can?(:manage, AdminUser) },:parent => "Users"
+  menu :if => proc{ can?(:manage, AdminUser) },:parent => "Usuarios"
 
   filter :email
 
