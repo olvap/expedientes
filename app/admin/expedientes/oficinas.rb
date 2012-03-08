@@ -1,6 +1,6 @@
 ActiveAdmin.register Oficina,:as => "oficina" do
 
-  menu :if => proc{ can?(:manage, Oficina) }, :parent => "Comunes"
+  menu :if => proc{ can?(:read, Oficina) }, :parent => "Comunes"
 
   controller.authorize_resource
 
@@ -17,7 +17,9 @@ ActiveAdmin.register Oficina,:as => "oficina" do
   show :title => :name do
     panel oficina.name do
       table_for(pases) do |t|
-        t.column(:catastro_id)
+        t.column(:catastro_id){|pase| link_to pase.catastro_id, admin_catastro_path(pase.catastro)}
+        t.column {|pase| pase.catastro.partida}
+        t.column {|pase| pase.catastro.responsable}
         t.column(:estado) {|order| status_tag(order.try(:estado))  }
         t.column(:entrada)
         t.column(:observaciones)
