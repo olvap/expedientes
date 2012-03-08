@@ -1,19 +1,20 @@
 class Ability
   include CanCan::Ability
 
+  @@user
   def initialize(user)
-    user ||= User.new # Guest user
+    @@user = user || User.new # Guest user
 
-    can :read, AdminUser, :id => user.id
-    can :read, Person, :id => user.try(:person).try(:id)
-    user.roles.each do |r|
+    can :read, AdminUser, :id => @@user.id
+    can :read, Person, :id => @@user.try(:person).try(:id)
+    @@user.roles.each do |r|
       self.send(r.name.downcase)
     end
   end
 
   def municipal
-    can :read, Forum
-    can [:read,:create], Topic
+    can :read, :all
+    can :create, Topic
     can :inbox, AdminUser
     can :create, Mensaje
   end
@@ -23,25 +24,36 @@ class Ability
   end
 
   def oficinas
-    can :read, Oficina
   end
 
   #personas
   def personas
-    can [:create, :read, :update], Address
-    can [:create, :read, :update], Person
+    can [:create, :update], Address
+    can [:create, :update], Person
     can :familiares, Person
   end
 
   # este usuario es el que va a cargar y modificar los catastro
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
-    can :manage, [Catastro, Pase, Oficina]
+    can [:create, :update], [Catastro, Oficina]
+    can :create, Pase
+    #solo pueden modificar el ultimo, aunque sin la restriccion del tiempo.
+    can :update, Pase, :ultimo?
   end
 
+  #este rol es para los usuarios que solo que mueven expedientes de catastro
   def pases
-    can :read, Catastro
-    can :create, Pase
+    #solo pueden crear pase si el expediente se encuentra en su ofinca
+    can :create, Pase do |pase|
+      @@user.oficina_ids.include? pase.catastro.oficina.id
+    end
+    #solo pueden editarlo si vino de su oficina
+    can :update, Pase do |pase|
+      (@@user.oficina_ids.include? pase.catastro.come_from.id and pase.ultimo?) and
+      # si se modifico hace mas de un dia ya no se puede modificar mas.
+      (pase.updated_at >= Time.new.yesterday)
+    end
   end
 
   def bromatologia

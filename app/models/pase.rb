@@ -5,7 +5,7 @@ class Pase < ActiveRecord::Base
   belongs_to :catastro
   belongs_to :oficina
 
-  validate :ultimo?
+#  validate :ultimo?
   validates :oficina, :presence => true
   validates :entrada, :presence => true
   #default_scope :order => "created_at desc"
@@ -14,13 +14,12 @@ class Pase < ActiveRecord::Base
     admin_catastro_pase_path(self.catastro,self)
   end
 
+  def penultimo?
+    self == catastro.try(:pases)[-2]
+  end
+
   def ultimo?
-    if self == catastro.try(:pases).try(:last) || !id
-      true
-    else
-      errors.add(:base, "Este expediente ha sido movido, ya no se puede actualizar")
-      false
-    end
+    (self == catastro.try(:pases).try(:last) || !id)
   end
 
   def estado
