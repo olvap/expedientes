@@ -34,9 +34,7 @@ ActiveAdmin.register Topic do
     default_actions
   end
 
-  show do
-    div h2 topic.name
-
+  show :title => :name do
     active_admin_comments
   end
 
