@@ -1,5 +1,6 @@
 module Header
-  def header(title,options={})
+#  def header(title,options={})
+   def headr(title)
     footer = true # default value
     footer = options.delete(:footer)
 
