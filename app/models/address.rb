@@ -12,13 +12,23 @@ class Address < ActiveRecord::Base
   belongs_to :taddress
   belongs_to :person
 
+  has_many :bromatologias
   alias_attribute :name ,:format
 
   def format
     "#{street} #{number} #{other} #{localidad.try :name} #{localidad.try :postal}"
   end
 
+  def relations
+    [:bromatologias]
+  end
+
   def localidad_token
     [localidad]
   end
+
+#  def copy(id)
+#    resource = self.class
+#  end
+
 end
