@@ -4,6 +4,15 @@ ActiveAdmin.register Oficina,:as => "oficina" do
 
   controller.authorize_resource
 
+  form do |f|
+    f.inputs "Details" do
+      f.input :name
+      f.input :destinos, :as => :check_boxes
+    end
+
+    f.buttons
+  end
+
   controller do
 
     def show
