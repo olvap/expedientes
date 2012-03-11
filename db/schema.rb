@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(:version => 20111229230433) do
     t.integer  "localidad_id"
   end
 
+  add_index "addresses", ["localidad_id"], :name => "index_addresses_on_localidad_id"
+  add_index "addresses", ["person_id"], :name => "index_addresses_on_person_id"
+  add_index "addresses", ["taddress_id"], :name => "index_addresses_on_taddress_id"
+
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
