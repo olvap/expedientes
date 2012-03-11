@@ -48,6 +48,7 @@ ActiveAdmin.register Catastro do
             div :class => "body" do
               div my_simple_format pase.observaciones
               div link_to("Detalles", admin_catastro_pase_path(catastro,pase))
+              div link_to "Imprimir", imprimir_admin_catastro_pase_path(catastro,pase)
             end
           end
         end

@@ -19,6 +19,13 @@ ActiveAdmin.register Pase do
 
   form :partial => "pases/form"
 
+  member_action :imprimir do
+    pase = Pase.find params[:id]
+    output = PasesReport.new.show(pase)
+    send_data output, :filename => "pase.pdf",
+                          :type => "application/pdf"
+  end
+
   controller do
     def create
       create! do |format|
