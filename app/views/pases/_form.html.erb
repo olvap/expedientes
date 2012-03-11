@@ -2,7 +2,7 @@
   <%= f.semantic_errors %>
   <%= f.inputs "Details" do %>
 
-    <%= f.input :oficina, :collection => catastro.come_from.destinos %>
+    <%= f.input :oficina, :collection => catastro.come_from.try(:destinos) || Oficina.iniciales  %>
     <%= f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10} %>
     <%= f.input :observaciones, :input_html => {:class => :ckeditor}, :label => false %>
   <% end %>

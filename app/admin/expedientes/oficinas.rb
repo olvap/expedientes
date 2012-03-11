@@ -8,6 +8,7 @@ ActiveAdmin.register Oficina,:as => "oficina" do
     f.inputs "Details" do
       f.input :name
       f.input :destinos, :as => :check_boxes
+      f.input :inicial
     end
 
     f.buttons
