@@ -1,0 +1,15 @@
+.ui-datepicker {
+    display: none;
+    width: 12em;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+    line-height: 2.8em;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    height: 33px;
+}
+
+.ui-datepicker .ui-datepicker-header a {
+    margin-top: 7px;
+}
