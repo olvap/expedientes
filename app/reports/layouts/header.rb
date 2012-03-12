@@ -1,8 +1,8 @@
 module Header
 #  def header(title,options={})
-   def headr(title)
+   def header_prawn(title)
     footer = true # default value
-    footer = options.delete(:footer)
+#    footer = options.delete(:footer)
 
     repeat :all do
       font_size 10 do
@@ -20,7 +20,7 @@ module Header
         font_size 6 do
           draw_text "Impreso: #{Date.today}",:at => [0,0]
           draw_text "#{title}",:at => [100,0]
-          image("#{Rails.root}/app/assets/images/blue-lemons.png",:at => [bounds.right - 150, 8],:scale=>0.30)
+#          image("#{Rails.root}/app/assets/images/blue-lemons.png",:at => [bounds.right - 150, 8],:scale=>0.30)
         end
       end
     end
