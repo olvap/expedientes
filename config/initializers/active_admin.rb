@@ -161,8 +161,9 @@ ActiveAdmin.setup do |config|
           content_tag 'p', :id => "utility_nav", :class => 'header-item' do
             if current_active_admin_user?
               html = content_tag(:span, link_to(current_active_admin_user,admin_admin_user_path(current_active_admin_user)), :class => "current_user")
-              html << link_to("Mensaje","/admin/mensajes/new")
-              html << link_to("Bandeja de entrada","/admin/admin_users/1/inbox")
+              if current_active_admin_user.topics.count > 0
+                html << link_to("Mensajes en foro","/admin")
+              end
               html << link_to("Salir","/admin/logout")
             end
           end

@@ -17,6 +17,9 @@ class AdminUser < ActiveRecord::Base
   has_many :mensajes
   has_many :enviados, :class_name => 'Mensaje', :foreign_key => 'from_id'
 
+  has_and_belongs_to_many :topics, :class_name => "Topic",
+                          :join_table => :admin_users_topics, :uniq => true
+
   attr_reader :roles_tokens
   attr_reader :people_tokens
 

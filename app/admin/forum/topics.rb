@@ -15,7 +15,16 @@ ActiveAdmin.register Topic do
     skip_load_resource :only => :index
 
     def show
-      @topic = Topic.find_by_name(params[:name])
+      @topic = Topic.find(params[:id])
+
+      #esto deberia ser un after create comments, pero no quiero sobre escribir
+      #la gema de aa
+      @topic.marcar_leido(current_admin_user)
+      if @topic.active_admin_comments.last.created_at.to_i + 15 >= Time.now.to_i
+        @topic.avisar_participantes
+        @topic.marcar_leido(current_admin_user)
+      end
+      @topic.save!
       show!
     end
 
