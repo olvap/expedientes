@@ -25,7 +25,7 @@ ActiveAdmin.register Catastro do
       end
       div(:id => "xtabs-1") do
         attributes_table_for catastro,
-          :id, :partida, :responsable, :numero_expediente_colegio, :final_de_obra,
+          :id, :partida, :responsable, :category, :numero_expediente_colegio, :final_de_obra,
           :convenio_id, :numero_de_recibo, :importe, :created_at, :updated_at
       end
 
