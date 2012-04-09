@@ -1,0 +1,26 @@
+$selected-color:#84ac49;
+.index_as_table{
+  table{
+    tr{
+      td.table_actions{
+      float: left;
+      width: 235px !important;
+      visibility: hidden;
+//      position: absolute;
+      height: 0;
+      margin-left: -220px;
+      border-width: 0 !important;
+      }
+    }
+    tr.selected, tr.selected td{
+      background-color: $selected-color !important;
+      color: #000 !important;
+      visibility: visible;
+    }
+    tr:hover, tr:hover td{
+      background-color: lighten($selected-color,15%) !important;
+      color: #000 !important;
+      visibility: visible;
+    }
+  }
+}

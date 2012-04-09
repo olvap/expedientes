@@ -9,7 +9,7 @@ $ref-color: #ffffff;
 
 // ui-buttons
 .table_actions{
-  display: table-caption;
+  width: 220px;
 }
 .ui-button-icon-only .ui-icon {
     left: -70%;
@@ -23,7 +23,7 @@ $ref-color: #ffffff;
     width: 1.5em;
 }
 .member_link{
-  width: 150px;
+  float: left;
 }
 // ends ui buttons
 
