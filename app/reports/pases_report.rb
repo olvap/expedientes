@@ -1,22 +1,37 @@
 require "layouts/header.rb"
-require "layouts/commons.rb"
-include Header
-include Commons
+require 'prawnbot'
 
-class PasesReport < Prawn::Document
+class PasesReport < Prawnbot::Report
+
+  def initialize
+    super
+    @header_title = "MUNICIPALIDAD DE LA CIUDAD DE CORONDA"
+    @header_subtitle = "Catastro y edificaciones privadas"
+
+    @logo = "#{Rails.root}/app/assets/images/logo.png"
+    @water_print = "#{Rails.root}/app/assets/images/water_mark.png"
+
+  end
+
   def show(pase)
-    header_prawn("Municipalidad de Coronda")
+    body
 
-#arriba, subrayado y destacado con otra letra  Munucipalidad de Coronda, abajo Responsable y Partida/s Inmobiliarias, la Oficina, la Fecha y abajo los comentarios, Todo eso si es posible comprimirlo para que salga impreso en la mitad de una hoja
-    form({:ID => pase.id,
-          :EXPEDIENTE => pase.catastro.id,
-          :RESPONSABLE => pase.catastro.responsable,
-          :PARTIDA => pase.catastro.partida,
-          :FECHA => pase.entrada,
-          :OFICINA => pase.oficina.name,
-          :OBSERVADO => pase.observaciones
-        },
-          [20, bounds.top - 30])
+    show_title "DETALLE DE PASE"
+
+    show_title "#{pase.catastro.category.name} N: #{pase.catastro.id} "
+
+    myform([
+      "<b>Partida</b> #{pase.catastro.partida}",
+      "<b>Responsanble</b> #{pase.catastro.responsable}",
+      "<b>Numero de expediente</b> #{pase.catastro.numero_expediente_colegio}",
+      "<b>Convenio</b> #{pase.catastro.convenio_id}",
+
+      "<b>Importe</b> #{pase.catastro.importe}"])
+
+
+    show_title "<b>Oficina actual</b> #{pase.catastro.oficina.name}"
+
+    mybox(pase.observaciones)
 
     render
   end
