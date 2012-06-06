@@ -3,6 +3,7 @@ class Pase < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :catastro
+  belongs_to :expediente
   belongs_to :oficina
 
 #  validate :ultimo?
@@ -11,15 +12,15 @@ class Pase < ActiveRecord::Base
   #default_scope :order => "created_at desc"
 
   def admin_permalink
-    admin_catastro_pase_path(self.catastro,self)
+    admin_expediente_pase_path(self.expediente,self)
   end
 
   def penultimo?
-    self == catastro.try(:pases)[-2]
+    self == expediente.try(:pases)[-2]
   end
 
   def ultimo?
-    (self == catastro.try(:pases).try(:last) || !id)
+    (self == expediente.try(:pases).try(:last) || !id)
   end
 
   def estado

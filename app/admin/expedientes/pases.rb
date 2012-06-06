@@ -1,5 +1,5 @@
 ActiveAdmin.register Pase do
-  belongs_to :catastro
+  belongs_to :expediente
 
   controller do
     load_and_authorize_resource
@@ -29,7 +29,7 @@ ActiveAdmin.register Pase do
   controller do
     def create
       create! do |format|
-        format.html {redirect_to admin_catastro_path @catastro}
+        format.html {redirect_to admin_expediente_path @expediente}
       end
     end
   end

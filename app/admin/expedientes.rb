@@ -1,8 +1,7 @@
-ActiveAdmin.register Catastro do
-  menu :if => proc{ can?(:manage, EdificacionPrivada) }, :parent => "Expedientes"
+ActiveAdmin.register Expediente do
 
   action_item(:except =>[:index,:new]) do
-    link_to("Nuevo pase", new_admin_expediente_pase_path(catastro))
+    link_to("Nuevo pase", new_admin_expediente_pase_path(expediente))
   end
 
   filter :id
@@ -19,14 +18,14 @@ ActiveAdmin.register Catastro do
         li link_to "Pases", "#xtabs-3"
       end
       div(:id => "xtabs-1") do
-        attributes_table_for catastro,
+        attributes_table_for expediente,
           :id, :partida, :responsable, :numero_expediente_colegio, :final_de_obra,
           :convenio_id, :numero_de_recibo, :importe, :created_at, :updated_at
       end
 
       div(:id => "xtabs-2") do
         panel "Profesionales" do
-          table_for catastro.people do
+          table_for expediente.people do
             column :name do |p| link_to p.name, admin_person_path(p) end
             column :doc
           end
@@ -34,7 +33,7 @@ ActiveAdmin.register Catastro do
       end
 
       div(:id => "xtabs-3") do
-        catastro.pases.each do |pase|
+        expediente.pases.each do |pase|
         div :class => "pases" do
             div :class => "meta" do
               h4(link_to pase.oficina.name, admin_oficina_path(pase.oficina), :class => "active_admin_pase_author") if pase.oficina
@@ -42,8 +41,8 @@ ActiveAdmin.register Catastro do
             end
             div :class => "body" do
               div my_simple_format pase.observaciones
-              div link_to("Detalles", admin_expediente_pase_path(catastro,pase))
-              div link_to "Imprimir", imprimir_admin_catastro_pase_path(catastro,pase)
+              div link_to("Detalles", admin_expediente_pase_path(expediente,pase))
+              div link_to "Imprimir", imprimir_admin_expediente_pase_path(expediente,pase)
             end
           end
         end
@@ -82,8 +81,8 @@ ActiveAdmin.register Catastro do
   #-- versionado--
   #sidebar :versionado, :partial => "layouts/version", :only => :show
   member_action :history do
-    catastro = catastro.find(params[:id])
-    @versions = catastro.versions
+    expediente = expediente.find(params[:id])
+    @versions = expediente.versions
     render "layouts/history"
   end
   #-- end versionado --
@@ -98,22 +97,22 @@ ActiveAdmin.register Catastro do
     skip_load_resource :only => :index
 
     def show
-      @versions =@catastro.versions
-      @catastro = @catastro.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
+      @versions =@expediente.versions
+      @expediente = @expediente.versions[params[:version].to_i].reify if params[:version] #si se pide una version en particular
       show!
     end
 
     def create
 
       create! do |format|
-        format.html {redirect_to new_admin_catastro_pase_path @catastro}
+        format.html {redirect_to new_admin_expediente_pase_path @expediente}
       end
     end
 
     def update
 
       update! do |format|
-        format.html {redirect_to admin_catastro_path @catastro}
+        format.html {redirect_to admin_expediente_path @expediente}
       end
     end
 
