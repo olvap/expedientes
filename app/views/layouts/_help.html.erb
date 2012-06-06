@@ -8,6 +8,6 @@
   </div>
 <% else %>
   No hay ayuda creada, has click
-  <%= link_to "aquí", {:controller=> :topics, :action=>:new, :forum_id => Forum.first.id, :name=>controller_name} %>
+  <%= link_to "aquí", {:controller=> :topics, :action=>:new, :forum => Forum.first, :name=>controller_name} %>
   para crearla.
 <% end %>
