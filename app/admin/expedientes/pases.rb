@@ -1,4 +1,5 @@
 ActiveAdmin.register Pase do
+
   belongs_to :expediente
 
   controller do
@@ -17,7 +18,16 @@ ActiveAdmin.register Pase do
     default_actions
   end
 
-  form :partial => "pases/form"
+  form do |f|
+
+    f.inputs "Detalle" do
+      f.input :oficina
+      f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
+      f.input :observaciones, :input_html => {:class => :ckeditor}, :label => false
+   end
+
+    f.buttons
+  end
 
   member_action :imprimir do
     pase = Pase.find params[:id]

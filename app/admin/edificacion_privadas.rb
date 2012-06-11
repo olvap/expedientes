@@ -43,8 +43,8 @@ ActiveAdmin.register EdificacionPrivada do
             end
             div :class => "body" do
               div my_simple_format pase.observaciones
-              div link_to("Detalles", admin_edificacion_privada_pase_path(edificacion_privada,pase))
-              div link_to "Imprimir", imprimir_admin_edificacion_privada_pase_path(edificacion_privada,pase)
+              div link_to("Detalles", admin_expediente_pase_path(edificacion_privada,pase))
+              div link_to "Imprimir", imprimir_admin_expediente_pase_path(edificacion_privada,pase)
             end
           end
         end
@@ -58,7 +58,7 @@ ActiveAdmin.register EdificacionPrivada do
     column :numero_expediente_colegio
     column :responsable
     column :partida
-    column :ubicacion_actual,:sortable => false
+    column :oficina, :sortable => false
     default_actions
   end
 

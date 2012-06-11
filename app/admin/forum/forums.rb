@@ -1,5 +1,5 @@
 ActiveAdmin.register Forum do
-
+  menu :if => proc{ can?(:read, Forum) }
   config.clear_sidebar_sections!
 
   controller do

@@ -1,5 +1,9 @@
 ActiveAdmin.register Expediente do
 
+  scope :all, :default => true
+  scope :pases_de_hoy
+  scope :vencidos
+
   action_item(:except =>[:index,:new]) do
     link_to("Nuevo pase", new_admin_expediente_pase_path(expediente))
   end
@@ -9,6 +13,7 @@ ActiveAdmin.register Expediente do
   filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
+  filter :pase_oficina_name,:as => :string, :label => "Oficina"
 
   show do
     div(:id => "xtabs") do
@@ -36,7 +41,7 @@ ActiveAdmin.register Expediente do
         expediente.pases.each do |pase|
         div :class => "pases" do
             div :class => "meta" do
-              h4(link_to pase.oficina.name, admin_oficina_path(pase.oficina), :class => "active_admin_pase_author") if pase.oficina
+              h4(link_to pase.oficina_name, admin_oficina_path(pase.oficina), :class => "active_admin_pase_author")
               span(pretty_format(pase.entrada))
             end
             div :class => "body" do
@@ -56,7 +61,7 @@ ActiveAdmin.register Expediente do
     column :numero_expediente_colegio
     column :responsable
     column :partida
-    column :ubicacion_actual,:sortable => false
+    column :pase, :sortable => false
     default_actions
   end
 

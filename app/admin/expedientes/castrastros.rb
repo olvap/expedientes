@@ -57,7 +57,7 @@ ActiveAdmin.register Catastro do
     column :numero_expediente_colegio
     column :responsable
     column :partida
-    column :ubicacion_actual,:sortable => false
+    column :oficina,:sortable => false
     default_actions
   end
 

@@ -8,7 +8,12 @@ class Expediente < ActiveRecord::Base
 
   has_paper_trail
 
+  scope :pases_de_hoy, where("entrada >= ?", 1.day.ago.strftime("%Y-%m-%d")).joins(:pase)
+  scope :vencidos, where("oficinas.urgencia >= datediff(curdate(), pases.entrada)").joins(:pase).joins(:oficina)
+
   has_many :pases
+  belongs_to :pase
+  has_one :oficina, :through => :pase
 
   has_and_belongs_to_many :people, :class_name => "Person",
                         :join_table => :expedientes_people, :uniq => true
@@ -31,23 +36,4 @@ class Expediente < ActiveRecord::Base
     pases[-2].try(:oficina)
   end
 
-  def pase
-    pases.try(:last)
-  end
-
-  def oficina_id
-    oficina.try :id
-  end
-
-  def oficina
-    pase.try(:oficina)
-  end
-
-  def ubicacion_actual
-    oficina.try :name
-  end
-
-  def fecha_de_entrada
-    pase.try :entrada
-  end
 end

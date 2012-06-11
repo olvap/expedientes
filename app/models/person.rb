@@ -18,8 +18,8 @@ class Person < ActiveRecord::Base
   belongs_to :sexo
   belongs_to :tdoc
 
-  has_and_belongs_to_many :catastros,
-    :join_table => :pedidos, :uniq => true
+  has_and_belongs_to_many :expedientes,
+    :join_table => :expedientes_people, :uniq => true
 
   has_many :matrimonios, :class_name => 'Matrimonio',:foreign_key => "person1_id"
   has_many :matrimonios_seccond, :class_name => 'Matrimonio',:foreign_key => "person2_id"
