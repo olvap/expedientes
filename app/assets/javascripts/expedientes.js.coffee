@@ -22,7 +22,7 @@ $ ->
       noResultsText: "No existe esta persona"
 
 $ ->
-  $('#catastro_people_tokens').
+  $('#rentas_people_tokens').
     tokenInput '/admin/people.json',
       queryParam: 'q[name_like]'
       crossDomain: false
