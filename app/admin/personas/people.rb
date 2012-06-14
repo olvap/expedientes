@@ -44,7 +44,7 @@ ActiveAdmin.register Person do
             column :numero_expediente_colegio
             column :responsable
             column :partida
-            column "Oficina Actual" do |c| c.pase end
+            column "Oficina Actual" do |c| c.pase.oficina_name end
           end
         end
       end

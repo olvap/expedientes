@@ -6,6 +6,10 @@ ActiveAdmin.register EdificacionPrivada do
     link_to("Nuevo pase", new_admin_expediente_pase_path(edificacion_privada))
   end
 
+  scope :all, :default => true
+  scope :pases_de_hoy
+  scope :vencidos
+
   filter :id
   filter :partida
   filter :responsable
