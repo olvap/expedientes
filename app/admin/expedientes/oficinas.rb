@@ -1,6 +1,6 @@
 ActiveAdmin.register Oficina,:as => "Oficinas" do
 
-  menu :if => proc{ can?(:read, Oficina) }, :parent => "Comunes"
+  menu :if => proc{ can?(:manage, Oficina) }, :parent => "Comunes"
 
   controller.authorize_resource
 
