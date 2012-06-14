@@ -43,6 +43,7 @@ ActiveAdmin.register Bromatologia do
           table_for bromatologia.negocios do
             column :id
             column :name
+            column "Categoria" do |b| b.rubro.sub_rubro end
             column :rubro
           end
         end
