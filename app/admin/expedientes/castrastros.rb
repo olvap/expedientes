@@ -5,6 +5,10 @@ ActiveAdmin.register Catastro do
     link_to("Nuevo pase", new_admin_expediente_pase_path(catastro))
   end
 
+  scope :all, :default => true
+  scope :pases_de_hoy
+  scope :vencidos
+
   filter :id
   filter :partida
   filter :responsable
