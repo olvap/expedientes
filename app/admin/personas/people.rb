@@ -116,7 +116,7 @@ ActiveAdmin.register Person do
                   link_to "editar", edit_admin_person_profesional_path(person,a)
                 end
               end
-            link_to "Administrar", admin_person_profesionals_path(person)
+            div link_to "Administrar", admin_person_profesionals_path(person)
             end
           end
         end

@@ -13,7 +13,7 @@ class Ability
   end
 
   def municipal
-    can :read, :all
+    can [:read, :imprimir], :all
     can :create, Topic
     can :inbox, AdminUser
     can :create, Mensaje
