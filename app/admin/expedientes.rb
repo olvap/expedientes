@@ -1,5 +1,7 @@
 ActiveAdmin.register Expediente do
 
+  actions :index, :show
+
   scope :all, :default => true
   scope :pases_de_hoy
   scope :vencidos
