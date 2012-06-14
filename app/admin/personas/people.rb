@@ -25,7 +25,7 @@ ActiveAdmin.register Person do
       ul do
         li link_to "Detalles", "#xtabs-1"
         li link_to "Expedientes", "#xtabs-8"
-        if can? :manage, Catastro
+        if can? :manage, Expediente
           li link_to "Profesion", "#xtabs-4"
         end
         if can? :create, Address
@@ -40,12 +40,11 @@ ActiveAdmin.register Person do
       end
       div(:id=> "xtabs-8") do
         panel "" do
-          table_for person.catastros do
+          table_for person.expedientes do
             column :numero_expediente_colegio
             column :responsable
             column :partida
             column "Oficina Actual" do |c| c.pase end
-            #column{|id| link_to "Ver", admin_catastro_path(id)  }
           end
         end
       end
@@ -107,7 +106,7 @@ ActiveAdmin.register Person do
 
 ##          end
 ##        end
-        if can? :manage, Catastro
+        if can? :manage, Expediente
           div(:id => "xtabs-4") do
             panel "Profesion" do
               table_for person.profesionals do
@@ -117,7 +116,7 @@ ActiveAdmin.register Person do
                   link_to "editar", edit_admin_person_profesional_path(person,a)
                 end
               end
-            link_to "Administrar", admin_person_profesionals_path(person)
+            div link_to "Administrar", admin_person_profesionals_path(person)
             end
           end
         end

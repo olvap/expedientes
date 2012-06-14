@@ -2,7 +2,7 @@ class Oficina < ActiveRecord::Base
 
   has_paper_trail
   has_many :pases
-  has_many :catastros, :through => :pases
+  has_many :expedientes, :through => :pases
 
   has_and_belongs_to_many :admin_users, :class_name => "AdminUser",
                           :join_table => :admin_users_oficinas, :uniq => true

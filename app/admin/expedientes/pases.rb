@@ -1,5 +1,6 @@
 ActiveAdmin.register Pase do
-  belongs_to :catastro
+
+  belongs_to :expediente
 
   controller do
     load_and_authorize_resource
@@ -17,7 +18,16 @@ ActiveAdmin.register Pase do
     default_actions
   end
 
-  form :partial => "pases/form"
+  form do |f|
+
+    f.inputs "Detalle" do
+      f.input :oficina
+      f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
+      f.input :observaciones, :input_html => {:class => :ckeditor}, :label => false
+   end
+
+    f.buttons
+  end
 
   member_action :imprimir do
     pase = Pase.find params[:id]
@@ -29,7 +39,7 @@ ActiveAdmin.register Pase do
   controller do
     def create
       create! do |format|
-        format.html {redirect_to admin_catastro_path @catastro}
+        format.html {redirect_to admin_expediente_path @expediente}
       end
     end
   end

@@ -14,6 +14,7 @@ class PasesReport < Prawnbot::Report
   end
 
   def show(pase)
+    self.font_size = 10
     body
 
     show_title "DETALLE DE PASE"

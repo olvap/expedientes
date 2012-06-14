@@ -13,7 +13,7 @@ module Resource
 
     def header
       repeat :all do
-        bounding_box [0, cursor],:width => 500, :height => 90 do
+        bounding_box [0, cursor],:width => 500 do
           fill_color "6b0303"
           image(@logo,:at => [bounds.right - 50, cursor - 12],:scale=>0.30)
           image(@water_print,:at => [50, cursor - 100])

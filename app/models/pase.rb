@@ -2,24 +2,45 @@ class Pase < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
   has_paper_trail
 
-  belongs_to :catastro
+  belongs_to :expediente
   belongs_to :oficina
+  delegate :name, :to => :oficina, :prefix => true
 
 #  validate :ultimo?
+  validates :expediente, :presence => true
   validates :oficina, :presence => true
   validates :entrada, :presence => true
   #default_scope :order => "created_at desc"
 
+  after_create :ultimo_pase
+  after_destroy :remover_ultimo
+
   def admin_permalink
-    admin_catastro_pase_path(self.catastro,self)
+    admin_expediente_pase_path(self.expediente,self)
+  end
+
+  alias_attribute :name ,:oficina_name
+
+  def remover_ultimo
+    e = expediente
+    if e.pases
+      e.pase = e.pases.last
+      e.save
+    end
+  end
+
+  def ultimo_pase
+    e = expediente
+    e.pase_id = self.id
+    e.save
   end
 
   def penultimo?
-    self == catastro.try(:pases)[-2]
+    self == expediente.try(:pases)[-2]
   end
 
   def ultimo?
-    (self == catastro.try(:pases).try(:last) || !id)
+    (self == expediente.try(:pase) || !id)
   end
 
   def estado
