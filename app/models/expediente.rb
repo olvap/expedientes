@@ -9,7 +9,7 @@ class Expediente < ActiveRecord::Base
   has_paper_trail
 
   scope :pases_de_hoy, where("entrada >= ?", 1.day.ago.strftime("%Y-%m-%d")).joins(:pase)
-  scope :vencidos, where("oficinas.urgencia >= datediff(curdate(), pases.entrada)").joins(:pase).joins(:oficina)
+  scope :vencidos, where("oficinas.urgencia >= datediff(curdate(), pases.entrada) and oficinas.urgencia > 0").joins(:pase).joins(:oficina)
 
   has_many :pases
   belongs_to :pase
