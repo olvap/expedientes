@@ -111,14 +111,14 @@ ActiveAdmin.register EdificacionPrivada do
     def create
 
       create! do |format|
-        format.html {redirect_to new_admin_edificacion_privada_pase_path @edificacion_privada}
+        format.html {redirect_to new_admin_expediente_pase_path @edificacion_privada}
       end
     end
 
     def update
 
       update! do |format|
-        format.html {redirect_to admin_edificacion_privada_path @edificacion_privada}
+        format.html {redirect_to admin_expediente_path @edificacion_privada}
       end
     end
 

@@ -110,14 +110,14 @@ ActiveAdmin.register Catastro do
     def create
 
       create! do |format|
-        format.html {redirect_to new_admin_catastro_pase_path @catastro}
+        format.html {redirect_to new_admin_expediente_pase_path @catastro}
       end
     end
 
     def update
 
       update! do |format|
-        format.html {redirect_to admin_catastro_path @catastro}
+        format.html {redirect_to admin_expediente_path @catastro}
       end
     end
 
