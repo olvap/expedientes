@@ -6,6 +6,13 @@ class Expediente < ActiveRecord::Base
     admin_expediente_path(self)
   end
 
+  Urgencia = { 1 => "Verde", 2 => "Amarillo", 3 => "Rojo"}
+  UrgenciaColection = Urgencia.invert
+
+  def urgencia
+    Urgencia[read_attribute(:urgencia)] || "No indicado"
+  end
+
   has_paper_trail
 
   scope :pases_de_hoy, where("entrada >= ?", 1.day.ago.strftime("%Y-%m-%d")).joins(:pase)

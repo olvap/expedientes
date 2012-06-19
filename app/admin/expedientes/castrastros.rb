@@ -14,6 +14,7 @@ ActiveAdmin.register Catastro do
   filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
+  filter :urgencia
 
   show do
     div(:id => "xtabs") do
@@ -62,6 +63,7 @@ ActiveAdmin.register Catastro do
     column :responsable
     column :partida
     column :oficina,:sortable => false
+    column(:urgencia){|expediente| status_tag(expediente.urgencia)}
     default_actions
   end
 
@@ -69,6 +71,7 @@ ActiveAdmin.register Catastro do
 
     f.inputs "Details" do
       f.input :numero_expediente_colegio
+      f.input :urgencia
       f.input :responsable
       f.input :partida
       f.input :convenio_id
@@ -110,14 +113,14 @@ ActiveAdmin.register Catastro do
     def create
 
       create! do |format|
-        format.html {redirect_to new_admin_catastro_pase_path @catastro}
+        format.html {redirect_to new_admin_expediente_pase_path @catastro}
       end
     end
 
     def update
 
       update! do |format|
-        format.html {redirect_to admin_catastro_path @catastro}
+        format.html {redirect_to admin_expediente_path @catastro}
       end
     end
 
