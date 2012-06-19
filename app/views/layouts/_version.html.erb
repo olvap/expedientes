@@ -1,45 +1,46 @@
+<% if @versions %>
+	<b>Version actual:</b> <%= @versions.length %>
+	<br>
+	<b>Fecha:</b>
+	<% if @versions.last %>
+		<%= @versions.last.created_at %>
+		<br>
+		<b>Usuario</b>: <%= link_to AdminUser.find(@versions.last.whodunnit).email, admin_admin_user_path(AdminUser.find(@versions.last.whodunnit)) %>
+		<br>
+	<% end %>
+	<br>
 
-<b>Version actual:</b> <%= @versions.length %>
-<br>
-<b>Fecha:</b>
-<% if @versions.last %>
-  <%= @versions.last.created_at %>
-  <br>
-  <b>Usuario</b>: <%= link_to AdminUser.find(@versions.last.whodunnit).email, admin_admin_user_path(AdminUser.find(@versions.last.whodunnit)) %>
-  <br>
-<% end %>
-<br>
 
+	<% if @versions.length.to_i > 1 %>
+		<% if params[:version].to_i > 1 || !params[:version] %>
+		  <%= link_to "Version anterior", {:version => (params[:version] || @versions.length).to_i - 1}%>
+		  <br>
+		<% end %>
+		<% if params[:version] %>
+		  <h3>Esta viendo la version <%= "#{params[:version]}"%></h3>
 
-<% if @versions.length.to_i > 1 %>
-  <% if params[:version].to_i > 1 || !params[:version] %>
-    <%= link_to "Version anterior", {:version => (params[:version] || @versions.length).to_i - 1}%>
-    <br>
-  <% end %>
-  <% if params[:version] %>
-    <h3>Esta viendo la version <%= "#{params[:version]}"%></h3>
+		  <b>Fecha:</b>
+		  <%= @versions[(params[:version].to_i - 1)].created_at %>
+		  <br>
+		  <b>Usuario</b>:
+		  <%= link_to AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit).email, admin_admin_user_path(AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit)) %>
+		  <br>
+		  <br>
 
-    <b>Fecha:</b>
-    <%= @versions[(params[:version].to_i - 1)].created_at %>
-    <br>
-    <b>Usuario</b>:
-    <%= link_to AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit).email, admin_admin_user_path(AdminUser.find(@versions[(params[:version].to_i - 1)].whodunnit)) %>
-    <br>
-    <br>
+		  <%= link_to "Version actual"%>
+		  <br>
+		<% end %>
+		<%= link_to "Historial de cambios", { :action => :history } %>
+	<% end %>
 
-    <%= link_to "Version actual"%>
-    <br>
-  <% end %>
-  <%= link_to "Historial de cambios", { :action => :history } %>
-<% end %>
-
-<br>
-<br>
-<% if @version %>
-  <% if !@version.locked_at %>
-    <%= link_to "Cerrar Registro",{ :action => :lock } %>
-  <% else %>
-    Registro cerrado, no puede editarse
-    <%= link_to "Abrir",{ :action => :unlock } %>
+	<br>
+	<br>
+	<% if @version %>
+		<% if !@version.locked_at %>
+		  <%= link_to "Cerrar Registro",{ :action => :lock } %>
+		<% else %>
+		  Registro cerrado, no puede editarse
+		  <%= link_to "Abrir",{ :action => :unlock } %>
+		<% end %>
   <% end %>
 <% end %>
