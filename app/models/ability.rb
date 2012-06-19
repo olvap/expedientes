@@ -46,11 +46,11 @@ class Ability
   def pases
     #solo pueden crear pase si el expediente se encuentra en su ofinca
     can :create, Pase do |pase|
-      @@user.oficina_ids.include? pase.catastro.oficina.id
+      @@user.oficina_ids.include? pase.expediente.oficina.id
     end
     #solo pueden editarlo si vino de su oficina
     can :update, Pase do |pase|
-      (@@user.oficina_ids.include? pase.catastro.come_from.id and pase.ultimo?) and
+      (@@user.oficina_ids.include? pase.expediente.come_from.id and pase.ultimo?) and
       # si se modifico hace mas de un dia ya no se puede modificar mas.
       (pase.updated_at >= Time.new.yesterday)
     end
