@@ -6,7 +6,7 @@ class Expediente < ActiveRecord::Base
     admin_expediente_path(self)
   end
 
-  Urgencia = { 1 => "Verde", 2 => "Amarillo", 3 => "Rojo"}
+  Urgencia = { 0 => "Normal", 1 => "Lento", 2 => "Medio", 3 => "Urgente"}
   UrgenciaColection = Urgencia.invert
 
   def urgencia
