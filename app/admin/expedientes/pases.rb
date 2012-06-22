@@ -21,10 +21,10 @@ ActiveAdmin.register Pase do
   form do |f|
 
     f.inputs "Detalle" do
-      f.input :oficina
+      f.input :oficina, :collection => f.object.expediente.posibles_destinos
       f.input :entrada, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
       f.input :observaciones, :input_html => {:class => :ckeditor}, :label => false
-   end
+    end
 
     f.buttons
   end

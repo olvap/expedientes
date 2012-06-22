@@ -20,6 +20,7 @@ gem 'cancan','1.6.7'
 gem 'therubyracer'
 gem 'activeadmin','0.4.0'
 gem 'jquery-rails'
+gem 'jquery-ui-redmond'
 gem "paper_trail"
 
 # paginacion

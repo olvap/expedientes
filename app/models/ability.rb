@@ -36,10 +36,18 @@ class Ability
   # este usuario es el que va a cargar y modificar los catastro
   # tiene el rol más alto dentro de la parte de catastro
   def catastro
-    can [:create, :update], [Catastro, Oficina]
+    can [:create, :update], [Expediente, Oficina]
     can :create, Pase
     #solo pueden modificar el ultimo, aunque sin la restriccion del tiempo.
     can :update, Pase, :ultimo?
+  end
+
+  # Este rol solo permite crear y modificar los expedietnenes que el
+  # usuario tiene permitido en su perfil.
+  def expedientes
+    can [:create, :update], Expediente do |expediente|
+      @@user.oficina_ids.include? expediente.inicio_id
+    end
   end
 
   #este rol es para los usuarios que solo que mueven expedientes de catastro

@@ -6,7 +6,7 @@ class PasesReport < Prawnbot::Report
   def initialize
     super
     @header_title = "MUNICIPALIDAD DE LA CIUDAD DE CORONDA"
-    @header_subtitle = "Catastro y edificaciones privadas"
+    @header_subtitle = "Sistema de expedientes"
 
     @logo = "#{Rails.root}/app/assets/images/logo.png"
     @water_print = "#{Rails.root}/app/assets/images/water_mark.png"
@@ -19,18 +19,18 @@ class PasesReport < Prawnbot::Report
 
     show_title "DETALLE DE PASE"
 
-    show_title "#{pase.catastro.category.name} N: #{pase.catastro.id} "
+    show_title "#{pase.expediente.inicio.name} N: #{pase.expediente.id} "
 
     myform([
-      "<b>Partida</b> #{pase.catastro.partida}",
-      "<b>Responsanble</b> #{pase.catastro.responsable}",
-      "<b>Numero de expediente</b> #{pase.catastro.numero_expediente_colegio}",
-      "<b>Convenio</b> #{pase.catastro.convenio_id}",
+      "<b>Partida</b> #{pase.expediente.partida}",
+      "<b>Responsanble</b> #{pase.expediente.responsable}",
+      "<b>Numero de expediente</b> #{pase.expediente.numero_expediente_colegio}",
+      "<b>Convenio</b> #{pase.expediente.convenio_id}",
 
-      "<b>Importe</b> #{pase.catastro.importe}"])
+      "<b>Importe</b> #{pase.expediente.importe}"])
 
 
-    show_title "<b>Oficina actual</b> #{pase.catastro.oficina.name}"
+    show_title "<b>Oficina actual</b> #{pase.expediente.oficina.name}"
 
     mybox(pase.observaciones)
 
