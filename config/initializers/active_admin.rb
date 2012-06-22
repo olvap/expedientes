@@ -7,6 +7,7 @@ ActiveAdmin.setup do |config|
   config.site_title = "Municipalidad de Coronda"
   config.allow_comments_in = [ :admin ]
   config.register_javascript 'ckeditor/ckeditor.js'
+  config.default_per_page = 10
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.

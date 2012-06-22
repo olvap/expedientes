@@ -106,18 +106,16 @@ ActiveAdmin.register Person do
 
 ##          end
 ##        end
-        if can? :manage, Expediente
-          div(:id => "xtabs-4") do
-            panel "Profesion" do
-              table_for person.profesionals do
-                column :titulo
-                column :matricula
-                column "Acciones" do |a|
-                  link_to "editar", edit_admin_person_profesional_path(person,a)
-                end
+        div(:id => "xtabs-4") do
+          panel "Profesion" do
+            table_for person.profesionals do
+              column :titulo
+              column :matricula
+              column "Acciones" do |a|
+                link_to "editar", edit_admin_person_profesional_path(person,a)
               end
-            div link_to "Administrar", admin_person_profesionals_path(person)
             end
+          div link_to "Administrar", admin_person_profesionals_path(person)
           end
         end
 

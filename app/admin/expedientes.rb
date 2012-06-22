@@ -1,7 +1,5 @@
 ActiveAdmin.register Expediente do
 
-  actions :index, :show
-
   scope :all, :default => true
   scope :pases_de_hoy
   scope :vencidos
@@ -16,6 +14,8 @@ ActiveAdmin.register Expediente do
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
   filter :pase_oficina_name,:as => :string, :label => "Oficina"
+  filter :urgencia
+  filter :inicio
 
   show do
     div(:id => "xtabs") do
@@ -41,13 +41,13 @@ ActiveAdmin.register Expediente do
 
       div(:id => "xtabs-3") do
         expediente.pases.each do |pase|
-        div :class => "pases" do
+          div :class => "pases" do
             div :class => "meta" do
               h4(link_to pase.oficina_name, admin_oficina_path(pase.oficina), :class => "active_admin_pase_author")
               span(pretty_format(pase.entrada))
             end
             div :class => "body" do
-              div my_simple_format pase.observaciones
+              div my_simple_format pase.observaciones if pase.observaciones
               div link_to("Detalles", admin_expediente_pase_path(expediente,pase))
               div link_to "Imprimir", imprimir_admin_expediente_pase_path(expediente,pase)
             end
@@ -63,7 +63,9 @@ ActiveAdmin.register Expediente do
     column :numero_expediente_colegio
     column :responsable
     column :partida
+    column :inicio
     column :pase, :sortable => false
+    column(:urgencia){|expediente| status_tag(expediente.urgencia)}
     default_actions
   end
 
@@ -72,6 +74,8 @@ ActiveAdmin.register Expediente do
     f.inputs "Details" do
       f.input :numero_expediente_colegio
       f.input :responsable
+      f.input :urgencia
+      f.input :inicio, :collection => Oficina.iniciales
       f.input :partida
       f.input :convenio_id
       f.input :numero_de_recibo
