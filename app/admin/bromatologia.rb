@@ -21,6 +21,9 @@ ActiveAdmin.register Bromatologia do
     column "RBL" do |b| b.id end
     column "Persona" do |b| b.person.try(:name) end
     column "Correo" do |b| b.address.try(:format) end
+    column :libreta_sanitaria
+    column :curso_manipulador
+    column :control_de_plagas
     default_actions
   end
 
@@ -68,6 +71,9 @@ ActiveAdmin.register Bromatologia do
       f.input :person_id,
       :input_html => {
         "data-pre" => f.object.person_token.to_json(:methods => :name), :only => [:id, :name] }
+      f.inputs :libreta_sanitaria
+      f.inputs :curso_manipulador
+      f.inputs :control_de_plagas
       f.has_many :negocios do |n|
         n.input :name
         n.input :rubro, :collection => Rubro.bromatologia
