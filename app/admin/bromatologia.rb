@@ -8,6 +8,9 @@ ActiveAdmin.register Bromatologia do
 
   filter :id
   filter :person_name, :as => :string
+  filter :libreta_sanitaria, :as => :select
+  filter :curso_de_manipulador, :as => :select
+  filter :control_de_plagas, :as => :select
 
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
