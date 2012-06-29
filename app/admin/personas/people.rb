@@ -25,7 +25,7 @@ ActiveAdmin.register Person do
       ul do
         li link_to "Detalles", "#xtabs-1"
         li link_to "Expedientes", "#xtabs-8"
-        if can? :manage, Expediente
+        if can? :create, Expediente
           li link_to "Profesion", "#xtabs-4"
         end
         if can? :create, Address
