@@ -70,9 +70,7 @@ ActiveAdmin.register Bromatologia do
       f.input :person_id,
       :input_html => {
         "data-pre" => f.object.person_token.to_json(:methods => :name), :only => [:id, :name] }
-      f.inputs :libreta_sanitaria
-      f.inputs :curso_manipulador
-      f.inputs :control_de_plagas
+      f.inputs :libreta_sanitaria, :curso_de_manipulador, :control_de_plagas
       f.has_many :negocios do |n|
         n.input :name
         n.input :rubro, :collection => Rubro.bromatologia

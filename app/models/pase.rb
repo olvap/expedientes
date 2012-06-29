@@ -6,7 +6,7 @@ class Pase < ActiveRecord::Base
   belongs_to :oficina
   delegate :name, :to => :oficina, :prefix => true
 
-#  validate :ultimo?
+  validates :inicio, :presence => true
   validates :expediente, :presence => true
   validates :oficina, :presence => true
   validates :entrada, :presence => true
