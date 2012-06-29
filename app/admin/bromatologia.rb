@@ -22,7 +22,7 @@ ActiveAdmin.register Bromatologia do
     column "Persona" do |b| b.person.try(:name) end
     column "Correo" do |b| b.address.try(:format) end
     column :libreta_sanitaria
-    column :curso_manipulador
+    column :curso_de_manipulador
     column :control_de_plagas
     default_actions
   end
