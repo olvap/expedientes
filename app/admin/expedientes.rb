@@ -13,9 +13,9 @@ ActiveAdmin.register Expediente do
   filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
-  filter :pase_oficina_name,:as => :string, :label => "Oficina"
-  filter :urgencia
-  filter :inicio
+  filter :pase_oficina_name,:as => :select, :label => "Oficina actual", :collection => Oficina.all
+  filter :inicio, :label => "Oficina de inicio"
+  filter :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
 
   show do
     div(:id => "xtabs") do
@@ -74,7 +74,7 @@ ActiveAdmin.register Expediente do
     f.inputs "Details" do
       f.input :numero_expediente_colegio
       f.input :responsable
-      f.input :urgencia
+      f.input :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
       f.input :inicio, :collection => Oficina.iniciales
       f.input :partida
       f.input :convenio_id
