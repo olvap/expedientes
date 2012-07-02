@@ -20,6 +20,7 @@ class Expediente < ActiveRecord::Base
 
   has_many :pases
   belongs_to :pase
+  belongs_to :tributo
   has_one :oficina, :through => :pase
   delegate :destinos, :to => :oficina, :prefix => true, :allow_nil => true
 

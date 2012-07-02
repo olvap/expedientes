@@ -6,7 +6,8 @@ class Bromatologia < ActiveRecord::Base
   end
   has_paper_trail
 
-  has_one :tributo, :as => :tributable
+#  has_one :tributo, :as => :tributable
+  has_many :deudas, :as => :tributable
 
   belongs_to :address
   belongs_to :person
@@ -18,12 +19,18 @@ class Bromatologia < ActiveRecord::Base
 
   alias_attribute :name ,:id
 
-  def addresses
-    person.addresses
-  end
+  delegate :addresses, :to => :person, :prefix => false, :allow_nil => true
 
   def person_token
     [person]
+  end
+
+  def calcular_deuda(periodo)
+    10
+  end
+
+  def calcular_deuda_actualizada(periodo)
+    10 * periodo.interes
   end
 
 end

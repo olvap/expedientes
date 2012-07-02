@@ -36,7 +36,7 @@ ActiveAdmin.register Bromatologia do
         li link_to "Detalles", "#xtabs-1"
         li link_to "Actividades", "#xtabs-4"
      #   li link_to "Avaluo", "#xtabs-2"
-     #   li link_to "Deuda", "#xtabs-3"
+        li link_to "Deuda", "#xtabs-3"
       end
       div(:id=> "xtabs-1") do
 
@@ -50,6 +50,15 @@ ActiveAdmin.register Bromatologia do
             column :id
             column :name
             column :rubro
+          end
+        end
+      end
+      div(:id=> "xtabs-3") do
+        panel "Deuda" do
+          table_for bromatologia.deudas do
+            column :periodo_name
+            column :monto
+            column :actualiazada
           end
         end
       end

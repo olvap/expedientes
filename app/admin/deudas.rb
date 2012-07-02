@@ -1,6 +1,6 @@
 ActiveAdmin.register Deuda do
   menu :parent => "Deuda"
-  menu false
+
   #menu :if => proc{ can?(:manage, Deuda) }
   controller.authorize_resource
 
@@ -14,6 +14,17 @@ ActiveAdmin.register Deuda do
   end
 
   member_action :borrar do
+  end
+
+  filter :periodo_name, :as => :string
+  filter :tributable_type
+
+  index do
+    column :tributable_type
+    column :periodo_name
+    column :monto
+    column :actualiazada
+    column :baja
   end
 
   member_action :generar do
