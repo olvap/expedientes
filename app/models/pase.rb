@@ -4,7 +4,13 @@ class Pase < ActiveRecord::Base
 
   belongs_to :expediente
   belongs_to :oficina
-  delegate :name, :to => :oficina, :prefix => true
+
+  delegate :name,                      :to => :oficina, :prefix => true
+  delegate :id,                        :to => :expediente, :prefix => true
+  delegate :partida,                   :to => :expediente, :prefix => true
+  delegate :responsable,               :to => :expediente, :prefix => true
+  delegate :numero_expediente_colegio, :to => :expediente, :prefix => true
+  delegate :inicio,                    :to => :expediente, :prefix => true
 
   validates :inicio, :presence => true
   validates :expediente, :presence => true

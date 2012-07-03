@@ -20,4 +20,7 @@ class Oficina < ActiveRecord::Base
     admin_oficina_path(self)
   end
 
+  def to_s
+    name
+  end
 end
