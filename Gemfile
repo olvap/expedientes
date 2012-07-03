@@ -41,6 +41,7 @@ gem 'thin'
 gem "ckeditor", "3.7.0.rc2"
 gem "paperclip"
 
+gem 'odf-report'
 gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
 
 gem 'locked', :git => 'git://github.com/BlueLemon/Lockable.git'

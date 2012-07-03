@@ -123,6 +123,10 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     mysql2 (0.3.11)
+    nokogiri (1.5.5)
+    odf-report (0.4.4)
+      nokogiri (~> 1.5.0)
+      rubyzip (~> 0.9.4)
     orm_adapter (0.0.6)
     paper_trail (2.6.0)
       rails (~> 3)
@@ -172,6 +176,7 @@ GEM
       json (~> 1.4)
     responders (0.6.5)
     ruby-rc4 (0.1.5)
+    rubyzip (0.9.8)
     sass (3.1.15)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
@@ -220,6 +225,7 @@ DEPENDENCIES
   locked!
   meta_search
   mysql2
+  odf-report
   paper_trail
   paperclip
   prawn!
