@@ -13,20 +13,22 @@ ActiveAdmin.register Expediente do
   filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
-  filter :pase_oficina_name,:as => :string, :label => "Oficina"
-  filter :urgencia
-  filter :inicio
+  filter :pase_oficina_name,:as => :select, :label => "Oficina actual", :collection => Oficina.all
+  filter :inicio, :label => "Oficina de inicio"
+  filter :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
 
   show do
     div(:id => "xtabs") do
       ul do
         li link_to "Detalles", "#xtabs-1"
         li link_to "Profesionales", "#xtabs-2"
+        li link_to "Deuda", "#xtabs-4"
         li link_to "Pases", "#xtabs-3"
       end
       div(:id => "xtabs-1") do
         attributes_table_for expediente,
-          :id, :partida, :responsable, :numero_expediente_colegio, :final_de_obra,
+          :id, :partida, :responsable, :numero_expediente_colegio, :inicio,
+          :urgencia,:final_de_obra,
           :convenio_id, :numero_de_recibo, :importe, :created_at, :updated_at
       end
 
@@ -37,6 +39,11 @@ ActiveAdmin.register Expediente do
             column :doc
           end
         end
+      end
+
+      div(:id => "xtabs-4") do
+        attributes_table_for expediente,
+          :tributo, :cuenta, :convenio_id, :importe, :deuda, :periodos
       end
 
       div(:id => "xtabs-3") do
@@ -71,20 +78,30 @@ ActiveAdmin.register Expediente do
 
   form do |f|
 
-    f.inputs "Details" do
-      f.input :numero_expediente_colegio
-      f.input :responsable
-      f.input :urgencia
-      f.input :inicio, :collection => Oficina.iniciales
-      f.input :partida
-      f.input :convenio_id
+    f.inputs "Detalles generales" do 
       f.input :numero_de_recibo
-      f.input :importe
-      f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
+      f.input :responsable
+      f.input :inicio, :collection => Oficina.iniciales
+      f.input :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
       f.input :people_tokens,
       :input_html => {
         "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
-   end
+    end
+
+    f.inputs "Detalles catastrales" do
+      f.input :partida
+      f.input :numero_expediente_colegio
+      f.input :final_de_obra, :as=>:string, :input_html => {:class => 'datepicker',:size=>10}
+    end
+
+    f.inputs "Detalles tributarios" do
+      f.input :tributo
+      f.input :cuenta
+      f.input :convenio_id
+      f.input :importe
+      f.input :deuda
+      f.input :periodos
+    end
 
     f.buttons
   end

@@ -6,33 +6,29 @@ class Deuda < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :tributable, :polymorphic => true
-  belongs_to :calculable, :polymorphic => true
 
   belongs_to :periodo
   validates :tributable_id, :uniqueness => {:scope => [:tributable_type, :periodo_id]}
 
   default_scope :include => :periodo
 
-  alias_attribute :name ,:format
+  delegate :name, :to => :periodo, :prefix => true, :allow_nil => true
 
-  def format
-    periodo.try(:name)
-  end
-
-  def year
-    periodo.try(:name).to_s[0..3]
-  end
-
-  def actualizar
-    calculable = tributable.avaluos.last if !baja
-    save
-  end
+  before_save :calcular_deuda
 
   def borrar
     if !baja
       self.baja = 1
       save
     end
+  end
+
+  def calcular_deuda
+    self.monto = tributable.calcular_deuda(periodo)
+  end
+
+  def actualiazada
+    tributable.calcular_deuda_actualizada(periodo)
   end
 
 end

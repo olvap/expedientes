@@ -8,6 +8,9 @@ ActiveAdmin.register Bromatologia do
 
   filter :id
   filter :person_name, :as => :string
+  filter :libreta_sanitaria, :as => :select
+  filter :curso_de_manipulador, :as => :select
+  filter :control_de_plagas, :as => :select
 
   sidebar :versionado, :partial => "layouts/version", :only => :show
 
@@ -22,7 +25,7 @@ ActiveAdmin.register Bromatologia do
     column "Persona" do |b| b.person.try(:name) end
     column "Correo" do |b| b.address.try(:format) end
     column :libreta_sanitaria
-    column :curso_manipulador
+    column :curso_de_manipulador
     column :control_de_plagas
     default_actions
   end
@@ -33,7 +36,7 @@ ActiveAdmin.register Bromatologia do
         li link_to "Detalles", "#xtabs-1"
         li link_to "Actividades", "#xtabs-4"
      #   li link_to "Avaluo", "#xtabs-2"
-     #   li link_to "Deuda", "#xtabs-3"
+        li link_to "Deuda", "#xtabs-3"
       end
       div(:id=> "xtabs-1") do
 
@@ -48,6 +51,15 @@ ActiveAdmin.register Bromatologia do
             column :name
             column "Categoria" do |b| b.rubro.sub_rubro end
             column :rubro
+          end
+        end
+      end
+      div(:id=> "xtabs-3") do
+        panel "Deuda" do
+          table_for bromatologia.deudas do
+            column :periodo_name
+            column :monto
+            column :actualiazada
           end
         end
       end
@@ -71,9 +83,7 @@ ActiveAdmin.register Bromatologia do
       f.input :person_id,
       :input_html => {
         "data-pre" => f.object.person_token.to_json(:methods => :name), :only => [:id, :name] }
-      f.inputs :libreta_sanitaria
-      f.inputs :curso_manipulador
-      f.inputs :control_de_plagas
+      f.inputs :libreta_sanitaria, :curso_de_manipulador, :control_de_plagas
       f.has_many :negocios do |n|
         n.input :name
         n.input :rubro, :collection => Rubro.bromatologia
