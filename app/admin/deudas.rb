@@ -4,6 +4,20 @@ ActiveAdmin.register Deuda do
   #menu :if => proc{ can?(:manage, Deuda) }
   controller.authorize_resource
 
+  controller do
+    respond_to :html, :xml, :json, :pdf
+
+    def index(options={}, &block)
+      super(options) do |format|
+        block.call(format) if block
+        format.pdf {
+          report = BromatologiasReport.new.formulario @deudas
+
+          send_file(report)
+        }
+      end
+    end
+  end
   belongs_to :tgi, :optional => true
 
   sidebar :versionado, :partial => "layouts/version", :only => :show
@@ -22,7 +36,7 @@ ActiveAdmin.register Deuda do
   index do
     column :tributable_type
     column :periodo_name
-    column :monto
+    column :calcular_deuda
     column :actualiazada
     column :baja
   end

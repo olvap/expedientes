@@ -12,4 +12,8 @@ class Periodo < ActiveRecord::Base
   def month
     name[4..6].to_i
   end
+
+  def julian
+   "#{name[3]}#{vencimiento.yday}"
+  end
 end
