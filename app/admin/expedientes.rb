@@ -76,6 +76,12 @@ ActiveAdmin.register Expediente do
     default_actions
   end
 
+  member_action :imprimir do
+    expediente = Expediente.find params[:id]
+    report = ExpedientesReport.new.detalle(expediente)
+    send_file(report)
+  end
+
   form do |f|
 
     f.inputs "Detalles generales" do 

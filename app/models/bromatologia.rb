@@ -20,17 +20,37 @@ class Bromatologia < ActiveRecord::Base
   alias_attribute :name ,:id
 
   delegate :addresses, :to => :person, :prefix => false, :allow_nil => true
+  delegate :name, :to => :person, :prefix => true, :allow_nil => true
 
   def person_token
     [person]
   end
 
   def calcular_deuda(periodo)
-    10
+    c = 0
+    if negocios.first.rubro.sub_rubro == 1
+      c = 150
+    end
+    if negocios.first.rubro.sub_rubro == 2
+      c = 100
+    end
+    if negocios.first.rubro.sub_rubro == 3
+      c = 66
+    end
+    if negocios.first.rubro.sub_rubro == 4
+      c = 41
+    end
+    if negocios.first.rubro.sub_rubro == 5
+      c = 33
+    end
+    if negocios.first.rubro.sub_rubro == 6
+      c = 25
+    end
+    c
   end
 
   def calcular_deuda_actualizada(periodo)
-    10 * periodo.interes
+    calcular_deuda(periodo) * periodo.interes
   end
 
 end

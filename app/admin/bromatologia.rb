@@ -58,7 +58,7 @@ ActiveAdmin.register Bromatologia do
         panel "Deuda" do
           table_for bromatologia.deudas do
             column :periodo_name
-            column :monto
+            column :calcular_deuda
             column :actualiazada
           end
         end
