@@ -36,7 +36,7 @@ class Deuda < ActiveRecord::Base
   end
 
   def cb
-    c = "000582105#{ rellenar id, 6 }#{ periodo_name }00000010#{periodo_julian}#{convertir_monto}"
+    c = "0000582105#{ rellenar id, 6 }#{ periodo_name }0000010#{periodo_julian}#{convertir_monto}"
     "#{c}#{calcular_digito c}"
   end
 
@@ -66,7 +66,7 @@ class Deuda < ActiveRecord::Base
   def convetir_caracteres(codigo)
     resultado = ""
     resultado.concat(33)
-    (0..(codigo.length)).step(2) do |i|
+    (0..(codigo.length - 1 )).step(2) do |i|
       caracter = codigo[i..i+1].to_i
       i = i + 1;
       if caracter < 92
