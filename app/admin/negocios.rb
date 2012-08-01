@@ -1,8 +1,6 @@
 ActiveAdmin.register Negocio do
   menu :if => proc{ can?(:manage, Bromatologia) }, :parent => "Bromatologia"
 
-  actions  :index
-
   filter :name
   filter :rubro
   filter :bromatologia_person_name,:as => :string, :label => "Responsable"
