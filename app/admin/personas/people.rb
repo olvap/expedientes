@@ -44,7 +44,7 @@ ActiveAdmin.register Person do
             column :numero_expediente_colegio
             column :responsable
             column :partida
-            column "Oficina Actual" do |c| c.pase.oficina_name end
+            column "Oficina Actual" do |c| c.pase.try(:oficina_name) end
           end
         end
       end
@@ -176,19 +176,19 @@ ActiveAdmin.register Person do
 
   sidebar :Ayuda, {:partial => "layouts/help",:local => {:topic => Topic.find_by_name("people")}}
 
-  member_action :lock do
-    @person.lock!
-    if @person.locked?
-      redirect_to :back, :notice => "Persona cerrada"
-    else
-      redirect_to :back, :notice =>"Completa todos los datos antes de cerrar"
-    end
-  end
+#  member_action :lock do
+#    @person.lock!
+#    if @person.locked?
+#      redirect_to :back, :notice => "Persona cerrada"
+#    else
+#      redirect_to :back, :notice =>"Completa todos los datos antes de cerrar"
+#    end
+#  end
 
-  member_action :unlock do
-    @person.unlock!
-    redirect_to :back, :notice => "Persona abierta"
-  end
+#  member_action :unlock do
+#    @person.unlock!
+#    redirect_to :back, :notice => "Persona abierta"
+#  end
 
   # falta para jubilado y para revertir
   # agregar datos comerciales: cantidad de empleados, ingresos brutos, cuit/cuil.

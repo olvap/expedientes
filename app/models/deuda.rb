@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Deuda < ActiveRecord::Base
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
   def admin_permalink
@@ -11,6 +12,7 @@ class Deuda < ActiveRecord::Base
   validates :tributable_id, :uniqueness => {:scope => [:tributable_type, :periodo_id]}
 
   default_scope :include => :periodo
+  default_scope order("tributable_id")
 
   delegate :name, :to => :periodo, :prefix => true, :allow_nil => true
   delegate :vencimiento, :to => :periodo, :prefix => true, :allow_nil => true
@@ -28,11 +30,19 @@ class Deuda < ActiveRecord::Base
   end
 
   def calcular_deuda
-    self.monto = tributable.calcular_deuda(periodo)
+    if tributable
+      self.monto = tributable.calcular_deuda(periodo)
+    else
+      self.monto = 0
+    end
   end
 
   def actualiazada
-    tributable.calcular_deuda_actualizada(periodo)
+    if tributable
+      tributable.calcular_deuda_actualizada(periodo)
+    else
+      0
+    end
   end
 
   def cb

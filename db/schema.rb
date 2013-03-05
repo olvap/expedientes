@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606152738) do
+ActiveRecord::Schema.define(:version => 20120701004537) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -99,6 +99,9 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "libreta_sanitaria"
+    t.boolean  "curso_de_manipulador"
+    t.boolean  "control_de_plagas"
   end
 
   create_table "catastros", :force => true do |t|
@@ -114,6 +117,9 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.string   "responsable"
     t.integer  "numero_de_recibo"
     t.float    "importe"
+    t.integer  "periodos"
+    t.float    "monto"
+    t.integer  "tributo_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -204,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.text     "motivo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "monto"
   end
 
   create_table "edificacions", :force => true do |t|
@@ -232,7 +239,6 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.date     "final_de_obra"
     t.string   "partida"
     t.integer  "category_id"
-    t.string   "type"
     t.integer  "convenio_id"
     t.integer  "pase_id"
     t.integer  "numero_de_recibo"
@@ -240,10 +246,39 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.string   "responsable"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "urgencia",                  :default => 0
+    t.integer  "inicio_id"
+    t.float    "deuda"
+    t.integer  "periodos"
+    t.integer  "tributo_id"
+    t.integer  "cuenta"
+  end
+
+  create_table "expedientes_oficinas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_pases", :force => true do |t|
+    t.integer  "oficina_id"
+    t.integer  "catastro_id"
+    t.date     "entrada"
+    t.text     "observaciones"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "expedientes_people", :id => false, :force => true do |t|
     t.integer  "expediente_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expedientes_profesionals", :force => true do |t|
+    t.string   "titulo"
+    t.integer  "matricula"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -323,22 +358,17 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "inicial"
+    t.integer  "urgencia",    :default => 0
+    t.boolean  "seguimiento"
   end
 
   create_table "pases", :force => true do |t|
     t.integer  "oficina_id"
-    t.integer  "catastro_id"
     t.date     "entrada"
     t.text     "observaciones"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "pedidos", :id => false, :force => true do |t|
-    t.integer  "catastro_id"
-    t.integer  "person_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "expediente_id"
   end
 
   create_table "people", :force => true do |t|
@@ -355,7 +385,7 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.datetime "updated_at"
     t.integer  "pather_id"
     t.integer  "mother_id"
-    t.datetime "locked_at"
+    t.date     "locked_at"
     t.boolean  "jubilado"
     t.string   "cuit"
   end
@@ -366,10 +396,10 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
   add_index "people", ["tdoc_id"], :name => "index_people_on_tdoc_id"
 
   create_table "periodos", :force => true do |t|
-    t.string   "name"
     t.date     "vencimiento"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "profesionals", :force => true do |t|
@@ -446,7 +476,21 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.integer  "address_id"
     t.integer  "responsable_id"
     t.integer  "titular_id"
+    t.integer  "avaluo_id"
+    t.string   "plano_mesura"
     t.integer  "codigo_judicial"
+    t.string   "direi_back",          :limit => 45
+    t.integer  "localidad_back_id"
+  end
+
+  create_table "tgivariables", :force => true do |t|
+    t.integer  "tgi_id"
+    t.float    "avaluo"
+    t.integer  "edificacion_id"
+    t.float    "descuento"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "titulares", :id => false, :force => true do |t|
@@ -462,18 +506,12 @@ ActiveRecord::Schema.define(:version => 20120606152738) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "close"
+    t.boolean  "close",         :default => false, :null => false
     t.integer  "admin_user_id"
   end
 
   create_table "tributos", :force => true do |t|
-    t.string   "calle"
-    t.integer  "numero"
-    t.string   "otro"
-    t.string   "pii"
-    t.integer  "address_id"
-    t.integer  "tributable_id"
-    t.string   "tributable_type"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

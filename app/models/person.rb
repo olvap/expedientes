@@ -32,7 +32,7 @@ class Person < ActiveRecord::Base
   #validation
   validates :name, :presence => true
 
-  acts_as_locked(:name, :born, :doc, :tdoc_id, :sexo_id)
+  #acts_as_locked(:name, :born, :doc, :tdoc_id, :sexo_id)
 
   #version
   def version

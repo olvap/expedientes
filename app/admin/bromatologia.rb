@@ -41,7 +41,9 @@ ActiveAdmin.register Bromatologia do
       div(:id=> "xtabs-1") do
 
         attributes_table_for bromatologia,
-          :id, :person,:address, :created_at,:updated_at
+          :id, :person,:address,
+          :libreta_sanitaria, :curso_de_manipulador, :control_de_plagas,
+          :created_at,:updated_at
 
       end
       div(:id=> "xtabs-4") do

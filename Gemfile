@@ -1,18 +1,18 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.1.1"
+gem 'rails', "~> 3.2.0"
 
 gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3', :require => 'uglifier'
   gem "compass", "~> 0.12.alpha.0"
 end
-gem 'rack', '1.3.3'
+
 gem "sprockets"#, :git => "git://github.com/sstephenson/sprockets.git"
 gem 'rails-i18n'
 gem 'cancan','1.6.7'
@@ -44,7 +44,7 @@ gem "paperclip"
 gem 'odf-report'
 gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
 
-gem 'locked', :git => 'git://github.com/BlueLemon/Lockable.git'
+#gem 'locked', :git => 'git://github.com/BlueLemon/Lockable.git'
 
 # Deploy with Capistrano
 # gem 'capistrano'

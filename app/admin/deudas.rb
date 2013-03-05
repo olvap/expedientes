@@ -1,6 +1,9 @@
 ActiveAdmin.register Deuda do
   menu :parent => "Deuda"
 
+  before_filter :only => :index do |controller|
+    @per_page = 9999 if ['application/pdf'].include?(request.format)
+  end
   #menu :if => proc{ can?(:manage, Deuda) }
   controller.authorize_resource
 

@@ -24,6 +24,7 @@ class Ability
   end
 
   def oficinas
+    can :manage, Oficina
   end
 
   #personas
@@ -46,7 +47,7 @@ class Ability
   # usuario tiene permitido en su perfil.
   def expedientes
     can [:create, :update], Expediente do |expediente|
-      @@user.oficina_ids.include? expediente.inicio_id
+      !expediente.inicio_id or @@user.oficina_ids.include? expediente.inicio_id
     end
   end
 
@@ -54,7 +55,7 @@ class Ability
   def pases
     #solo pueden crear pase si el expediente se encuentra en su ofinca
     can :create, Pase do |pase|
-      @@user.oficina_ids.include? pase.expediente.oficina.id
+      @@user.oficina_ids.include? pase.expediente.try(:oficina).try(:id) or !pase.expediente.pase
     end
     #solo pueden editarlo si vino de su oficina
     can :update, Pase do |pase|

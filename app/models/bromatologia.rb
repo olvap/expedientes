@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Bromatologia < ActiveRecord::Base
 
   include Rails.application.routes.url_helpers # neeeded for _path helpers to work in models
@@ -15,7 +16,7 @@ class Bromatologia < ActiveRecord::Base
   accepts_nested_attributes_for :negocios
 
   scope :sin_direccion, where("address_id is null")
-  scope :rubro_erroneo, joins(:negocios).where("negocios.rubro_id < 999")
+  scope :rubro_erroneo, joins(:negocios).where("negocios.rubro_id < 999 and negocios.rubro_id > 0")
 
   alias_attribute :name ,:id
 
@@ -29,22 +30,22 @@ class Bromatologia < ActiveRecord::Base
   def calcular_deuda(periodo)
     c = 0
     if negocios.first.rubro.sub_rubro == 1
-      c = 150
+      c = 189
     end
     if negocios.first.rubro.sub_rubro == 2
-      c = 100
+      c = 126
     end
     if negocios.first.rubro.sub_rubro == 3
-      c = 66
+      c = 83.16
     end
     if negocios.first.rubro.sub_rubro == 4
-      c = 41
+      c = 56.66
     end
     if negocios.first.rubro.sub_rubro == 5
-      c = 33
+      c = 41.52
     end
     if negocios.first.rubro.sub_rubro == 6
-      c = 25
+      c = 31.5
     end
     c
   end

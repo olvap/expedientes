@@ -13,7 +13,7 @@ ActiveAdmin.register Expediente do
   filter :responsable
   filter :numero_expediente_colegio
   filter :people_name,:as => :string, :label => "Profesional"
-  filter :pase_oficina_name,:as => :select, :label => "Oficina actual", :collection => Oficina.all
+  filter :pase_oficina_name,:as => :select, :label => "Oficina actual", :collection => Oficina.pluck(:name)
   filter :inicio, :label => "Oficina de inicio"
   filter :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
 
@@ -85,13 +85,15 @@ ActiveAdmin.register Expediente do
   form do |f|
 
     f.inputs "Detalles generales" do 
-      f.input :numero_de_recibo
+      f.input :mesa_de_entrada
       f.input :responsable
       f.input :inicio, :collection => Oficina.iniciales
       f.input :urgencia,:as => :select, :collection => Expediente::UrgenciaColection
       f.input :people_tokens,
       :input_html => {
         "data-pre" => f.object.people.to_json(:methods => :name), :only => [:id, :name] }
+      f.input :numero_de_recibo
+      f.input :importe
     end
 
     f.inputs "Detalles catastrales" do
